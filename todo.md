@@ -157,4 +157,4 @@
 
 - [x] Locate all abbreviated IIT Madras references in portfolio content.
 - [x] Replace them with Indian Institute of Technology Madras without disrupting responsive typography.
-- [ ] Verify, checkpoint, and push the naming update.
+- [x] Verify, checkpoint, and push the naming update.
