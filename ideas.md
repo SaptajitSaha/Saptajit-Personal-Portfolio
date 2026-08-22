@@ -1,31 +1,45 @@
 # Reference-Led Design Direction
 
-## Ground-Truth Reference
+## Design Read
 
-The supplied mobile screenshot is the primary visual specification. Its key language is a near-black editorial canvas framed by delicate vertical rails, a slim pill-shaped navigation bar, tall high-contrast serif typography, one vivid scripted accent line, a horizontal hero collage, and an economical four-cell information strip. The composition is deliberately quiet and spacious rather than dashboard-like. The supplied reference site is used only to resolve ambiguity, not as a source for copied wording or branding.
+Reading this as: an editorial-tech student portfolio for curious recruiters and collaborators, with a dark, cinematic, internet-native language leaning toward a tactile 3D signal-field system rather than a generic developer template.
 
-## Chosen Direction: Data Noir Editorial
+## Three Directions Considered
 
-**Design Movement:** Contemporary editorial portfolio design with an archival print sensibility and understated technology cues.
+| Theme Name | Very Brief Intro | Probability |
+| --- | --- | --- |
+| **Signal Field** | A dimensional research desk where project fragments orbit a personal portrait as evidence of a builder in motion. Dark, precise, warm, and quietly interactive. | 0.07 |
+| **Notebook After Dark** | An immersive technical journal built from scanned notes, code marginalia, and editorial typography. More archival than spatial. | 0.04 |
+| **Civic Circuit** | A clean, optimistic public-technology identity inspired by systems that make complex processes human. More structured and product-oriented. | 0.09 |
 
-**Core Principles:** Preserve a narrow, tall visual rhythm on mobile; anchor the page in a large serif identity; use a single vermilion-red cursive accent to direct attention; and make every dividing line, grain field, and data label purposeful.
+## Chosen Direction: Signal Field
 
-**Color Philosophy:** The foundation is ink black and charcoal so the site feels concentrated and immersive. Bone-white typography supplies print-like contrast. A sparing warm red signals the human creative point inside analytical work, while small teal, orange, blue, and rose codes organize the work categories.
+**Design Movement:** Contemporary digital editorialism with a single tactile 3D centerpiece, influenced by experimental technical journals and high-end creative developer portfolios.
 
-**Layout Paradigm:** A contained editorial column floats inside a full-page dark field. The hero uses three staggered bands—identity, visual narrative, and compact capability cells—before expanding into asymmetric project stories. On wide displays, the contained column becomes a restrained editorial grid rather than a conventionally centered marketing layout.
+**Core Principles:** Treat the supplied portrait as a real personal artifact, not a decorative right-column image. Use depth only to explain the relationship between the person, current projects, and learning signal. Keep the rest of the page typographic, spatial, and evidence-led. Show ambition through current work and active learning rather than inflated claims.
 
-**Signature Elements:** Fine dotted guard rails at the page edges; an angled, image-like data mosaic without synthetic personal imagery; and micro-labels with color key squares.
+**Color Philosophy:** Preserve the existing portfolio’s ink-black foundation, bone typography, smoke-gray dividers, and **Signal Vermilion #E84C35**. Add muted cobalt and tea-green only as technical annotation colors, never as competing brand accents. Vermilion remains the human signal within a largely monochrome system.
 
-**Interaction Philosophy:** Navigation scrolls smoothly to its corresponding portfolio section. Work cards reveal a measured underline and metadata shift on hover; calls to action move with a concise press response, never gratuitous flourish.
+**Layout Paradigm:** The hero is an asymmetric depth stage: an oversized name and intent frame a central portrait plane, while a low-count 3D constellation of project tags moves gently with pointer position. The remaining page unfolds as a research log—one full-width project narrative, a split evidence strip, an editorial learning sequence, and a decisive contact close. Conventional card grids are avoided.
 
-**Animation:** Initial hero items enter with a 60ms editorial stagger using opacity and a small vertical translate. Hover motion is restricted to 160–220ms transform and color transitions. The site honors reduced-motion preferences by showing complete static content.
+**Signature Elements:** A controlled 3D project constellation around the portrait; a subtle field-grid with coordinate marks; and a vermilion “signal line” that connects projects, current learning, and contact.
 
-**Typography System:** `Cormorant Garamond` carries the identity, projects, and key numerals in upright and italic forms. `DM Mono` handles navigation, metadata, labels, and compact body copy, echoing the reference’s technical notes. Headings use high contrast and generous letter spacing only in the micro-label tier.
+**Interaction Philosophy:** 3D motion is deliberate and scarce. Pointer movement produces a shallow tilt on the hero artifact; project panels reveal their technical metadata on hover or focus; navigation uses direct anchor travel. Keyboard and touch input always retain a complete non-3D path.
 
-**Brand Essence:** A focused portfolio for Saptajit Saha, a Kolkata-based data analyst intern candidate who turns operational information into clear decisions. **Methodical, curious, precise.**
+**Animation:** The hero’s portrait plane materializes once using opacity, blur, and a 10px vertical settle. The 3D constellation responds with capped transforms, no continuous spinning, and a static reduced-motion state. Scroll reveals use a 280–420ms custom ease-out, and buttons use a compact 160ms press scale. Motion weighting: **Jakub Krehel primary**, **Jhey Tompkins secondary**, **Emil Kowalski for high-frequency restraint**.
 
-**Brand Voice:** Headlines are candid, slightly poetic, and specific; CTAs are direct and professional; metadata is short and factual. Example lines: “Data, made decision-ready.” and “Trace the work behind the insight.” Generic welcome language is excluded.
+**Typography System:** `DM Sans` drives the assertive modern display voice; `DM Mono` handles technical metadata, labels, and code-like detail. `Cormorant Garamond` is retained only for one short italic emphasis per major narrative moment, so the old editorial character survives without dominating the visual system.
 
-**Wordmark & Logo:** A compact interlocked `S` mark built from stepped data bars and a single rising curve, designed as a graphic symbol rather than a typed name.
+**Brand Essence:** Saptajit Saha is an IIT Madras Data Science student building thoughtful AI, data, and software experiments before the title arrives. **Curious, rigorous, forward-looking.**
+
+**Brand Voice:** Headlines are declarative and human; captions explain evidence; CTAs are concise. Example lines: “Early in the work. Serious about the work.” and “Turning difficult systems into usable tools.” Generic welcome copy and seniority theatre are excluded.
+
+**Wordmark & Logo:** The `S` mark becomes a small offset coordinate glyph: two stepped lines separated by a vermilion data point. It is used as a clear graphic anchor, not a generic font initial.
 
 **Signature Brand Color:** **Signal Vermilion — #E84C35.**
+
+## Style Decisions
+
+- Keep dark mode as the primary art direction; offer a clean light mode later only if it can preserve the same hierarchy.
+- Use one 3D scene in the hero and shallow dimensionality elsewhere; no decorative WebGL environment, ambient spinning, or neon fog.
+- Use the verified portrait in the hero and a controlled crop in the personal narrative only. No synthetic replacement portraits.

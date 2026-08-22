@@ -17,5 +17,13 @@
 
 - [x] Gather a representative portfolio preview and current project metadata.
 - [x] Create the animated, badge-rich README with setup and deployment guidance.
-- [ ] Commit and push the README to the private GitHub repository.
-- [ ] Provide the updated repository documentation summary.
+- [x] Commit and push the README to the private GitHub repository.
+- [x] Provide the updated repository documentation summary.
+
+## 3D portfolio redesign
+
+- [x] Verify profile details and collect safe portfolio content from the supplied profile and resume.
+- [x] Define the new 3D motion system while preserving the dark vermilion palette.
+- [x] Rebuild the portfolio with corrected identity, contact links, and portrait usage.
+- [ ] Verify responsive rendering, production build, and GitHub repository rename.
+- [ ] Deliver the redesign and publishing handoff.
