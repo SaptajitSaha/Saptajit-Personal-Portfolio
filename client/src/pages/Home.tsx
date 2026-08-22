@@ -195,7 +195,7 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <p className="work-tools">{project.role}</p>
                   <p className="work-description">{project.tagline}</p>
-                  {isNidarr && <a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a>}
+                  {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a><a className="nidarr-tour-link" href={nidarrEvidence.tour} target="_blank" rel="noreferrer">Watch product tour</a></div>}
                   <CaseStudyPanel study={project} />
                 </div>
               </article>
@@ -250,28 +250,20 @@ export default function Home() {
 function PlusMark() { return <span aria-hidden="true">+</span>; }
 
 function NidarrEvidence() {
-  const screens = [
-    [nidarrEvidence.home, "Nidarr safety tools home screen", "Home"],
-    [nidarrEvidence.report, "Nidarr incident-report screen", "Report"],
-    [nidarrEvidence.walk, "Nidarr Walk With Me screen", "Walk With Me"],
-    [nidarrEvidence.map, "Nidarr safety map screen", "Safety Map"],
-    [nidarrEvidence.profile, "Nidarr profile screen", "Profile"],
-  ] as const;
-
   return (
     <div className="nidarr-media" aria-label="Nidarr product interface evidence">
-      <a className="nidarr-tour" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open the Nidarr live prototype">
-        <img src={nidarrEvidence.tour} alt="Animated product tour showing Nidarr safety features" width="360" height="720" loading="lazy" />
-        <span>Live product tour <ArrowUpRight size={14} aria-hidden="true" /></span>
+      <a className="nidarr-primary" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Nidarr live prototype">
+        <img src={nidarrEvidence.home} alt="Nidarr home screen with safety overview and quick actions" width="437" height="865" loading="lazy" />
+        <span>Safety overview <ArrowUpRight size={14} aria-hidden="true" /></span>
       </a>
-      <div className="nidarr-screen-stack">
-        {screens.map(([src, alt, label], index) => (
-          <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" className={`nidarr-screen nidarr-screen--${index + 1}`} key={label} aria-label={`Open Nidarr to explore ${label}`}>
-            <img src={src} alt={alt} width="440" height="871" loading="lazy" />
-            <span>{label}</span>
-          </a>
-        ))}
-      </div>
+      <a className="nidarr-secondary nidarr-secondary--report" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Explore Nidarr incident reporting">
+        <img src={nidarrEvidence.report} alt="Nidarr report incident screen" width="428" height="868" loading="lazy" />
+        <span>Report incident</span>
+      </a>
+      <a className="nidarr-secondary nidarr-secondary--map" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Explore Nidarr safety map">
+        <img src={nidarrEvidence.map} alt="Nidarr safety map screen centered on Kolkata" width="433" height="873" loading="lazy" />
+        <span>Safety map</span>
+      </a>
     </div>
   );
 }
