@@ -143,6 +143,6 @@
 
 - [x] Map the existing verified toolbox tools to authentic logo assets and concise labels.
 - [x] Replace the static toolbox grid with alternating horizontal logo ticker rows.
-- [ ] Save the verified motion-accessible toolbox ticker checkpoint and push it to GitHub.
+- [x] Save the verified motion-accessible toolbox ticker checkpoint and push it to GitHub.
 - [x] Represent Power BI and Excel with authentic marks, and show SQL, Statistics, and Machine Learning as clearly identified disciplines rather than fake tool logos.
 - [x] Label the data-visualization tool explicitly as Looker Studio and re-run ticker QA.
