@@ -2,6 +2,7 @@
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
+import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
 import {
@@ -11,7 +12,6 @@ import {
   Code2,
   Database,
   Github,
-  GraduationCap,
   Layers3,
   Linkedin,
   Mail,
@@ -25,6 +25,7 @@ import { useEffect, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
+const iitMadrasLogo = "/manus-storage/iitm-official-logo_6040e44a.png";
 const nidarrEvidence = {
   home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ZuhcSYWKTRzpFYal.png",
   report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gDDTVyQMOfOWXWDG.png",
@@ -85,13 +86,6 @@ const projects: Project[] = [
     linkLabel: "Visit GitHub",
     className: "work-compact work-compact--dark",
   },
-];
-
-const learningTracks = [
-  { title: "AI systems", now: "LLMs, agentic flows, and responsible AI", tools: "Gemini · Python", question: "How can an assistant stay useful without hiding uncertainty?", project: "Interactive Election Assistant" },
-  { title: "Machine learning", now: "model evaluation, statistical foundations, and model thinking", tools: "Python · Pandas · PyTorch (learning)", question: "How do models fail outside the conditions they were tested in?", project: "Study thread" },
-  { title: "Software craft", now: "responsive interfaces, frontend structure, and product prototyping", tools: "React · TypeScript · Git", question: "What makes a small prototype feel trustworthy enough to use?", project: "Nidarr" },
-  { title: "Quantitative finance", now: "market signals, machine-learning methods, and NLP", tools: "Python · SQL", question: "How much signal survives beyond the backtest?", project: "Study thread" },
 ];
 
 export default function Home() {
@@ -187,7 +181,7 @@ export default function Home() {
         <section className="hero" ref={stageRef} aria-labelledby="hero-title">
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · Indian Institute of Technology Madras ’29</p>
+            <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
             <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
             <p className="hero-detail">I build small, serious experiments that turn difficult questions into useful tools.</p>
@@ -207,9 +201,11 @@ export default function Home() {
                 <div className="portrait-backdrop" aria-hidden="true" />
                 <img src={portrait} alt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" width="1084" height="1448" fetchPriority="high" />
               </figure>
-              <div className="role-planet-orbit role-planet-orbit--ai"><div className="role-planet role-planet--ai"><Sparkles size={15} aria-hidden="true" /> AI systems</div></div>
-              <div className="role-planet-orbit role-planet-orbit--data"><div className="role-planet role-planet--data"><Database size={15} aria-hidden="true" /> Data practice</div></div>
-              <div className="role-planet-orbit role-planet-orbit--code"><div className="role-planet role-planet--code"><Code2 size={15} aria-hidden="true" /> Software craft</div></div>
+              <div className="orbit-foreground" aria-hidden="true">
+                <div className="orbit-label-path orbit-label-path--ai"><div className="role-planet role-planet--ai"><Sparkles size={15} /> AI systems</div></div>
+                <div className="orbit-label-path orbit-label-path--data"><div className="role-planet role-planet--data"><Database size={15} /> Data practice</div></div>
+                <div className="orbit-label-path orbit-label-path--code"><div className="role-planet role-planet--code"><Code2 size={15} /> Software craft</div></div>
+              </div>
             </div>
           </div>
         </section>
@@ -267,7 +263,7 @@ export default function Home() {
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
             <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at Indian Institute of Technology Madras. I&apos;m interested in AI, machine learning, data science, and software engineering because I like seeing an unclear system become something a person can actually use.</p>
             <p>I build because the fastest way to understand an idea is to give it edges, constraints, and a user. Right now, I&apos;m looking for the next problem worth taking apart carefully.</p>
-            <div className="education-note"><GraduationCap size={20} aria-hidden="true" /><span><strong>Indian Institute of Technology Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
+            <div className="education-note"><img className="education-note__logo" src={iitMadrasLogo} alt="Official IIT Madras logo" width="272" height="60" /><span><strong>Indian Institute of Technology Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
           </div>
         </section>
 

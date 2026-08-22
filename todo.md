@@ -158,3 +158,11 @@
 - [x] Locate all abbreviated IIT Madras references in portfolio content.
 - [x] Replace them with Indian Institute of Technology Madras without disrupting responsive typography.
 - [x] Verify, checkpoint, and push the naming update.
+
+## Hero, credential, and learning refinement
+
+- [x] Inspect the hero’s orbital-label layering and identify the collision path around the portrait.
+- [x] Keep the hero credential abbreviated while retaining the full Indian Institute of Technology Madras name in About.
+- [x] Source and integrate the official IIT Madras mark only within the About education credential.
+- [x] Reframe learning tracks around AI/ML, DSA/CP, System Design, and Cloud Architecture.
+- [x] Verify motion layering, reduced-motion behavior, responsive layout, checkpoint, and push GitHub.
