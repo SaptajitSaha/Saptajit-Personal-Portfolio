@@ -25,5 +25,5 @@
 - [x] Verify profile details and collect safe portfolio content from the supplied profile and resume.
 - [x] Define the new 3D motion system while preserving the dark vermilion palette.
 - [x] Rebuild the portfolio with corrected identity, contact links, and portrait usage.
-- [x] Verify responsive rendering and production build.
+- [x] Verify responsive rendering, production build, and GitHub repository rename.
 - [ ] Deliver the redesign and publishing handoff.
