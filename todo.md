@@ -91,3 +91,10 @@
 - [x] Inspect the current 3D label counter-transform and orbit animation rules.
 - [x] Keep labels screen-facing and add hover-to-pause behavior for the orbit system.
 - [x] Verify the interaction on desktop and mobile.
+
+## Nidarr iPhone showcase
+
+- [x] Inspect the current Nidarr showcase and select the three real product screens.
+- [x] Build reusable CSS iPhone-style device frames around the existing screens.
+- [x] Compose the desktop, tablet, and mobile device arrangement.
+- [ ] Verify the showcase, save a checkpoint, and push the update.

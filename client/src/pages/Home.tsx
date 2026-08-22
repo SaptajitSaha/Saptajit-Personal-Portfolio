@@ -258,18 +258,19 @@ function PlusMark() { return <span aria-hidden="true">+</span>; }
 function NidarrEvidence() {
   return (
     <div className="nidarr-media" aria-label="Nidarr product interface evidence">
-      <a className="nidarr-primary" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Nidarr live prototype">
-        <img src={nidarrEvidence.home} alt="Nidarr home screen with safety overview and quick actions" width="437" height="865" loading="lazy" />
-        <span>Safety overview <ArrowUpRight size={14} aria-hidden="true" /></span>
-      </a>
-      <a className="nidarr-secondary nidarr-secondary--report" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Explore Nidarr incident reporting">
-        <img src={nidarrEvidence.report} alt="Nidarr report incident screen" width="428" height="868" loading="lazy" />
-        <span>Report incident</span>
-      </a>
-      <a className="nidarr-secondary nidarr-secondary--map" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Explore Nidarr safety map">
-        <img src={nidarrEvidence.map} alt="Nidarr safety map screen centered on Kolkata" width="433" height="873" loading="lazy" />
-        <span>Safety map</span>
-      </a>
+      <div className="nidarr-ground" aria-hidden="true" />
+      <PhoneMockup className="phone-mockup--primary" src={nidarrEvidence.home} alt="Nidarr home screen with safety overview and quick actions" label="Safety overview" />
+      <PhoneMockup className="phone-mockup--report" src={nidarrEvidence.report} alt="Nidarr report incident screen" label="Report incident" />
+      <PhoneMockup className="phone-mockup--map" src={nidarrEvidence.map} alt="Nidarr safety map screen centered on Kolkata" label="Safety map" />
     </div>
+  );
+}
+
+function PhoneMockup({ className, src, alt, label }: { className: string; src: string; alt: string; label: string }) {
+  return (
+    <a className={`phone-mockup ${className}`} href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label={`Open Nidarr live prototype: ${label}`}>
+      <span className="phone-mockup__frame"><span className="phone-mockup__island" aria-hidden="true" /><img src={src} alt={alt} width="437" height="865" loading="lazy" /></span>
+      <span className="phone-mockup__label">{label}<ArrowUpRight size={13} aria-hidden="true" /></span>
+    </a>
   );
 }
