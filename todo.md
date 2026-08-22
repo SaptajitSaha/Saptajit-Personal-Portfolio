@@ -4,7 +4,7 @@
 - [x] Create or connect a private GitHub repository named `saptajit-data-portfolio`.
 - [x] Push the verified portfolio checkpoint to the GitHub remote.
 - [x] Document the follow-up workflow for editing, checkpointing, pushing, and publishing updates.
-- [ ] Provide the user with the repository link and the required publication action.
+- [x] Provide the user with the repository link and the required publication action.
 
 ## Vercel deployment correction
 
@@ -26,7 +26,7 @@
 - [x] Define the new 3D motion system while preserving the dark vermilion palette.
 - [x] Rebuild the portfolio with corrected identity, contact links, and portrait usage.
 - [x] Verify responsive rendering, production build, and GitHub repository rename.
-- [ ] Deliver the redesign and publishing handoff.
+- [x] Deliver the redesign and publishing handoff.
 
 ## Premium refinement pass
 
@@ -34,7 +34,7 @@
 - [x] Improve typography, metadata restraint, hero communication, and personal content.
 - [x] Add reusable project-storytelling and learning-detail interactions without fabricating claims.
 - [x] Verify the refined desktop and mobile experience.
-- [ ] Deliver the refined portfolio checkpoint.
+- [x] Deliver the refined portfolio checkpoint.
 
 ## Typography spacing correction
 
@@ -54,7 +54,7 @@
 - [x] Create a lightweight animated Nidarr preview and replace the washed-out project treatment.
 - [x] Update the Election Assistant card with an honest visual artifact and richer project evidence.
 - [x] Verify the revised cards, checkpoint the update, and push GitHub.
-- [ ] Provide the required Vercel redeployment handoff.
+- [x] Provide the required Vercel redeployment handoff.
 
 ## Nidarr composition refinement
 
