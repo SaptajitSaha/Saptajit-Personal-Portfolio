@@ -260,3 +260,11 @@
 - [x] Integrate the carousel into the Nidarr project card with responsive controls and restrained motion.
 - [x] Verify desktop/mobile interaction, keyboard access, reduced-motion behavior, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the supplied Nidarr carousel upgrade to GitHub.
+
+## Reference-inspired reach-out experience
+
+- [x] Review the current contact experience and map the reference’s message, booking, email, and social patterns to real portfolio actions.
+- [x] Create a reusable Signal Field booking-calendar component with deterministic dates and accessible direct-action controls.
+- [x] Integrate a responsive reach-out panel without replacing the working Web3Forms contact flow.
+- [x] Verify desktop/mobile interaction, keyboard access, contact behavior, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the reach-out experience to GitHub.

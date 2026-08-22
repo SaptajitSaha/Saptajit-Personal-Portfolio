@@ -1,7 +1,7 @@
 /** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
-import { ContactDialog } from "@/components/ContactDialog";
+import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
@@ -243,25 +243,7 @@ export default function Home() {
       </main>
 
       <footer id="contact" className="site-footer" data-trail-color="236,103,157">
-        <section className="connect-panel" aria-labelledby="connect-heading">
-          <div className="connect-panel__intro">
-            <p className="connect-panel__kicker">Open channel</p>
-            <h2 id="connect-heading">Connect with<br /><em>me.</em></h2>
-            <p>Have an idea, a collaboration, or a problem worth taking apart? I&apos;d like to hear it.</p>
-          </div>
-          <div className="connect-panel__actions">
-            <div className="connect-panel__message">
-              <span className="connect-panel__status" aria-hidden="true" />
-              <div><strong>Start a conversation</strong><p>A short note is enough to begin.</p></div>
-            </div>
-            <ContactDialog />
-            <div className="connect-panel__direct" aria-label="Direct contact options">
-              <a href="mailto:sahasaptajit@gmail.com"><Mail size={16} aria-hidden="true" /><span>Email directly</span><ArrowUpRight size={14} aria-hidden="true" /></a>
-              <a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={16} aria-hidden="true" /><span>LinkedIn</span><ArrowUpRight size={14} aria-hidden="true" /></a>
-              <a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={16} aria-hidden="true" /><span>GitHub</span><ArrowUpRight size={14} aria-hidden="true" /></a>
-            </div>
-          </div>
-        </section>
+        <ReachOutPanel />
         <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
     </div>

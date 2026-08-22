@@ -1,6 +1,6 @@
 import { submitWeb3FormsContact } from "@/lib/web3forms";
 import { ArrowUpRight, Check, Copy, LoaderCircle } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, type ReactNode, useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -27,7 +27,7 @@ function validateForm(form: ContactForm): FieldErrors {
   return errors;
 }
 
-export function ContactDialog() {
+export function ContactDialog({ trigger }: { trigger?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<ContactForm>(initialForm);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -90,7 +90,7 @@ export function ContactDialog() {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <button className="footer-contact-button" type="button">Contact Me <ArrowUpRight size={22} aria-hidden="true" /></button>
+        {trigger ?? <button className="footer-contact-button" type="button">Contact Me <ArrowUpRight size={22} aria-hidden="true" /></button>}
       </DialogTrigger>
       <DialogContent className="contact-dialog" showCloseButton={false} aria-describedby={undefined}>
         <DialogHeader className="contact-dialog__header">
