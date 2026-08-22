@@ -97,4 +97,4 @@
 - [x] Inspect the current Nidarr showcase and select the three real product screens.
 - [x] Build reusable CSS iPhone-style device frames around the existing screens.
 - [x] Compose the desktop, tablet, and mobile device arrangement.
-- [ ] Verify the showcase, save a checkpoint, and push the update.
+- [x] Verify the showcase, save a checkpoint, and push the update.
