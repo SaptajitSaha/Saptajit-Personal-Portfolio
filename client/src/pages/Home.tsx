@@ -1,6 +1,7 @@
 /** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
+import { ContactDialog } from "@/components/ContactDialog";
 import {
   ArrowUpRight,
   Braces,
@@ -245,7 +246,7 @@ export default function Home() {
       </main>
 
       <footer id="contact" className="site-footer">
-        <div className="footer-main"><p>Have something<br />interesting to <em>build?</em></p><a className="footer-mail" href="mailto:sahasaptajit@gmail.com">sahasaptajit@gmail.com <ArrowUpRight size={23} aria-hidden="true" /></a></div>
+        <div className="footer-main"><p>Have something<br />interesting to <em>build?</em></p><ContactDialog /></div>
         <div className="footer-links"><a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={17} aria-hidden="true" /> LinkedIn</a><a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={17} aria-hidden="true" /> GitHub</a><a href="mailto:sahasaptajit@gmail.com"><Mail size={17} aria-hidden="true" /> Email</a></div>
         <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>

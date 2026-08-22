@@ -105,3 +105,17 @@
 - [x] Remove external phone labels while preserving the prototype link on every real device.
 - [x] Simplify the mobile product hierarchy and verify no phone silhouette is clipped.
 - [x] Validate the focused correction, checkpoint it, and push GitHub.
+
+## Contact experience refinement
+
+- [x] Inspect the existing final contact CTA and determine the secure server-side delivery setup.
+- [x] Replace the visible email CTA with an accessible Contact Me modal and progressive email alternatives.
+- [x] Add validated, protected Web3Forms handling with loading, success, error, honeypot, and fallback states.
+- [ ] Verify desktop and mobile modal behavior, checkpoint the update, and push GitHub.
+
+## Web3Forms delivery switch
+
+- [ ] Confirm the Web3Forms access-key in the deployed browser flow; local automated probes are blocked by the provider’s client-only enforcement.
+- [x] Replace the Resend-specific server delivery path with Web3Forms submission handling.
+- [x] Revalidate the Contact Me modal states and alternatives across desktop and mobile.
+- [x] Correct the mobile modal surface so page content cannot bleed through the dialog.

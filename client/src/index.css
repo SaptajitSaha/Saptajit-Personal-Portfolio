@@ -128,3 +128,48 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
   .phone-mockup--map { top:61%; right:7%; width:25%; transform:rotate(5deg); }
   .phone-mockup--primary:hover { transform:translateY(-3px) rotate(0); }
 }
+
+/* Signal Field — focused contact experience: editorial CTA outside, accessible dialog inside. */
+.footer-contact-button { display:inline-flex; align-items:center; gap:10px; width:fit-content; padding:13px 16px; border:1px solid var(--signal); background:var(--signal); color:var(--paper); font:600 12px/1 var(--font-mono); cursor:pointer; transition:transform 160ms var(--ease-out),background 180ms var(--ease-out),color 180ms var(--ease-out); }
+.footer-contact-button:hover { background:transparent; color:var(--signal); }
+.footer-contact-button:active { transform:scale(.97); }
+.footer-contact-button:focus-visible,.contact-form input:focus-visible,.contact-form textarea:focus-visible,.contact-dialog__submit:focus-visible,.contact-dialog__secondary:focus-visible,.contact-dialog__alternatives a:focus-visible,.contact-dialog__alternatives button:focus-visible { outline:2px solid var(--signal); outline-offset:3px; }
+.contact-dialog { width:min(100% - 32px,640px); max-width:640px; max-height:calc(100dvh - 32px); overflow-y:auto; isolation:isolate; gap:0; border:1px solid rgba(241,238,233,.2); border-radius:0; background-color:#131316 !important; background-image:none !important; color:var(--paper); box-shadow:0 28px 80px rgba(0,0,0,.58); }
+.contact-dialog + * { background:rgba(0,0,0,.76) !important; }
+.contact-dialog__header { gap:9px; padding:3px 44px 22px 0; border-bottom:1px solid var(--line); text-align:left; }
+.contact-dialog__eyebrow { margin:0; color:var(--signal); font:600 10px/1 var(--font-mono); letter-spacing:.1em; text-transform:uppercase; }
+.contact-dialog [data-slot="dialog-title"] { font-size:clamp(1.7rem,4vw,2.45rem); font-weight:600; line-height:.98; letter-spacing:-.04em; }
+.contact-dialog [data-slot="dialog-description"] { color:var(--mist); font:400 14px/1.5 var(--font-sans); }
+.contact-form { display:grid; gap:13px; padding-top:24px; }
+.contact-form__grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+.contact-form label { display:grid; gap:8px; color:var(--paper); font:600 10px/1 var(--font-mono); letter-spacing:.06em; text-transform:uppercase; }
+.contact-form input,.contact-form textarea { width:100%; min-height:44px; border:1px solid rgba(241,238,233,.22); border-radius:0; background:#0e0e10; color:var(--paper); font:400 15px/1.45 var(--font-sans); letter-spacing:normal; text-transform:none; transition:border-color 160ms var(--ease-out),background 160ms var(--ease-out); }
+.contact-form input { padding:0 12px; }
+.contact-form textarea { min-height:126px; padding:11px 12px; resize:vertical; }
+.contact-form input::placeholder,.contact-form textarea::placeholder { color:#77717a; }
+.contact-form input:focus,.contact-form textarea:focus { border-color:var(--signal); background:#111114; outline:0; }
+.contact-form input:disabled,.contact-form textarea:disabled { cursor:not-allowed; opacity:.62; }
+.contact-form__error { margin-top:-8px; color:#ff856f; font:500 11px/1.35 var(--font-mono); }
+.contact-form__notice { margin:0; padding:11px 12px; border-left:2px solid var(--signal); background:rgba(232,76,53,.09); color:var(--mist); font-size:13px; line-height:1.45; }
+.contact-form__notice strong { color:var(--paper); }
+.contact-form__honeypot { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.contact-dialog__actions { display:flex; align-items:center; justify-content:flex-start; gap:12px; margin-top:10px; }
+.contact-dialog__submit,.contact-dialog__secondary { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; border:1px solid var(--signal); padding:0 14px; font:600 11px/1 var(--font-mono); cursor:pointer; transition:transform 160ms var(--ease-out),background 180ms var(--ease-out),color 180ms var(--ease-out); }
+.contact-dialog__submit { background:var(--signal); color:var(--paper); }
+.contact-dialog__submit:hover:not(:disabled) { background:#ff624a; }
+.contact-dialog__secondary { background:transparent; color:var(--paper); border-color:var(--line); }
+.contact-dialog__secondary:hover:not(:disabled) { border-color:var(--paper); }
+.contact-dialog__submit:active:not(:disabled),.contact-dialog__secondary:active:not(:disabled) { transform:scale(.97); }
+.contact-dialog__submit:disabled,.contact-dialog__secondary:disabled { cursor:not-allowed; opacity:.62; }
+.contact-dialog__spinner { animation:contact-spin 700ms linear infinite; }
+.contact-dialog__alternatives { display:grid; gap:10px; margin-top:25px; padding-top:18px; border-top:1px solid var(--line); color:var(--mist); font:500 10px/1 var(--font-mono); }
+.contact-dialog__alternatives > div { display:flex; flex-wrap:wrap; gap:12px 16px; }
+.contact-dialog__alternatives a,.contact-dialog__alternatives button { display:inline-flex; align-items:center; gap:5px; border:0; padding:0; background:transparent; color:var(--paper); font:500 11px/1 var(--font-mono); text-decoration:none; cursor:pointer; }
+.contact-dialog__alternatives a:hover,.contact-dialog__alternatives button:hover { color:var(--signal); }
+.contact-dialog__state { display:grid; justify-items:start; gap:12px; padding:30px 0 6px; }
+.contact-dialog__state > svg { color:var(--signal); }
+.contact-dialog__state h3 { margin:0; font-size:clamp(1.5rem,3vw,2rem); font-weight:600; letter-spacing:-.035em; }
+.contact-dialog__state p { margin:0; color:var(--mist); font-size:15px; line-height:1.5; }
+@keyframes contact-spin { to { transform:rotate(360deg); } }
+@media (max-width:660px) { .footer-main { gap:24px; }.footer-contact-button { min-height:48px; }.contact-dialog { width:calc(100% - 20px); max-height:calc(100dvh - 20px); padding:22px 18px; }.contact-dialog__header { padding-right:28px; }.contact-form__grid { grid-template-columns:1fr; gap:13px; }.contact-dialog__actions { align-items:stretch; flex-direction:column; }.contact-dialog__submit,.contact-dialog__secondary { width:100%; min-height:48px; }.contact-dialog__alternatives > div { gap:13px; } }
+@media (prefers-reduced-motion: reduce) { .contact-dialog__spinner { animation:none; } }
