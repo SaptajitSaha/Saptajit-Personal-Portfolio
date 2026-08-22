@@ -268,3 +268,11 @@
 - [x] Integrate a responsive reach-out panel without replacing the working Web3Forms contact flow.
 - [x] Verify desktop/mobile interaction, keyboard access, contact behavior, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the reach-out experience to GitHub.
+
+## Booking interface upgrade
+
+- [x] Review the existing booking-calendar teaser and map the reference’s meeting details, calendar, and slots to an honest scheduling flow.
+- [x] Build an accessible meeting scheduler with month navigation, selected date, time slots, and a responsive presentation.
+- [x] Produce an email request containing the selected date and time without claiming an external calendar reservation.
+- [x] Verify desktop/mobile selection, keyboard access, reduced-motion behavior, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the booking-interface upgrade to GitHub.
