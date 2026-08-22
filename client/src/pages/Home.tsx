@@ -21,9 +21,10 @@ import { useEffect, useRef } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
-const nidarrPrototype = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/fKVqKGHQXJEYtIuU.png";
+const nidarrMobile = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ljLTeRNijjumrrwb.png";
+const nidarrDesktop = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/wUoLLHIVFZMYXHSY.png";
 
-type Project = CaseStudy & { title: string; tagline: string; image?: string; className: string };
+type Project = CaseStudy & { title: string; tagline: string; className: string };
 
 const projects: Project[] = [
   {
@@ -40,8 +41,7 @@ const projects: Project[] = [
     status: "Prototype. Public performance results are not published.",
     href: "https://nidarr.vercel.app/",
     linkLabel: "Visit prototype",
-    image: nidarrPrototype,
-    className: "work-feature",
+    className: "work-feature nidarr-card",
   },
   {
     title: "Interactive Election Assistant",
@@ -176,20 +176,26 @@ export default function Home() {
             <p>Projects that explore safer interfaces, more human civic guidance, and data systems built around the next useful decision.</p>
           </div>
           <div className="work-layout">
-            {projects.map((project) => (
+            {projects.map((project) => {
+              const isNidarr = project.title === "Nidarr";
+              return (
               <article className={`${project.className} project-card`} key={project.title}>
-                <div className={`work-visual${project.image ? "" : " work-visual--field"}`}>
-                  {project.image ? <img src={project.image} alt="Nidarr prototype interface" width="1440" height="960" loading="lazy" /> : <div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div>}
-                </div>
+                {isNidarr ? (
+                  <div className="nidarr-media" aria-label="Nidarr product interface previews">
+                    <img className="nidarr-shot nidarr-shot--desktop" src={nidarrDesktop} alt="Nidarr desktop prototype home screen" width="1440" height="960" loading="lazy" />
+                    <img className="nidarr-shot nidarr-shot--mobile" src={nidarrMobile} alt="Nidarr mobile safety app home screen" width="390" height="844" loading="lazy" />
+                  </div>
+                ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>
                   <h3>{project.title}</h3>
                   <p className="work-tools">{project.role}</p>
                   <p className="work-description">{project.tagline}</p>
+                  {isNidarr && <a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a>}
                   <CaseStudyPanel study={project} />
                 </div>
               </article>
-            ))}
+            )})}
           </div>
         </section>
 

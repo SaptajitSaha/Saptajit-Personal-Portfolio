@@ -41,3 +41,9 @@
 - [x] Inspect the compressed display type rules causing word collisions.
 - [x] Adjust hero and display-heading tracking for clear word separation.
 - [x] Verify the revised typography on desktop and mobile.
+
+## Nidarr project-media refinement
+
+- [x] Capture and prepare vivid real Nidarr prototype views.
+- [x] Update the flagship card with a readable text zone and clearer live-prototype action.
+- [x] Verify the revised card on desktop and mobile.
