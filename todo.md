@@ -237,3 +237,11 @@
 - [x] Replace the mesh shader with a requestAnimationFrame-driven canvas grid and static fallback.
 - [x] Preserve text/orbit hierarchy, touch behavior, reduced-motion stability, and responsive performance.
 - [x] Verify cursor illumination, smooth color decay, no overflow, fallbacks, tests, build, checkpoint, and GitHub sync.
+
+## Pixel trail continuity and combined hero backgrounds
+
+- [x] Inspect the pixel-grid coordinate conversion and determine a bounded, scroll-safe coverage layer beyond the hero.
+- [x] Correct pointer coordinates after scroll and extend the pixel trail to the intended page regions without blocking interactions.
+- [x] Restore the mesh-drift shader as a low-contrast hero layer underneath the pixel grid.
+- [x] Verify scroll continuity, page-level cursor response, layered contrast, reduced-motion behavior, performance safeguards, and responsive containment.
+- [ ] Save a checkpoint and synchronize the combined background correction to GitHub.

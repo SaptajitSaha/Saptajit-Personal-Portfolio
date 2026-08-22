@@ -29,6 +29,7 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
     let inView = true;
     let pointer = { x: -1000, y: -1000, active: false };
     let previousPoint: { x: number; y: number } | null = null;
+    let lastPointerClient: { x: number; y: number } | null = null;
     let trail: TrailPoint[] = [];
 
     const gridMetrics = () => {
@@ -75,6 +76,24 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
       if (!frame && inView) frame = window.requestAnimationFrame(tick);
     };
 
+    const projectPointer = (clientX: number, clientY: number, shouldTrail: boolean) => {
+      bounds = canvas.getBoundingClientRect();
+      const within = clientX >= bounds.left && clientX <= bounds.right && clientY >= bounds.top && clientY <= bounds.bottom;
+      if (!within) {
+        pointer.active = false;
+        previousPoint = null;
+        requestRender();
+        return;
+      }
+      const next = { x: clientX - bounds.left, y: clientY - bounds.top };
+      if (shouldTrail && (!previousPoint || Math.hypot(next.x - previousPoint.x, next.y - previousPoint.y) > gridMetrics().cell * 0.35)) {
+        trail = [...trail.slice(-(MAX_TRAIL_POINTS - 1)), { ...next, life: 1 }];
+        previousPoint = next;
+      }
+      pointer = { ...next, active: true };
+      requestRender();
+    };
+
     const tick = (now: number) => {
       frame = 0;
       const delta = lastTime ? Math.min((now - lastTime) / 1000, 0.05) : 0;
@@ -91,20 +110,13 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
 
     const onPointerMove = (event: PointerEvent) => {
       if (motionQuery.matches || (event.pointerType !== "mouse" && event.pointerType !== "pen")) return;
-      const within = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
-      if (!within) {
-        pointer.active = false;
-        previousPoint = null;
-        requestRender();
-        return;
-      }
-      const next = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
-      if (!previousPoint || Math.hypot(next.x - previousPoint.x, next.y - previousPoint.y) > gridMetrics().cell * 0.35) {
-        trail = [...trail.slice(-(MAX_TRAIL_POINTS - 1)), { ...next, life: 1 }];
-        previousPoint = next;
-      }
-      pointer = { ...next, active: true };
-      requestRender();
+      lastPointerClient = { x: event.clientX, y: event.clientY };
+      projectPointer(event.clientX, event.clientY, true);
+    };
+
+    const onScroll = () => {
+      if (!lastPointerClient || motionQuery.matches) return;
+      projectPointer(lastPointerClient.x, lastPointerClient.y, false);
     };
 
     const onMotionChange = () => {
@@ -124,6 +136,7 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
     intersectionObserver.observe(canvas);
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     motionQuery.addEventListener("change", onMotionChange);
     resize();
     requestRender();
@@ -133,6 +146,7 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("scroll", onScroll);
       motionQuery.removeEventListener("change", onMotionChange);
     };
   }, []);

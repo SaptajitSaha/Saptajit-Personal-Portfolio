@@ -5,6 +5,7 @@ import { ContactDialog } from "@/components/ContactDialog";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
+import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
@@ -129,6 +130,7 @@ export default function Home() {
   return (
     <div id="top" className="signal-field">
       <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="site-pixel-grid" aria-hidden="true"><div className="site-pixel-grid__fallback" /><InteractivePixelGrid className="site-pixel-grid__canvas" /></div>
       <header className="site-header">
         <a className="brand-mark" href="#top" aria-label="Saptajit Saha home"><img src={logoMark} alt="" width="25" height="25" /><span>Saptajit Saha</span><i className="brand-signal" aria-hidden="true" /></a>
         <nav className="bubble-nav" aria-label="Primary navigation">
@@ -143,7 +145,7 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-pixel-grid" aria-hidden="true"><div className="hero-pixel-grid__fallback" /><InteractivePixelGrid className="hero-pixel-grid__canvas" /></div>
+          <div className="hero-mesh" aria-hidden="true"><div className="hero-mesh__fallback" /><MeshDriftShader className="hero-mesh__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
