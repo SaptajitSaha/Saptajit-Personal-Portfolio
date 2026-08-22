@@ -177,7 +177,7 @@ export default function Home() {
       <header className="site-header">
         <a className="brand-mark" href="#top" aria-label="Saptajit Saha home"><img src={logoMark} alt="" width="25" height="25" /><span>Saptajit Saha</span><i className="brand-signal" aria-hidden="true" /></a>
         <nav className="bubble-nav" aria-label="Primary navigation">
-          {primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} aria-current={activeSection === item.id ? "page" : undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}
+          {primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} aria-current={activeSection === item.id ? "location" : undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}
         </nav>
         <a className="bubble-email" href="mailto:sahasaptajit@gmail.com"><Mail size={15} aria-hidden="true" /><span>Email</span></a>
         <details className="mobile-bubble-nav">

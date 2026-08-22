@@ -132,3 +132,9 @@
 - [x] Replace the existing header navigation with accessible desktop and mobile bubble navigation.
 - [x] Redesign the final contact section as a focused Connect with Me experience using real contact actions.
 - [x] Verify responsive layout, modal submission flow, checkpoint the update, and push GitHub.
+
+## Navigation precision refinement
+
+- [x] Audit the current bubble navigation’s geometry, visual weight, and active-state behavior.
+- [x] Refine the desktop and mobile navigation into a quieter Signal Field control.
+- [x] Verify keyboard focus, Enter activation, active-section behavior, and responsive navigation; checkpoint and push GitHub.
