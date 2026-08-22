@@ -1,26 +1,26 @@
-# Saptajit Saha — Data Analyst Portfolio
+# Saptajit Saha — Portfolio
 
-![Portfolio cover](https://capsule-render.vercel.app/api?type=rect&color=0D0D0F&height=150&section=header&text=Saptajit%20Saha&fontColor=F2EEE8&fontSize=48&fontAlignY=43&desc=Data%20Analyst%20Portfolio&descAlignY=69&descSize=17&animation=fadeIn)
+![Portfolio cover](https://capsule-render.vercel.app/api?type=rect&color=0D0D0F&height=150&section=header&text=Saptajit%20Saha&fontColor=F1EEE9&fontSize=48&fontAlignY=43&desc=Signal%20Field%20%2F%20AI%2C%20data%20%26%20software&descAlignY=69&descSize=17&animation=fadeIn)
 
-> **A dark editorial portfolio that turns raw records into clear next steps.**
+> **An editorial 3D portfolio for a student builder working at the intersection of AI, data, and software.**
 
-![Animated portfolio statement](https://readme-typing-svg.demolab.com/?font=DM+Mono&weight=500&size=18&duration=2400&pause=800&color=E84C35&background=0D0D0F00&vCenter=true&width=680&lines=Data+made+decision-ready.;From+raw+records+to+clear+next+steps.;SQL+%C2%B7+Python+%C2%B7+Power+BI+%C2%B7+Practical+insight.)
+![Animated portfolio statement](https://readme-typing-svg.demolab.com/?font=DM+Mono&weight=500&size=18&duration=2400&pause=800&color=E84C35&background=0D0D0F00&vCenter=true&width=760&lines=Early+in+the+work.+Serious+about+the+work.;Building+AI%2C+data%2C+and+software+experiments.;Turning+difficult+systems+into+usable+tools.)
 
-[![Live portfolio](https://img.shields.io/badge/View%20portfolio-0D0D0F?style=for-the-badge&logo=vercel&logoColor=F2EEE8)](https://saptajit-personal-portfolio.vercel.app/)
-[![GitHub repository](https://img.shields.io/badge/Source%20code-0D0D0F?style=for-the-badge&logo=github&logoColor=F2EEE8)](https://github.com/SaptajitSaha/saptajit-data-portfolio)
-[![Email Saptajit](https://img.shields.io/badge/Contact-E84C35?style=for-the-badge&logo=gmail&logoColor=FFFFFF)](mailto:sahasaptajit4@gmail.com)
+[![Live portfolio](https://img.shields.io/badge/View%20portfolio-0D0D0F?style=for-the-badge&logo=vercel&logoColor=F1EEE9)](https://saptajit-personal-portfolio.vercel.app/)
+[![GitHub repository](https://img.shields.io/badge/Source%20code-0D0D0F?style=for-the-badge&logo=github&logoColor=F1EEE9)](https://github.com/SaptajitSaha/Saptajit-Personal-Portfolio)
+[![Email Saptajit](https://img.shields.io/badge/Contact-E84C35?style=for-the-badge&logo=gmail&logoColor=FFFFFF)](mailto:sahasaptajit@gmail.com)
 
-## The idea
+## Signal Field
 
-This is the personal portfolio of **Saptajit Saha**, a Data Analyst Intern candidate and B.S. Data Science and Applications student at IIT Madras. It treats analytical work as an editorial narrative: restrained typography, cinematic contrast, and compact information modules help make projects, methods, and contact details easy to trace.
+**Signal Field** is a dark, vermilion-led portfolio system built around one tactile CSS-3D hero scene. The site combines a portrait plane, shallow project constellation, technical field grid, and evidence-led project narratives. It avoids the usual template grid in favour of a research-log rhythm that lets current projects, learning, and intent speak for themselves.
 
-The site was designed mobile-first, with technical rails, a data-art hero collage, adaptive project cards, and fully responsive resume-led sections. The visual language deliberately avoids a generic dashboard treatment in favor of a memorable, high-contrast portfolio experience.
+This portfolio belongs to **Saptajit Saha**, an incoming second-year B.S. Data Science and Applications student at IIT Madras. It documents a practical interest in AI, machine learning, data science, software engineering, creative web work, and quantitative finance without overstating seniority.
 
 ## Preview
 
-| Desktop composition | Mobile composition |
+| Desktop signal field | Responsive mobile composition |
 | --- | --- |
-| ![Desktop portfolio preview](https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/zQZLhBalEuGQcKIn.png) | ![Mobile portfolio preview](https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/bEVETrGJUdagQAby.png) |
+| ![Signal Field desktop preview](https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/cdtbQExfdtPyxGUW.png) | ![Signal Field mobile preview](https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/QMMyLJFgxNHtHiCk.png) |
 
 ## Built with
 
@@ -28,47 +28,45 @@ The site was designed mobile-first, with technical rails, a data-art hero collag
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=FFFFFF)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS%204-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=FFFFFF)
+![Motion](https://img.shields.io/badge/Motion-0D0D0F?style=for-the-badge&logo=framer&logoColor=E84C35)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=FFFFFF)
 
-| Layer | Selection | Why it is here |
+| Layer | Selection | Reason |
 | --- | --- | --- |
-| Application | React 19 + TypeScript | Component-driven interface with dependable type checking. |
-| Build system | Vite | Fast local development and optimized static production output. |
-| Styling | Tailwind CSS 4 + custom CSS | Token-based foundations with highly specific editorial art direction. |
-| Icons | Lucide React | Lightweight, consistent interface icons. |
-| Deployment | Vercel | Static hosting configured through `vercel.json` with SPA fallback routing. |
+| Interface | React 19 + TypeScript | Component-driven interface with type-safe portfolio content. |
+| Motion | Motion + CSS 3D | Finite blur reveals and an intentionally shallow, pointer-responsive hero scene. |
+| Styling | Tailwind CSS 4 + custom CSS | Deliberate visual tokens and a highly authored editorial system. |
+| Icons | Lucide React | A consistent, accessible icon language. |
+| Deployment | Vercel | Static Vite hosting configured with SPA fallback routing. |
 
-## What is inside
+## Featured work
 
-| Section | Purpose | Core tools or ideas |
+| Project | Focus | Highlights |
 | --- | --- | --- |
-| Hero | A compact identity and capability snapshot | Animated editorial reveal, art collage, contact CTA |
-| Selected work | Three portfolio case studies | SQL, Python, Power BI, Excel, Looker Studio, Tableau |
-| About | Academic context and analytical interests | IIT Madras B.S. Data Science & Applications |
-| Skills | Practical tool and method index | Python, SQL, Pandas, NumPy, BI, data visualization |
-| Credentials | Selected certifications and learning | University of Michigan, IIRS ISRO, Physics Wallah |
-| Contact | Direct professional handoff | Email, GitHub, LinkedIn placeholders |
+| **[Nidarr](https://nidarr.vercel.app/)** | Mobile-first personal safety prototype | Safety Map, AI-assisted report analysis, location-aware reporting, Walk With Me, and a community-verification flow. |
+| **Interactive Election Assistant** | Context-aware civic guidance | Decision-based flows for voting eligibility, documents, voter-list issues, relocation, and flexible queries. |
+| **Operational analytics** | Data practice across placement, scholarship, and e-commerce questions | SQL, Python, Power BI, Looker Studio, and dashboards built around actionable questions. |
 
-## Featured portfolio work
+## Design decisions
 
-| Project | Focus | Stack | Delivered value |
-| --- | --- | --- | --- |
-| **Placement Analytics Dashboard** | Placement records, trends, and selection patterns | SQL, Python, Power BI, Excel | Interactive filtering by company, role, package range, and academic level. |
-| **Scholarship & Student Aid Analytics** | Application monitoring and approval visibility | Python, SQL, Pandas, Looker Studio | Clear reporting on bottlenecks, missing documents, and follow-up needs. |
-| **E-Commerce Order & Delivery Analysis** | Revenue and delivery performance | SQL, Power BI/Tableau, Excel | Concise findings on cancellations, late deliveries, segments, and operational issues. |
+| Element | Purpose |
+| --- | --- |
+| Signal Vermilion `#E84C35` | A human point of emphasis inside an otherwise monochrome technical system. |
+| Portrait plane | Grounds the site in a real person rather than a synthetic or generic hero image. |
+| CSS 3D constellation | Adds shallow, purposeful depth around projects, AI systems, data practice, and software craft. |
+| Reduced-motion support | Keeps the complete portfolio usable when motion is disabled. |
+| Motion-guided text reveal | Provides hierarchy once, without an endless decorative animation loop. |
 
 ## Run it locally
 
-The project uses pnpm. Install the dependencies, start the Vite development server, then open the local address shown in your terminal.
-
 ```bash
-git clone https://github.com/SaptajitSaha/saptajit-data-portfolio.git
-cd saptajit-data-portfolio
+git clone https://github.com/SaptajitSaha/Saptajit-Personal-Portfolio.git
+cd Saptajit-Personal-Portfolio
 pnpm install
 pnpm dev
 ```
 
-Run a type check and static production build before opening a pull request or triggering a deployment.
+Before opening a pull request or deploying, run:
 
 ```bash
 pnpm check
@@ -81,18 +79,18 @@ pnpm build
 .
 ├── client/
 │   ├── src/
-│   │   ├── pages/Home.tsx       # Portfolio sections and content
-│   │   ├── index.css            # Design tokens, responsive styling, motion
-│   │   └── App.tsx              # Application entry and routing
-│   └── index.html               # Document metadata and favicon
-├── vercel.json                  # Static Vite build and SPA rewrites
-├── PROJECT_UPDATES.md           # Ongoing edit, checkpoint, push, release flow
-└── package.json                 # Scripts and dependencies
+│   │   ├── components/BlurText.tsx  # Finite blur-reveal hero text
+│   │   ├── pages/Home.tsx           # Signal Field portfolio experience
+│   │   ├── index.css                # Tokens, CSS 3D scene, responsive styling
+│   │   └── App.tsx                  # Application shell and routing
+│   └── index.html                   # Document metadata and favicon
+├── vercel.json                      # Static Vite build and SPA rewrites
+└── package.json                     # Scripts and dependencies
 ```
 
 ## Deploy to Vercel
 
-The repository ships with a Vercel configuration designed to serve the static Vite output rather than a Node server bundle. When importing the repository into Vercel, select `main` as the production branch and keep the repository root as the project root.
+The repository is configured to deploy the Vite static output instead of a Node server bundle.
 
 ```text
 Framework preset: Vite
@@ -100,17 +98,13 @@ Build command: pnpm exec vite build
 Output directory: dist/public
 ```
 
-The `vercel.json` file also rewrites client-side paths to `index.html`, keeping the single-page application navigable on direct visits.
-
-## Make it yours
-
-The core content lives in `client/src/pages/Home.tsx`, while the visual system lives in `client/src/index.css`. Replace the contact links, add real dashboard screenshots or case-study routes, and update the project copy as new work becomes available. The README screenshots are intended as a representative product snapshot and can be refreshed after any major visual iteration.
+When importing into Vercel, keep the repository root as the project root and select `main` as the production branch.
 
 ## Contact
 
-**Saptajit Saha** · Data Analyst Intern candidate · Kolkata, India  
-[sahasaptajit4@gmail.com](mailto:sahasaptajit4@gmail.com) · [GitHub](https://github.com/SaptajitSaha)
+**Saptajit Saha** · IIT Madras Data Science student · Kolkata, India  
+[sahasaptajit@gmail.com](mailto:sahasaptajit@gmail.com) · [LinkedIn](https://www.linkedin.com/in/saptajitsaha/) · [GitHub](https://github.com/SaptajitSaha)
 
 ---
 
-<sub>Designed with an editorial eye and a practical data mindset.</sub>
+<sub>Signal Field / 01 — built with an editorial eye and a builder&apos;s mindset.</sub>

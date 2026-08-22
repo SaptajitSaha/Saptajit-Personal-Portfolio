@@ -1,6 +1,6 @@
 # Updating the Portfolio
 
-The project is mirrored to the private GitHub repository at [SaptajitSaha/saptajit-data-portfolio](https://github.com/SaptajitSaha/saptajit-data-portfolio). Its managed project remote remains separate, so routine GitHub pushes use the remote named `github`.
+The project is mirrored to the private GitHub repository at [SaptajitSaha/Saptajit-Personal-Portfolio](https://github.com/SaptajitSaha/Saptajit-Personal-Portfolio). Its managed project remote remains separate, so routine GitHub pushes use the remote named `github`.
 
 ## Recommended update sequence
 
