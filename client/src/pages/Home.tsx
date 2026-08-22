@@ -270,7 +270,6 @@ function PhoneMockup({ className, src, alt, label }: { className: string; src: s
   return (
     <a className={`phone-mockup ${className}`} href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label={`Open Nidarr live prototype: ${label}`}>
       <span className="phone-mockup__frame"><span className="phone-mockup__island" aria-hidden="true" /><img src={src} alt={alt} width="437" height="865" loading="lazy" /></span>
-      <span className="phone-mockup__label">{label}<ArrowUpRight size={13} aria-hidden="true" /></span>
     </a>
   );
 }

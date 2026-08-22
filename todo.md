@@ -98,3 +98,10 @@
 - [x] Build reusable CSS iPhone-style device frames around the existing screens.
 - [x] Compose the desktop, tablet, and mobile device arrangement.
 - [x] Verify the showcase, save a checkpoint, and push the update.
+
+## Nidarr final composition correction
+
+- [x] Rebalance the desktop and tablet device scale, spacing, layers, and edge breathing room.
+- [x] Remove external phone labels while preserving the prototype link on every real device.
+- [x] Simplify the mobile product hierarchy and verify no phone silhouette is clipped.
+- [x] Validate the focused correction, checkpoint it, and push GitHub.

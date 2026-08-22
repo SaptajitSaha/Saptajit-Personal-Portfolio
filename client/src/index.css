@@ -86,3 +86,45 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 @media (max-width: 660px) { .nidarr-card { min-height: 765px; }.nidarr-card .project-card__content { width: 100%; min-height: 765px; padding-bottom: 28px; }.nidarr-media { top: auto; right: 0; bottom: 0; left: 0; width: 100%; height: 46%; }.nidarr-media::before { background: linear-gradient(180deg,#12111a 0%,rgba(18,17,26,.1) 25%,transparent 63%); }.nidarr-primary { top: 9%; right: 25%; width: 49%; height: 83%; }.nidarr-secondary { width: 25%; border-radius: 10px; }.nidarr-secondary--report { top: 26%; left: 4%; transform: rotate(-4deg); }.nidarr-secondary--map { right: 3%; bottom: 5%; transform: rotate(4deg); }.nidarr-primary span,.nidarr-secondary span { padding: 7px; font-size: 8px; }.nidarr-card h3 { margin-top: 74px; }.nidarr-card .work-description { max-width: 92%; }.nidarr-card .case-study { margin-top: auto; }.election-card .project-card__content { width: 100%; }.election-artifact { top: auto; right: 16px; bottom: 20px; left: auto; width: 43%; height: 45%; transform: rotate(2deg); }.election-artifact > p { margin-bottom: 13px; }.election-artifact__flow { gap: 6px; }.election-artifact__flow span { padding: 7px; font-size: 10px; }.election-artifact__topics { margin-top: 12px; }.election-artifact__topics span { padding: 5px; font-size: 8px; } }
 @media (max-width: 900px) { .nidarr-card .project-card__content { width:48%; }.nidarr-media { width:52%; }.phone-mockup--primary { right:18%; width:42%; }.phone-mockup--report,.phone-mockup--map { width:31%; } }
 @media (max-width: 660px) { .nidarr-card { min-height:835px; }.nidarr-card .project-card__content { width:100%; min-height:835px; padding-bottom:28px; }.nidarr-media { top:auto; right:0; bottom:0; left:0; width:100%; height:48%; }.nidarr-media::before { background:linear-gradient(180deg,#12111a 0%,rgba(18,17,26,.1) 25%,transparent 63%); }.nidarr-ground { right:7%; bottom:9%; width:86%; height:18%; }.phone-mockup { border-radius:23px; }.phone-mockup__frame { padding:5px; border-radius:21px; }.phone-mockup__island { top:10px; height:8px; }.phone-mockup img { border-radius:17px; }.phone-mockup__label { padding-top:5px; font-size:8px; }.phone-mockup--primary { top:6%; right:27%; width:46%; }.phone-mockup--report { top:25%; left:5%; width:31%; transform:rotate(-5deg); }.phone-mockup--map { right:4%; bottom:9%; width:31%; transform:rotate(5deg); }.nidarr-card h3 { margin-top:74px; }.nidarr-card .work-description { max-width:92%; }.nidarr-card .case-study { margin-top:auto; } }
+
+/* Signal Field — Nidarr correction: a restrained, centered product family; real interface screens remain the visual focus. */
+.nidarr-card .project-card__content { width:min(43%,540px); }
+.nidarr-media { width:58%; }
+.nidarr-ground { right:15%; bottom:12%; width:66%; height:17%; border:0; background:radial-gradient(ellipse,rgba(232,76,53,.11),transparent 70%); }
+.phone-mockup { width:20%; border-radius:24px; }
+.phone-mockup__frame { padding:5px; border-radius:22px; background:linear-gradient(118deg,#5d5c64 0%,#292930 16%,#77757d 49%,#292930 82%,#5b5a62 100%); box-shadow:inset 0 0 0 1px rgba(0,0,0,.56),inset 0 1px 1px rgba(255,255,255,.24),0 14px 25px rgba(0,0,0,.33); }
+.phone-mockup__frame::after { height:20%; background:linear-gradient(111deg,rgba(255,255,255,.1),transparent 31%); }
+.phone-mockup__island { top:10px; height:9px; }
+.phone-mockup img { border-radius:17px; }
+.phone-mockup__label { display:none; }
+.phone-mockup--primary { z-index:3; top:16%; right:30%; width:30.5%; transform:rotate(-.5deg); }
+.phone-mockup--report { z-index:2; top:25%; left:23%; width:20%; transform:rotate(-5deg); }
+.phone-mockup--map { z-index:2; top:31%; right:14%; bottom:auto; width:20%; transform:rotate(5deg); }
+.phone-mockup--primary .phone-mockup__frame { box-shadow:inset 0 0 0 1px rgba(0,0,0,.56),inset 0 1px 1px rgba(255,255,255,.24),0 19px 31px rgba(0,0,0,.38); }
+.phone-mockup:hover { filter:brightness(1.035); }
+.phone-mockup--primary:hover { transform:translateY(-4px) rotate(-.5deg); }
+.phone-mockup--report:hover { transform:translateY(-4px) rotate(-3deg); }
+.phone-mockup--map:hover { transform:translateY(-4px) rotate(3deg); }
+
+@media (max-width:900px) {
+  .nidarr-card .project-card__content { width:45%; }
+  .nidarr-media { width:55%; }
+  .phone-mockup--primary { top:17%; right:29%; width:34%; }
+  .phone-mockup--report { top:27%; left:18%; width:22%; }
+  .phone-mockup--map { top:33%; right:12%; width:22%; }
+}
+
+@media (max-width:660px) {
+  .nidarr-card { min-height:940px; }
+  .nidarr-card .project-card__content { width:100%; min-height:940px; }
+  .nidarr-media { height:56%; }
+  .nidarr-ground { right:13%; bottom:6%; width:74%; height:15%; }
+  .phone-mockup { border-radius:21px; }
+  .phone-mockup__frame { padding:4px; border-radius:19px; }
+  .phone-mockup__island { top:8px; height:7px; }
+  .phone-mockup img { border-radius:15px; }
+  .phone-mockup--primary { top:1%; right:26.5%; width:47%; transform:rotate(0); }
+  .phone-mockup--report { top:61%; left:7%; width:25%; transform:rotate(-5deg); }
+  .phone-mockup--map { top:61%; right:7%; width:25%; transform:rotate(5deg); }
+  .phone-mockup--primary:hover { transform:translateY(-3px) rotate(0); }
+}
