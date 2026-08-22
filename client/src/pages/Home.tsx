@@ -184,7 +184,7 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <p className="work-tools">{project.role}</p>
                   <p className="work-description">{project.tagline}</p>
-                  {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a><a className="nidarr-tour-link" href={nidarrEvidence.tour} target="_blank" rel="noreferrer">Watch product tour</a></div>}
+                  {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a></div>}
                   <CaseStudyPanel study={project} />
                 </div>
               </article>

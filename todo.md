@@ -202,3 +202,10 @@
 - [x] Attach the three existing cards and red particles to that exact ellipse with constant-speed centered positioning.
 - [x] Preserve upright cards, hover pause, reduced-motion stability, and responsive containment without extra effects or controls.
 - [x] Render and verify card-center path attachment, portrait-center alignment, collision clearance, no overflow, tests, build, checkpoint, and GitHub sync.
+
+## Nidarr mobile composition correction
+
+- [x] Inspect the desktop and mobile Nidarr device composition and action markup.
+- [x] Recreate the desktop showcase hierarchy at a deliberate mobile scale and position.
+- [x] Remove the Watch product tour action while preserving the live prototype link.
+- [x] Verify the Nidarr showcase across desktop and mobile, checkpoint, and push GitHub.
