@@ -1,5 +1,5 @@
-import { Code2, Database, Pause, Play, Sparkles } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Code2, Database, Sparkles } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { pointOnEllipse, TAU, type EllipseGeometry } from "@/lib/orbitGeometry";
 
 const orbitPeriodSeconds = 64;
@@ -23,13 +23,7 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
   const secondaryOrbitRefs = useRef<Array<SVGEllipseElement | null>>([]);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const pausedRef = useRef(false);
   const hoveredRef = useRef(false);
-  const [persistentPaused, setPersistentPaused] = useState(false);
-
-  useEffect(() => {
-    pausedRef.current = persistentPaused;
-  }, [persistentPaused]);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -52,8 +46,8 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
       if (!sceneBounds.width || !sceneBounds.height || !portraitSize) return null;
 
       return {
-        centerX: portraitBounds.left - sceneBounds.left + portraitBounds.width / 2,
-        centerY: portraitBounds.top - sceneBounds.top + portraitBounds.height / 2,
+        centerX: sceneBounds.width / 2,
+        centerY: sceneBounds.height / 2,
         radiusX: Math.min(sceneBounds.width * 0.38, portraitSize * 1.95),
         radiusY: Math.min(sceneBounds.height * 0.37, portraitSize * 2),
         rotation: orbitRotation,
@@ -106,7 +100,7 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
       if (!lastFrameTime) lastFrameTime = time;
       const deltaSeconds = Math.min((time - lastFrameTime) / 1000, 0.05);
       lastFrameTime = time;
-      if (!reducedMotion && visible && !pausedRef.current && !hoveredRef.current) {
+      if (!reducedMotion && visible && !hoveredRef.current) {
         elapsedSeconds += deltaSeconds;
         renderPositions();
       }
@@ -181,9 +175,6 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
           ))}
           {cardDefinitions.map((card, index) => <span className="orbit-particle" data-orbit-particle={card.id} key={`particle-${card.id}`} ref={element => { particleRefs.current[index] = element; }} />)}
         </div>
-        <button className="orbit-motion-toggle" type="button" aria-pressed={persistentPaused} onClick={() => setPersistentPaused(value => !value)}>
-          {persistentPaused ? <><Play size={13} aria-hidden="true" /> Resume orbit</> : <><Pause size={13} aria-hidden="true" /> Pause orbit</>}
-        </button>
       </div>
     </div>
   );

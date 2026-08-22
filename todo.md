@@ -187,3 +187,10 @@
 - [x] Replace independent label tracks with transform-only, requestAnimationFrame-driven parametric motion.
 - [x] Preserve upright cards, controlled hover pause, stable reduced-motion positions, and responsive containment.
 - [x] Validate geometric path fidelity, collision clearance, no overflow, type checks, tests, build, checkpoint, and GitHub sync.
+
+## Orbit-center alignment correction
+
+- [x] Measure the portrait and primary ellipse center relationship in the rendered hero.
+- [x] Center the portrait and all orbit geometry on the same responsive coordinate origin.
+- [x] Remove the orbit pause control and its unused animation state.
+- [x] Verify centered geometry, hover pause, reduced motion, responsive containment, checkpoint, and push GitHub.

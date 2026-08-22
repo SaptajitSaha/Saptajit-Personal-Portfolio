@@ -70,6 +70,24 @@ def assert_safe_and_contained(page):
     assert all(not item["portraitCollision"] and item["contained"] for item in result), result
 
 
+def assert_centered_origin(page):
+    centers = page.evaluate(
+        """() => {
+          const stage = document.querySelector('.stage-scene').getBoundingClientRect();
+          const portrait = document.querySelector('.portrait-orb').getBoundingClientRect();
+          const ellipse = document.querySelector('.orbit-svg__ring--primary');
+          return {
+            portraitX: portrait.left - stage.left + portrait.width / 2,
+            portraitY: portrait.top - stage.top + portrait.height / 2,
+            ellipseX: Number(ellipse.getAttribute('cx')),
+            ellipseY: Number(ellipse.getAttribute('cy')),
+          };
+        }"""
+    )
+    assert abs(centers["portraitX"] - centers["ellipseX"]) < 0.75, centers
+    assert abs(centers["portraitY"] - centers["ellipseY"]) < 0.75, centers
+
+
 def coordinate_distance(first, second):
     return ((first["x"] - second["x"]) ** 2 + (first["y"] - second["y"]) ** 2) ** 0.5
 
@@ -85,6 +103,8 @@ def main():
         assert page.locator("[data-orbit-particle]").count() == 3
         assert_orbit_fidelity(page)
         assert_safe_and_contained(page)
+        assert_centered_origin(page)
+        assert page.locator(".orbit-motion-toggle").count() == 0
 
         before = orbit_sample(page, '[data-orbit-card="data"]')
         sleep(0.45)
@@ -98,15 +118,6 @@ def main():
         paused_after = orbit_sample(page, '[data-orbit-card="data"]')
         assert coordinate_distance(paused_before, paused_after) < 0.25, (paused_before, paused_after)
 
-        page.mouse.move(1, 1)
-        page.locator(".orbit-motion-toggle").click()
-        assert page.locator(".orbit-motion-toggle").get_attribute("aria-pressed") == "true"
-        sleep(0.1)
-        toggle_before = orbit_sample(page, '[data-orbit-card="data"]')
-        sleep(0.25)
-        toggle_after = orbit_sample(page, '[data-orbit-card="data"]')
-        assert coordinate_distance(toggle_before, toggle_after) < 0.4, (toggle_before, toggle_after)
-
         hero_credential = page.locator(".kicker").text_content() or ""
         about_copy = page.locator(".about-copy").inner_text()
         assert "IIT Madras" in hero_credential and "Indian Institute" not in hero_credential, hero_credential
@@ -118,6 +129,7 @@ def main():
         assert mobile.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1")
         assert_orbit_fidelity(mobile)
         assert_safe_and_contained(mobile)
+        assert_centered_origin(mobile)
 
         reduced = browser.new_page(viewport={"width": 1280, "height": 900})
         reduced.emulate_media(reduced_motion="reduce")
