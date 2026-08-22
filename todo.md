@@ -79,3 +79,9 @@
 - [x] Inspect the current right-side portrait and label structure.
 - [x] Replace it with the circular portrait, orbital rings, and CSS-driven role labels.
 - [x] Verify desktop, mobile, and reduced-motion hero behavior.
+
+## Three-dimensional orbital motion
+
+- [x] Assess the current orbital layers and label paths for 3D depth.
+- [x] Add perspective, tilted orbital planes, and depth-aware role motion.
+- [x] Verify the 3D hero across desktop, mobile, and reduced-motion settings.
