@@ -115,7 +115,13 @@
 
 ## Web3Forms delivery switch
 
-- [ ] Confirm the Web3Forms access-key in the deployed browser flow; local automated probes are blocked by the provider’s client-only enforcement.
+- [x] Confirm the Web3Forms access-key in the deployed browser flow; local automated probes are blocked by the provider’s client-only enforcement.
 - [x] Replace the Resend-specific server delivery path with Web3Forms submission handling.
 - [x] Revalidate the Contact Me modal states and alternatives across desktop and mobile.
 - [x] Correct the mobile modal surface so page content cannot bleed through the dialog.
+
+## Web3Forms live submission fix
+
+- [x] Inspect the live contact response and deployed access-key configuration.
+- [x] Correct the Web3Forms request path or configuration causing the live error state.
+- [x] Verify a successful live submission, checkpoint the fix, and synchronize GitHub.
