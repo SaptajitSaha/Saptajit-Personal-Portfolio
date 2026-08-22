@@ -3,6 +3,7 @@ import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
+import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
 import {
   ArrowUpRight,
   Braces,
@@ -16,6 +17,8 @@ import {
   Mail,
   MapPin,
   Menu,
+  Pause,
+  Play,
   Sparkles,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -91,18 +94,12 @@ const learningTracks = [
   { title: "Quantitative finance", now: "market signals, machine-learning methods, and NLP", tools: "Python · SQL", question: "How much signal survives beyond the backtest?", project: "Study thread" },
 ];
 
-const toolboxGroups = [
-  ["Build", ["Python", "TypeScript", "JavaScript", "React"]],
-  ["Data", ["SQL", "Pandas", "Statistics", "Power BI", "Looker Studio"]],
-  ["AI", ["Machine learning", "PyTorch", "Gemini"]],
-  ["Tools", ["Git", "GitHub", "Excel"]],
-] as const;
-
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
   const navigationTimerRef = useRef<number | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
+  const [toolboxPaused, setToolboxPaused] = useState(false);
 
   function activateNavigation(id: PrimaryNavigationId) {
     pendingNavigationRef.current = id;
@@ -275,11 +272,25 @@ export default function Home() {
         </section>
 
         <section className="section toolbox-section" aria-labelledby="toolbox-heading">
-          <div className="toolbox-topline"><span>Tools I use or am learning</span><Layers3 size={20} aria-hidden="true" /></div>
+          <div className="toolbox-topline"><span>Tools I use or am learning</span><button className="toolbox-motion-toggle" type="button" aria-pressed={toolboxPaused} onClick={() => setToolboxPaused(current => !current)}>{toolboxPaused ? <><Play size={14} aria-hidden="true" />Resume motion</> : <><Pause size={14} aria-hidden="true" />Pause motion</>}</button></div>
           <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
-          <div className="toolbox-groups" aria-label="Technology and tool groups">
-            {toolboxGroups.map(([group, tools]) => <div className="toolbox-group" key={group}><h3>{group}</h3><p>{tools.join(" · ")}</p></div>)}
+          <div className="toolbox-ticker" data-paused={toolboxPaused || undefined} aria-label="Technology and tool groups">
+            <ul className="toolbox-ticker__accessible">
+              {toolboxTickerRows.flatMap(row => row.tools).map(tool => <li key={tool.name}>{tool.name}</li>)}
+            </ul>
+            {toolboxTickerRows.map(row => {
+              const repeatedTools = [...row.tools, ...row.tools, ...row.tools];
+              return <div className={`toolbox-ticker__row toolbox-ticker__row--${row.direction}`} key={row.label}>
+                <span className="toolbox-ticker__label">{row.label}</span>
+                <div className="toolbox-ticker__viewport">
+                  <div className="toolbox-ticker__track" aria-hidden="true">
+                    {repeatedTools.map((tool, index) => <div className="toolbox-chip" key={`${tool.name}-${index}`}><ToolboxMark tool={tool} /><span>{tool.name}</span></div>)}
+                  </div>
+                </div>
+              </div>;
+            })}
           </div>
+          <div className="toolbox-practices" aria-label="Core practices"><span>Practices</span>{toolboxPractices.map(practice => <span className="toolbox-practice" key={practice}>{practice}</span>)}</div>
           <div className="learning-notes"><p><Braces size={18} aria-hidden="true" />Building with code, data, and small product experiments.</p><p><MapPin size={18} aria-hidden="true" />Based in Kolkata, looking outward.</p></div>
         </section>
       </main>
@@ -311,6 +322,13 @@ export default function Home() {
 }
 
 function PlusMark() { return <span aria-hidden="true">+</span>; }
+
+function ToolboxMark({ tool }: { tool: ToolboxTickerRow["tools"][number] }) {
+  if (tool.mark.kind === "iconify") {
+    return <svg className="toolbox-chip__logo" viewBox={`0 0 ${tool.mark.icon.width} ${tool.mark.icon.height}`} aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: tool.mark.icon.body }} />;
+  }
+  return <svg className="toolbox-chip__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill={`#${tool.mark.icon.hex}`} d={tool.mark.icon.path} /></svg>;
+}
 
 function NidarrEvidence() {
   return (

@@ -1,5 +1,9 @@
 # Updating the Portfolio
 
+## Toolbox logo provenance
+
+The toolbox ticker uses the `simple-icons` package (v16.28.0) for bundled authentic marks for Python, TypeScript, JavaScript, React, Pandas, Looker, PyTorch, Google Gemini, Git, and GitHub. Simple Icons is a CC0 project: https://simpleicons.org/ and https://github.com/simple-icons/simple-icons. The local managed-storage SVG route returned the frontend HTML shell in development, so the final implementation bundles vetted icons from the maintained package rather than depending on unresolved runtime asset paths.
+
 The project is mirrored to the private GitHub repository at [SaptajitSaha/Saptajit-Personal-Portfolio](https://github.com/SaptajitSaha/Saptajit-Personal-Portfolio). Its managed project remote remains separate, so routine GitHub pushes use the remote named `github`.
 
 ## Recommended update sequence

@@ -138,3 +138,11 @@
 - [x] Audit the current bubble navigation’s geometry, visual weight, and active-state behavior.
 - [x] Refine the desktop and mobile navigation into a quieter Signal Field control.
 - [x] Verify keyboard focus, Enter activation, active-section behavior, and responsive navigation; checkpoint and push GitHub.
+
+## Logo-led toolbox ticker
+
+- [x] Map the existing verified toolbox tools to authentic logo assets and concise labels.
+- [x] Replace the static toolbox grid with alternating horizontal logo ticker rows.
+- [ ] Save the verified motion-accessible toolbox ticker checkpoint and push it to GitHub.
+- [x] Represent Power BI and Excel with authentic marks, and show SQL, Statistics, and Machine Learning as clearly identified disciplines rather than fake tool logos.
+- [x] Label the data-visualization tool explicitly as Looker Studio and re-run ticker QA.
