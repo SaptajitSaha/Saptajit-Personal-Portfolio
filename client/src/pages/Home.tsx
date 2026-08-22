@@ -2,6 +2,7 @@
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
+import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import {
   ArrowUpRight,
   Braces,
@@ -15,10 +16,9 @@ import {
   Mail,
   MapPin,
   Menu,
-  MoveUpRight,
   Sparkles,
 } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
@@ -100,6 +100,18 @@ const toolboxGroups = [
 
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
+  const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
+  const navigationTimerRef = useRef<number | undefined>(undefined);
+  const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
+
+  function activateNavigation(id: PrimaryNavigationId) {
+    pendingNavigationRef.current = id;
+    setActiveSection(id);
+    if (navigationTimerRef.current) window.clearTimeout(navigationTimerRef.current);
+    navigationTimerRef.current = window.setTimeout(() => {
+      pendingNavigationRef.current = null;
+    }, 1000);
+  }
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -132,18 +144,45 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    let frame = 0;
+    const syncActiveSection = () => {
+      frame = 0;
+      if (pendingNavigationRef.current) return;
+      let next: PrimaryNavigationId = "top";
+      for (const item of primaryNavigation.slice(1)) {
+        const section = document.getElementById(item.id);
+        if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.34) next = item.id;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) next = "contact";
+      setActiveSection(current => current === next ? current : next);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(syncActiveSection);
+    };
+    syncActiveSection();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+      if (navigationTimerRef.current) window.clearTimeout(navigationTimerRef.current);
+    };
+  }, []);
+
   return (
     <div id="top" className="signal-field">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
         <a className="brand-mark" href="#top" aria-label="Saptajit Saha home"><img src={logoMark} alt="" width="25" height="25" /><span>Saptajit Saha</span><i className="brand-signal" aria-hidden="true" /></a>
-        <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#top">Home</a><a href="#work">Work</a><a href="#learning">Learning</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <nav className="bubble-nav" aria-label="Primary navigation">
+          {primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} aria-current={activeSection === item.id ? "page" : undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}
         </nav>
-        <a className="header-cta" href="mailto:sahasaptajit@gmail.com">Email me <MoveUpRight size={16} aria-hidden="true" /></a>
-        <details className="mobile-nav">
-          <summary aria-label="Open navigation"><Menu size={20} aria-hidden="true" /></summary>
-          <nav aria-label="Mobile navigation"><a href="#top">Home</a><a href="#work">Work</a><a href="#learning">Learning</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+        <a className="bubble-email" href="mailto:sahasaptajit@gmail.com"><Mail size={15} aria-hidden="true" /><span>Email</span></a>
+        <details className="mobile-bubble-nav">
+          <summary aria-label="Open navigation"><Menu size={19} aria-hidden="true" /><span>Menu</span></summary>
+          <nav aria-label="Mobile navigation">{primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}</nav>
         </details>
       </header>
 
@@ -246,8 +285,25 @@ export default function Home() {
       </main>
 
       <footer id="contact" className="site-footer">
-        <div className="footer-main"><p>Have something<br />interesting to <em>build?</em></p><ContactDialog /></div>
-        <div className="footer-links"><a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={17} aria-hidden="true" /> LinkedIn</a><a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={17} aria-hidden="true" /> GitHub</a><a href="mailto:sahasaptajit@gmail.com"><Mail size={17} aria-hidden="true" /> Email</a></div>
+        <section className="connect-panel" aria-labelledby="connect-heading">
+          <div className="connect-panel__intro">
+            <p className="connect-panel__kicker">Open channel</p>
+            <h2 id="connect-heading">Connect with<br /><em>me.</em></h2>
+            <p>Have an idea, a collaboration, or a problem worth taking apart? I&apos;d like to hear it.</p>
+          </div>
+          <div className="connect-panel__actions">
+            <div className="connect-panel__message">
+              <span className="connect-panel__status" aria-hidden="true" />
+              <div><strong>Start a conversation</strong><p>A short note is enough to begin.</p></div>
+            </div>
+            <ContactDialog />
+            <div className="connect-panel__direct" aria-label="Direct contact options">
+              <a href="mailto:sahasaptajit@gmail.com"><Mail size={16} aria-hidden="true" /><span>Email directly</span><ArrowUpRight size={14} aria-hidden="true" /></a>
+              <a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={16} aria-hidden="true" /><span>LinkedIn</span><ArrowUpRight size={14} aria-hidden="true" /></a>
+              <a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={16} aria-hidden="true" /><span>GitHub</span><ArrowUpRight size={14} aria-hidden="true" /></a>
+            </div>
+          </div>
+        </section>
         <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
     </div>

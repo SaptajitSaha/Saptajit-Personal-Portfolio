@@ -125,3 +125,10 @@
 - [x] Inspect the live contact response and deployed access-key configuration.
 - [x] Correct the Web3Forms request path or configuration causing the live error state.
 - [x] Verify a successful live submission, checkpoint the fix, and synchronize GitHub.
+
+## Bubble navigation and Connect with Me refinement
+
+- [x] Define an original Signal Field adaptation of the reference navigation and contact patterns.
+- [x] Replace the existing header navigation with accessible desktop and mobile bubble navigation.
+- [x] Redesign the final contact section as a focused Connect with Me experience using real contact actions.
+- [x] Verify responsive layout, modal submission flow, checkpoint the update, and push GitHub.
