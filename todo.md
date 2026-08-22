@@ -223,3 +223,10 @@
 - [x] Build a coordinated compact-to-expanded three-screen showcase using the real Nidarr dashboard, report, and map assets.
 - [x] Preserve the project text, live prototype link, responsive containment, hover/focus control, and reduced-motion fallback.
 - [x] Verify compact and expanded states across desktop, tablet, and mobile, then checkpoint and push GitHub.
+
+## Mesh-drift shader enhancement
+
+- [x] Inspect the existing hero layers and choose a contained placement for the supplied shader.
+- [x] Add the shader component with safe WebGL lifecycle and a non-WebGL fallback.
+- [x] Preserve content hierarchy, motion-reduction behavior, and responsive performance.
+- [x] Verify shader rendering, visual contrast, fallbacks, tests, build, checkpoint, and GitHub sync.
