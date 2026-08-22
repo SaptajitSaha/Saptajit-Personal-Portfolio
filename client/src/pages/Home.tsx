@@ -17,8 +17,6 @@ import {
   Mail,
   MapPin,
   Menu,
-  Pause,
-  Play,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -90,7 +88,6 @@ export default function Home() {
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
   const navigationTimerRef = useRef<number | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
-  const [toolboxPaused, setToolboxPaused] = useState(false);
 
   function activateNavigation(id: PrimaryNavigationId) {
     pendingNavigationRef.current = id;
@@ -218,9 +215,9 @@ export default function Home() {
         </section>
 
         <section className="section toolbox-section" aria-labelledby="toolbox-heading">
-          <div className="toolbox-topline"><span>Tools I use or am learning</span><button className="toolbox-motion-toggle" type="button" aria-pressed={toolboxPaused} onClick={() => setToolboxPaused(current => !current)}>{toolboxPaused ? <><Play size={14} aria-hidden="true" />Resume motion</> : <><Pause size={14} aria-hidden="true" />Pause motion</>}</button></div>
+          <div className="toolbox-topline"><span>Tools I use or am learning</span></div>
           <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
-          <div className="toolbox-ticker" data-paused={toolboxPaused || undefined} aria-label="Technology and tool groups">
+          <div className="toolbox-ticker" aria-label="Technology and tool groups">
             <ul className="toolbox-ticker__accessible">
               {toolboxTickerRows.flatMap(row => row.tools).map(tool => <li key={tool.name}>{tool.name}</li>)}
             </ul>

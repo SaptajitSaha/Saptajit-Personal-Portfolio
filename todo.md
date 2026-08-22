@@ -209,3 +209,9 @@
 - [x] Recreate the desktop showcase hierarchy at a deliberate mobile scale and position.
 - [x] Remove the Watch product tour action while preserving the live prototype link.
 - [x] Verify the Nidarr showcase across desktop and mobile, checkpoint, and push GitHub.
+
+## Tools motion-control cleanup
+
+- [x] Locate the Tools-bar pause control, its state, and related styling.
+- [x] Remove the visible control and unused state while preserving the ticker layout.
+- [x] Verify the ticker behavior, checkpoint, and push GitHub.
