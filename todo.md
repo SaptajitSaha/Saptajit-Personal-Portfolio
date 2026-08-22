@@ -10,5 +10,5 @@
 
 - [x] Inspect the current build scripts and any Vercel configuration.
 - [x] Add a static-site Vercel configuration that serves the Vite build output.
-- [ ] Verify the production build output locally and push the fix to GitHub.
+- [x] Verify the production build output locally and push the fix to GitHub.
 - [ ] Explain how to trigger the corrected Vercel deployment.
