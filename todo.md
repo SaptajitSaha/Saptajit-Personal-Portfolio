@@ -111,7 +111,7 @@
 - [x] Inspect the existing final contact CTA and determine the secure server-side delivery setup.
 - [x] Replace the visible email CTA with an accessible Contact Me modal and progressive email alternatives.
 - [x] Add validated, protected Web3Forms handling with loading, success, error, honeypot, and fallback states.
-- [ ] Verify desktop and mobile modal behavior, checkpoint the update, and push GitHub.
+- [x] Verify desktop and mobile modal behavior, checkpoint the update, and push GitHub.
 
 ## Web3Forms delivery switch
 
