@@ -215,3 +215,11 @@
 - [x] Locate the Tools-bar pause control, its state, and related styling.
 - [x] Remove the visible control and unused state while preserving the ticker layout.
 - [x] Verify the ticker behavior, checkpoint, and push GitHub.
+
+## Coordinated Nidarr product showcase rebuild
+
+- [x] Inspect the current three-phone mockup implementation and define the compact and expanded device states.
+- [x] Remove the current mockup frame markup and accumulated Nidarr preview styles.
+- [x] Build a coordinated compact-to-expanded three-screen showcase using the real Nidarr dashboard, report, and map assets.
+- [x] Preserve the project text, live prototype link, responsive containment, hover/focus control, and reduced-motion fallback.
+- [x] Verify compact and expanded states across desktop, tablet, and mobile, then checkpoint and push GitHub.

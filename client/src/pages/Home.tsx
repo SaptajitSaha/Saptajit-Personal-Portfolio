@@ -2,6 +2,7 @@
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
+import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
@@ -28,7 +29,6 @@ const nidarrEvidence = {
   walk: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/BOdBIwbeInlygQnU.png",
   map: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gKiQtaxPOaaPCGJB.png",
   profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/IRtCRCwruNdloRka.png",
-  tour: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/nilqXNEdOJrvVJlF.gif",
 };
 
 type Project = CaseStudy & { title: string; tagline: string; className: string };
@@ -174,7 +174,7 @@ export default function Home() {
               return (
               <article className={`${project.className} project-card`} key={project.title}>
                 {isNidarr ? (
-                  <NidarrEvidence />
+                  <NidarrShowcase assets={{ dashboard: nidarrEvidence.home, report: nidarrEvidence.report, map: nidarrEvidence.map }} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>
@@ -272,23 +272,4 @@ function ToolboxMark({ tool }: { tool: ToolboxTickerRow["tools"][number] }) {
     return <svg className={className} viewBox={`0 0 ${tool.mark.icon.width} ${tool.mark.icon.height}`} aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: tool.mark.icon.body }} />;
   }
   return <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill={`#${tool.mark.icon.hex}`} d={tool.mark.icon.path} /></svg>;
-}
-
-function NidarrEvidence() {
-  return (
-    <div className="nidarr-media" aria-label="Nidarr product interface evidence">
-      <div className="nidarr-ground" aria-hidden="true" />
-      <PhoneMockup className="phone-mockup--primary" src={nidarrEvidence.home} alt="Nidarr home screen with safety overview and quick actions" label="Safety overview" />
-      <PhoneMockup className="phone-mockup--report" src={nidarrEvidence.report} alt="Nidarr report incident screen" label="Report incident" />
-      <PhoneMockup className="phone-mockup--map" src={nidarrEvidence.map} alt="Nidarr safety map screen centered on Kolkata" label="Safety map" />
-    </div>
-  );
-}
-
-function PhoneMockup({ className, src, alt, label }: { className: string; src: string; alt: string; label: string }) {
-  return (
-    <a className={`phone-mockup ${className}`} href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label={`Open Nidarr live prototype: ${label}`}>
-      <span className="phone-mockup__frame"><span className="phone-mockup__island" aria-hidden="true" /><img src={src} alt={alt} width="437" height="865" loading="lazy" /></span>
-    </a>
-  );
 }
