@@ -5,3 +5,10 @@
 - [x] Push the verified portfolio checkpoint to the GitHub remote.
 - [x] Document the follow-up workflow for editing, checkpointing, pushing, and publishing updates.
 - [ ] Provide the user with the repository link and the required publication action.
+
+## Vercel deployment correction
+
+- [x] Inspect the current build scripts and any Vercel configuration.
+- [x] Add a static-site Vercel configuration that serves the Vite build output.
+- [ ] Verify the production build output locally and push the fix to GitHub.
+- [ ] Explain how to trigger the corrected Vercel deployment.

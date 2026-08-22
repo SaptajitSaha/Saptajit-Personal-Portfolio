@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 
 const mosaicImages = [
-  "/manus-storage/saptajit-data-mosaic-01_f1370815.png",
-  "/manus-storage/saptajit-data-mosaic-02_b82b6993.png",
-  "/manus-storage/saptajit-data-mosaic-03_858dea48.png",
-  "/manus-storage/saptajit-data-mosaic-04_dcbb3846.png",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/BMnAXVrOFGqqWdYJ.png",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/UtdAOpvBoDaBXJlq.png",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/hChvUijntSWcHDuB.png",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/EWoQqdbmlaOUXCVw.png",
 ];
+
+const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
 
 const projects = [
   {
@@ -71,7 +73,7 @@ export default function Home() {
         <nav className="top-nav" aria-label="Primary navigation">
           <a href="#home" className="top-nav__brand" aria-label="Home">
             <img
-              src="/manus-storage/saptajit-logo-mark_c76addb1.png"
+              src={logoMark}
               alt="Saptajit Saha monogram"
             />
           </a>
@@ -225,7 +227,7 @@ export default function Home() {
           </div>
         </div>
         <div className="footer-bottom">
-          <img src="/manus-storage/saptajit-logo-mark_c76addb1.png" alt="" />
+          <img src={logoMark} alt="" />
           <span>© 2026 Saptajit Saha</span>
           <span>Designed for considered decisions.</span>
         </div>
