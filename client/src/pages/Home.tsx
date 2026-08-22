@@ -21,8 +21,14 @@ import { useEffect, useRef } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
-const nidarrMobile = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ljLTeRNijjumrrwb.png";
-const nidarrDesktop = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/wUoLLHIVFZMYXHSY.png";
+const nidarrEvidence = {
+  home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ZuhcSYWKTRzpFYal.png",
+  report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gDDTVyQMOfOWXWDG.png",
+  walk: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/BOdBIwbeInlygQnU.png",
+  map: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gKiQtaxPOaaPCGJB.png",
+  profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/IRtCRCwruNdloRka.png",
+  tour: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/nilqXNEdOJrvVJlF.gif",
+};
 
 type Project = CaseStudy & { title: string; tagline: string; className: string };
 
@@ -57,7 +63,7 @@ const projects: Project[] = [
     status: "Concept prototype. No outcome metrics are claimed.",
     href: "https://www.linkedin.com/in/saptajitsaha/",
     linkLabel: "See project context",
-    className: "work-compact",
+    className: "work-compact election-card",
   },
   {
     title: "Operational Analytics",
@@ -178,14 +184,12 @@ export default function Home() {
           <div className="work-layout">
             {projects.map((project) => {
               const isNidarr = project.title === "Nidarr";
+              const isElection = project.title === "Interactive Election Assistant";
               return (
               <article className={`${project.className} project-card`} key={project.title}>
                 {isNidarr ? (
-                  <div className="nidarr-media" aria-label="Nidarr product interface previews">
-                    <img className="nidarr-shot nidarr-shot--desktop" src={nidarrDesktop} alt="Nidarr desktop prototype home screen" width="1440" height="960" loading="lazy" />
-                    <img className="nidarr-shot nidarr-shot--mobile" src={nidarrMobile} alt="Nidarr mobile safety app home screen" width="390" height="844" loading="lazy" />
-                  </div>
-                ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
+                  <NidarrEvidence />
+                ) : isElection ? <ElectionArtifact /> : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>
                   <h3>{project.title}</h3>
@@ -244,3 +248,42 @@ export default function Home() {
 }
 
 function PlusMark() { return <span aria-hidden="true">+</span>; }
+
+function NidarrEvidence() {
+  const screens = [
+    [nidarrEvidence.home, "Nidarr safety tools home screen", "Home"],
+    [nidarrEvidence.report, "Nidarr incident-report screen", "Report"],
+    [nidarrEvidence.walk, "Nidarr Walk With Me screen", "Walk With Me"],
+    [nidarrEvidence.map, "Nidarr safety map screen", "Safety Map"],
+    [nidarrEvidence.profile, "Nidarr profile screen", "Profile"],
+  ] as const;
+
+  return (
+    <div className="nidarr-media" aria-label="Nidarr product interface evidence">
+      <a className="nidarr-tour" href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open the Nidarr live prototype">
+        <img src={nidarrEvidence.tour} alt="Animated product tour showing Nidarr safety features" width="360" height="720" loading="lazy" />
+        <span>Live product tour <ArrowUpRight size={14} aria-hidden="true" /></span>
+      </a>
+      <div className="nidarr-screen-stack">
+        {screens.map(([src, alt, label], index) => (
+          <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer" className={`nidarr-screen nidarr-screen--${index + 1}`} key={label} aria-label={`Open Nidarr to explore ${label}`}>
+            <img src={src} alt={alt} width="440" height="871" loading="lazy" />
+            <span>{label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ElectionArtifact() {
+  return (
+    <div className="election-artifact" aria-label="Election Assistant decision-flow artifact">
+      <p>Decision guide / civic questions</p>
+      <div className="election-artifact__flow">
+        <span>Eligibility</span><i aria-hidden="true">→</i><span>Documents</span><i aria-hidden="true">→</i><span>Next step</span>
+      </div>
+      <div className="election-artifact__topics"><span>Voter list</span><span>Relocation</span><span>Correction</span></div>
+    </div>
+  );
+}

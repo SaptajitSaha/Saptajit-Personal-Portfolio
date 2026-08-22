@@ -47,3 +47,11 @@
 - [x] Capture and prepare vivid real Nidarr prototype views.
 - [x] Update the flagship card with a readable text zone and clearer live-prototype action.
 - [x] Verify the revised card on desktop and mobile.
+
+## Real project-evidence upgrade
+
+- [x] Stage and upload the supplied Nidarr product screenshots.
+- [x] Create a lightweight animated Nidarr preview and replace the washed-out project treatment.
+- [x] Update the Election Assistant card with an honest visual artifact and richer project evidence.
+- [x] Verify the revised cards, checkpoint the update, and push GitHub.
+- [ ] Provide the required Vercel redeployment handoff.
