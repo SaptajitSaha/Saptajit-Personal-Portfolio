@@ -26,6 +26,30 @@ def assert_no_portrait_collisions(page):
         assert collisions == [False, False, False], f"Orbit label collision at phase {phase}: {collisions}"
 
 
+def assert_labels_stay_in_stage(page):
+    for phase in (0, 0.25, 0.5, 0.75):
+        containment = page.evaluate(
+            """(fraction) => {
+              const stage = document.querySelector('.stage-scene').getBoundingClientRect();
+              const paths = [...document.querySelectorAll('.orbit-label-path')];
+              paths.forEach((path) => {
+                const label = path.querySelector('.role-planet');
+                const duration = parseFloat(getComputedStyle(path).animationDuration);
+                path.style.animationDelay = `-${duration * fraction}s`;
+                label.style.animationDelay = `-${duration * fraction}s`;
+                path.style.animationPlayState = 'paused';
+                label.style.animationPlayState = 'paused';
+              });
+              return paths.map((path) => {
+                const label = path.querySelector('.role-planet').getBoundingClientRect();
+                return label.left >= stage.left - 2 && label.right <= stage.right + 2 && label.top >= stage.top - 2 && label.bottom <= stage.bottom + 2;
+              });
+            }""",
+            phase,
+        )
+        assert containment == [True, True, True], f"Orbit label escaped the stage at phase {phase}: {containment}"
+
+
 def main():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path="/usr/bin/chromium")
@@ -42,6 +66,7 @@ def main():
         )
         assert int(z_layers["foreground"]) > int(z_layers["portrait"])
         assert_no_portrait_collisions(page)
+        assert_labels_stay_in_stage(page)
 
         page.hover(".stage-scene")
         states = page.locator(".orbit-label-path").evaluate_all("nodes => nodes.map(node => getComputedStyle(node).animationPlayState)")
@@ -51,7 +76,7 @@ def main():
         about_copy = page.locator(".about-copy").inner_text()
         assert "IIT Madras" in hero_credential and "Indian Institute" not in hero_credential, hero_credential
         assert "Indian Institute of Technology Madras" in about_copy
-        assert page.locator('img[src*="iitm-official-logo"]').count() == 1
+        assert page.locator('img[src*="iitm-madras-supplied-logo"]').count() == 1
 
         learning_titles = page.locator(".learning-card h3").all_text_contents()
         assert learning_titles == ["AI / ML", "DSA / CP", "System Design", "Cloud Architecture"], learning_titles
@@ -60,6 +85,7 @@ def main():
         mobile.goto(URL, wait_until="networkidle")
         assert mobile.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1")
         assert_no_portrait_collisions(mobile)
+        assert_labels_stay_in_stage(mobile)
 
         reduced = browser.new_page(viewport={"width": 1280, "height": 900})
         reduced.emulate_media(reduced_motion="reduce")

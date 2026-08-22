@@ -166,3 +166,10 @@
 - [x] Source and integrate the official IIT Madras mark only within the About education credential.
 - [x] Reframe learning tracks around AI/ML, DSA/CP, System Design, and Cloud Architecture.
 - [x] Verify motion layering, reduced-motion behavior, responsive layout, checkpoint, and push GitHub.
+
+## Orbit containment and supplied IIT Madras logo
+
+- [x] Inspect the label track that lets hero labels escape the portrait composition.
+- [x] Replace the failed About credential logo with the user-supplied IIT Madras mark only.
+- [x] Constrain foreground label motion to a stable portrait-adjacent orbit with hover pause and reduced-motion fallback.
+- [x] Verify bounded motion, image loading, desktop/mobile layout, checkpoint, and push GitHub.

@@ -25,7 +25,7 @@ import { useEffect, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
-const iitMadrasLogo = "/manus-storage/iitm-official-logo_6040e44a.png";
+const iitMadrasLogo = "/manus-storage/iitm-madras-supplied-logo_aa069a2c.png";
 const nidarrEvidence = {
   home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ZuhcSYWKTRzpFYal.png",
   report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gDDTVyQMOfOWXWDG.png",
@@ -202,9 +202,9 @@ export default function Home() {
                 <img src={portrait} alt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" width="1084" height="1448" fetchPriority="high" />
               </figure>
               <div className="orbit-foreground" aria-hidden="true">
-                <div className="orbit-label-path orbit-label-path--ai"><div className="role-planet role-planet--ai"><Sparkles size={15} /> AI systems</div></div>
-                <div className="orbit-label-path orbit-label-path--data"><div className="role-planet role-planet--data"><Database size={15} /> Data practice</div></div>
-                <div className="orbit-label-path orbit-label-path--code"><div className="role-planet role-planet--code"><Code2 size={15} /> Software craft</div></div>
+                <div className="orbit-label-path orbit-label-path--ai"><div className="role-planet"><Sparkles size={15} /> AI systems</div></div>
+                <div className="orbit-label-path orbit-label-path--data"><div className="role-planet"><Database size={15} /> Data practice</div></div>
+                <div className="orbit-label-path orbit-label-path--code"><div className="role-planet"><Code2 size={15} /> Software craft</div></div>
               </div>
             </div>
           </div>
