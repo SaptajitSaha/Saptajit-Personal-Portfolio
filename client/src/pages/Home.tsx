@@ -2,6 +2,7 @@
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
+import { OrbitalScene } from "@/components/OrbitalScene";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
@@ -9,8 +10,6 @@ import {
   ArrowUpRight,
   Braces,
   CircleDotDashed,
-  Code2,
-  Database,
   GraduationCap,
   Github,
   Layers3,
@@ -20,7 +19,6 @@ import {
   Menu,
   Pause,
   Play,
-  Sparkles,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -89,7 +87,6 @@ const projects: Project[] = [
 ];
 
 export default function Home() {
-  const stageRef = useRef<HTMLElement>(null);
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
   const navigationTimerRef = useRef<number | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
@@ -103,37 +100,6 @@ export default function Home() {
       pendingNavigationRef.current = null;
     }, 1000);
   }
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const onPointerMove = (event: PointerEvent) => {
-      if (event.pointerType === "touch") return;
-      const bounds = stage.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      const rotateX = Math.max(-4, Math.min(4, y * -7));
-      const rotateY = Math.max(-5, Math.min(5, x * 9));
-      stage.style.setProperty("--stage-rotate-x", `${rotateX}deg`);
-      stage.style.setProperty("--stage-rotate-y", `${rotateY}deg`);
-      stage.style.setProperty("--stage-counter-x", `${-rotateX}deg`);
-      stage.style.setProperty("--stage-counter-y", `${-rotateY}deg`);
-    };
-    const resetStage = () => {
-      stage.style.setProperty("--stage-rotate-x", "0deg");
-      stage.style.setProperty("--stage-rotate-y", "0deg");
-      stage.style.setProperty("--stage-counter-x", "0deg");
-      stage.style.setProperty("--stage-counter-y", "0deg");
-    };
-
-    stage.addEventListener("pointermove", onPointerMove, { passive: true });
-    stage.addEventListener("pointerleave", resetStage);
-    return () => {
-      stage.removeEventListener("pointermove", onPointerMove);
-      stage.removeEventListener("pointerleave", resetStage);
-    };
-  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -178,7 +144,7 @@ export default function Home() {
       </header>
 
       <main id="main-content">
-        <section className="hero" ref={stageRef} aria-labelledby="hero-title">
+        <section className="hero" aria-labelledby="hero-title">
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
@@ -191,23 +157,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="stage-wrap" aria-label="Portrait and project constellation">
-            <div className="stage-scene">
-              <div className="role-orbit role-orbit--outer" aria-hidden="true"><span className="orbit-dot" /></div>
-              <div className="role-orbit role-orbit--mid" aria-hidden="true"><span className="orbit-dot" /></div>
-              <div className="role-orbit role-orbit--inner" aria-hidden="true"><span className="orbit-dot" /></div>
-              <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
-              <figure className="portrait-orb">
-                <div className="portrait-backdrop" aria-hidden="true" />
-                <img src={portrait} alt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" width="1084" height="1448" fetchPriority="high" />
-              </figure>
-              <div className="orbit-foreground" aria-hidden="true">
-                <div className="orbit-label-path orbit-label-path--ai"><div className="role-planet"><Sparkles size={15} /> AI systems</div></div>
-                <div className="orbit-label-path orbit-label-path--data"><div className="role-planet"><Database size={15} /> Data practice</div></div>
-                <div className="orbit-label-path orbit-label-path--code"><div className="role-planet"><Code2 size={15} /> Software craft</div></div>
-              </div>
-            </div>
-          </div>
+          <OrbitalScene portraitSrc={portrait} portraitAlt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" />
         </section>
 
         <section className="signal-strip" aria-label="Current portfolio signal">

@@ -179,3 +179,11 @@
 - [x] Locate the About-only IIT Madras logo implementation.
 - [x] Restore the generic academic symbol while retaining the full institution name.
 - [x] Verify, checkpoint, and push the symbol correction.
+
+## Parametric hero orbit correction
+
+- [x] Inspect the current hero stage, portrait bounds, decorative paths, and floating-label behavior.
+- [x] Define one responsive ellipse model shared by card positions, particles, and visible orbit paths.
+- [x] Replace independent label tracks with transform-only, requestAnimationFrame-driven parametric motion.
+- [x] Preserve upright cards, controlled hover pause, stable reduced-motion positions, and responsive containment.
+- [x] Validate geometric path fidelity, collision clearance, no overflow, type checks, tests, build, checkpoint, and GitHub sync.
