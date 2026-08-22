@@ -26,11 +26,11 @@ import { useEffect, useRef, useState } from "react";
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
 const nidarrEvidence = {
-  home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ZuhcSYWKTRzpFYal.png",
-  report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gDDTVyQMOfOWXWDG.png",
-  walk: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/BOdBIwbeInlygQnU.png",
-  map: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gKiQtaxPOaaPCGJB.png",
-  profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/IRtCRCwruNdloRka.png",
+  home: "/manus-storage/home_d2862183.png",
+  report: "/manus-storage/report_9e231a32.png",
+  walk: "/manus-storage/walk-with-me_d75097e1.png",
+  map: "/manus-storage/map_77654001.png",
+  profile: "/manus-storage/profile_0d06adce.png",
 };
 
 type Project = CaseStudy & { title: string; tagline: string; className: string };
@@ -178,7 +178,7 @@ export default function Home() {
               return (
               <article className={`${project.className} project-card`} key={project.title}>
                 {isNidarr ? (
-                  <NidarrShowcase assets={{ dashboard: nidarrEvidence.home, report: nidarrEvidence.report, map: nidarrEvidence.map }} />
+                  <NidarrShowcase assets={nidarrEvidence} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>

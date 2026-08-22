@@ -252,3 +252,11 @@
 - [x] Detect the hovered section and interpolate the pixel trail to its target accent without increasing render-loop cost.
 - [x] Verify desktop and mobile section transitions, reduced-motion behavior, trail fading, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the section-aware trail enhancement to GitHub.
+
+## Supplied Nidarr mobile carousel
+
+- [x] Review the existing Nidarr showcase and define a carousel treatment based on the supplied real mobile-product screens.
+- [x] Prepare the supplied screen assets and create a reusable, accessible phone-carousel component without external stock media.
+- [x] Integrate the carousel into the Nidarr project card with responsive controls and restrained motion.
+- [x] Verify desktop/mobile interaction, keyboard access, reduced-motion behavior, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the supplied Nidarr carousel upgrade to GitHub.
