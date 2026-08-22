@@ -194,3 +194,11 @@
 - [x] Center the portrait and all orbit geometry on the same responsive coordinate origin.
 - [x] Remove the orbit pause control and its unused animation state.
 - [x] Verify centered geometry, hover pause, reduced motion, responsive containment, checkpoint, and push GitHub.
+
+## Minimal portrait-centered orbit rebuild
+
+- [x] Remove the current orbital component and stale orbit-specific styling.
+- [x] Rebuild one horizontal, portrait-centered SVG ellipse from live portrait and container bounds.
+- [x] Attach the three existing cards and red particles to that exact ellipse with constant-speed centered positioning.
+- [x] Preserve upright cards, hover pause, reduced-motion stability, and responsive containment without extra effects or controls.
+- [x] Render and verify card-center path attachment, portrait-center alignment, collision clearance, no overflow, tests, build, checkpoint, and GitHub sync.
