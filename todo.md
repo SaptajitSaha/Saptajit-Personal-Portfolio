@@ -152,3 +152,9 @@
 - [x] Audit the chip spacing, GitHub logo contrast, and hover-pausing selector.
 - [x] Normalize ticker rhythm, invert the GitHub mark for dark mode, and scope hover pause to one row.
 - [x] Verify row-level motion behavior, responsive layout, checkpoint the fix, and push GitHub.
+
+## Institution naming refinement
+
+- [x] Locate all abbreviated IIT Madras references in portfolio content.
+- [x] Replace them with Indian Institute of Technology Madras without disrupting responsive typography.
+- [ ] Verify, checkpoint, and push the naming update.

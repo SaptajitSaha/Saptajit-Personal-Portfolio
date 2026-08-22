@@ -187,7 +187,7 @@ export default function Home() {
         <section className="hero" ref={stageRef} aria-labelledby="hero-title">
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
+            <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · Indian Institute of Technology Madras ’29</p>
             <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
             <p className="hero-detail">I build small, serious experiments that turn difficult questions into useful tools.</p>
@@ -205,7 +205,7 @@ export default function Home() {
               <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
               <figure className="portrait-orb">
                 <div className="portrait-backdrop" aria-hidden="true" />
-                <img src={portrait} alt="Saptajit Saha standing before a colorful IITM mural" width="1084" height="1448" fetchPriority="high" />
+                <img src={portrait} alt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" width="1084" height="1448" fetchPriority="high" />
               </figure>
               <div className="role-planet-orbit role-planet-orbit--ai"><div className="role-planet role-planet--ai"><Sparkles size={15} aria-hidden="true" /> AI systems</div></div>
               <div className="role-planet-orbit role-planet-orbit--data"><div className="role-planet role-planet--data"><Database size={15} aria-hidden="true" /> Data practice</div></div>
@@ -262,12 +262,12 @@ export default function Home() {
         </section>
 
         <section id="about" className="section about-section" aria-labelledby="about-heading">
-          <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at IIT Madras" width="1084" height="1448" loading="lazy" /></div>
+          <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at Indian Institute of Technology Madras" width="1084" height="1448" loading="lazy" /></div>
           <div className="about-copy">
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
-            <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at IIT Madras. I&apos;m interested in AI, machine learning, data science, and software engineering because I like seeing an unclear system become something a person can actually use.</p>
+            <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at Indian Institute of Technology Madras. I&apos;m interested in AI, machine learning, data science, and software engineering because I like seeing an unclear system become something a person can actually use.</p>
             <p>I build because the fastest way to understand an idea is to give it edges, constraints, and a user. Right now, I&apos;m looking for the next problem worth taking apart carefully.</p>
-            <div className="education-note"><GraduationCap size={20} aria-hidden="true" /><span><strong>IIT Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
+            <div className="education-note"><GraduationCap size={20} aria-hidden="true" /><span><strong>Indian Institute of Technology Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
           </div>
         </section>
 
