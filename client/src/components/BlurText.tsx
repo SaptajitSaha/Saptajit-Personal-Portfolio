@@ -15,10 +15,9 @@ export function BlurText({ text, className, delay = 0.06 }: BlurTextProps) {
           aria-hidden="true"
           className="blur-word"
           key={`${word}-${index}`}
-          style={{ animationDelay: `${index * delay}s` }}
+          style={{ animationDelay: `${index * delay}s`, marginRight: index < words.length - 1 ? "0.24em" : undefined }}
         >
           {word}
-          {index < words.length - 1 ? " " : ""}
         </span>
       ))}
     </span>

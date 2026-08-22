@@ -35,3 +35,9 @@
 - [x] Add reusable project-storytelling and learning-detail interactions without fabricating claims.
 - [x] Verify the refined desktop and mobile experience.
 - [ ] Deliver the refined portfolio checkpoint.
+
+## Typography spacing correction
+
+- [x] Inspect the compressed display type rules causing word collisions.
+- [x] Adjust hero and display-heading tracking for clear word separation.
+- [x] Verify the revised typography on desktop and mobile.
