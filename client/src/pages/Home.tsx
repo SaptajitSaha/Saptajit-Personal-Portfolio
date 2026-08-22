@@ -109,12 +109,18 @@ export default function Home() {
       const bounds = stage.getBoundingClientRect();
       const x = (event.clientX - bounds.left) / bounds.width - 0.5;
       const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      stage.style.setProperty("--stage-rotate-x", `${Math.max(-4, Math.min(4, y * -7))}deg`);
-      stage.style.setProperty("--stage-rotate-y", `${Math.max(-5, Math.min(5, x * 9))}deg`);
+      const rotateX = Math.max(-4, Math.min(4, y * -7));
+      const rotateY = Math.max(-5, Math.min(5, x * 9));
+      stage.style.setProperty("--stage-rotate-x", `${rotateX}deg`);
+      stage.style.setProperty("--stage-rotate-y", `${rotateY}deg`);
+      stage.style.setProperty("--stage-counter-x", `${-rotateX}deg`);
+      stage.style.setProperty("--stage-counter-y", `${-rotateY}deg`);
     };
     const resetStage = () => {
       stage.style.setProperty("--stage-rotate-x", "0deg");
       stage.style.setProperty("--stage-rotate-y", "0deg");
+      stage.style.setProperty("--stage-counter-x", "0deg");
+      stage.style.setProperty("--stage-counter-y", "0deg");
     };
 
     stage.addEventListener("pointermove", onPointerMove, { passive: true });

@@ -85,3 +85,9 @@
 - [x] Assess the current orbital layers and label paths for 3D depth.
 - [x] Add perspective, tilted orbital planes, and depth-aware role motion.
 - [x] Verify the 3D hero across desktop, mobile, and reduced-motion settings.
+
+## Orbital label interaction
+
+- [x] Inspect the current 3D label counter-transform and orbit animation rules.
+- [x] Keep labels screen-facing and add hover-to-pause behavior for the orbit system.
+- [x] Verify the interaction on desktop and mobile.
