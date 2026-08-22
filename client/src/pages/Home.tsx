@@ -4,7 +4,7 @@ import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { ContactDialog } from "@/components/ContactDialog";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
-import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
+import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
@@ -143,7 +143,7 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-shader" aria-hidden="true"><div className="hero-shader__fallback" /><MeshDriftShader className="hero-shader__canvas" /></div>
+          <div className="hero-pixel-grid" aria-hidden="true"><div className="hero-pixel-grid__fallback" /><InteractivePixelGrid className="hero-pixel-grid__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>

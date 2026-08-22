@@ -230,3 +230,10 @@
 - [x] Add the shader component with safe WebGL lifecycle and a non-WebGL fallback.
 - [x] Preserve content hierarchy, motion-reduction behavior, and responsive performance.
 - [x] Verify shader rendering, visual contrast, fallbacks, tests, build, checkpoint, and GitHub sync.
+
+## Interactive hero pixel grid
+
+- [x] Define a contained pixel-grid rendering budget, color palette, and cursor-trail behavior for the hero.
+- [x] Replace the mesh shader with a requestAnimationFrame-driven canvas grid and static fallback.
+- [x] Preserve text/orbit hierarchy, touch behavior, reduced-motion stability, and responsive performance.
+- [x] Verify cursor illumination, smooth color decay, no overflow, fallbacks, tests, build, checkpoint, and GitHub sync.
