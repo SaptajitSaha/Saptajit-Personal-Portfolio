@@ -146,3 +146,9 @@
 - [x] Save the verified motion-accessible toolbox ticker checkpoint and push it to GitHub.
 - [x] Represent Power BI and Excel with authentic marks, and show SQL, Statistics, and Machine Learning as clearly identified disciplines rather than fake tool logos.
 - [x] Label the data-visualization tool explicitly as Looker Studio and re-run ticker QA.
+
+## Toolbox ticker precision fix
+
+- [x] Audit the chip spacing, GitHub logo contrast, and hover-pausing selector.
+- [x] Normalize ticker rhythm, invert the GitHub mark for dark mode, and scope hover pause to one row.
+- [ ] Verify row-level motion behavior, responsive layout, checkpoint the fix, and push GitHub.

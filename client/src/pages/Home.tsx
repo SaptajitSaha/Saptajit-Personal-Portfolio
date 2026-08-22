@@ -324,10 +324,11 @@ export default function Home() {
 function PlusMark() { return <span aria-hidden="true">+</span>; }
 
 function ToolboxMark({ tool }: { tool: ToolboxTickerRow["tools"][number] }) {
+  const className = `toolbox-chip__logo${tool.name === "GitHub" ? " toolbox-chip__logo--inverse" : ""}`;
   if (tool.mark.kind === "iconify") {
-    return <svg className="toolbox-chip__logo" viewBox={`0 0 ${tool.mark.icon.width} ${tool.mark.icon.height}`} aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: tool.mark.icon.body }} />;
+    return <svg className={className} viewBox={`0 0 ${tool.mark.icon.width} ${tool.mark.icon.height}`} aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: tool.mark.icon.body }} />;
   }
-  return <svg className="toolbox-chip__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill={`#${tool.mark.icon.hex}`} d={tool.mark.icon.path} /></svg>;
+  return <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill={`#${tool.mark.icon.hex}`} d={tool.mark.icon.path} /></svg>;
 }
 
 function NidarrEvidence() {
