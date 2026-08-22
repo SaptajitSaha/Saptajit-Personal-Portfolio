@@ -6,7 +6,7 @@
 
 ![Animated portfolio statement](https://readme-typing-svg.demolab.com/?font=DM+Mono&weight=500&size=18&duration=2400&pause=800&color=E84C35&background=0D0D0F00&vCenter=true&width=760&lines=Early+in+the+work.+Serious+about+the+work.;Building+AI%2C+data%2C+and+software+experiments.;Turning+difficult+systems+into+usable+tools.)
 
-[![Live portfolio](https://img.shields.io/badge/View%20portfolio-0D0D0F?style=for-the-badge&logo=vercel&logoColor=F1EEE9)](https://saptajit-personal-portfolio.vercel.app/)
+[![Live portfolio](https://img.shields.io/badge/View%20portfolio-0D0D0F?style=for-the-badge&logo=vercel&logoColor=F1EEE9)](https://saptajitsaha.vercel.app/)
 [![GitHub repository](https://img.shields.io/badge/Source%20code-0D0D0F?style=for-the-badge&logo=github&logoColor=F1EEE9)](https://github.com/SaptajitSaha/Saptajit-Personal-Portfolio)
 [![Email Saptajit](https://img.shields.io/badge/Contact-E84C35?style=for-the-badge&logo=gmail&logoColor=FFFFFF)](mailto:sahasaptajit@gmail.com)
 

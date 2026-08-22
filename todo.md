@@ -61,3 +61,9 @@
 - [x] Select one dominant product interface and two supporting Nidarr screens.
 - [x] Replace the current screenshot stack with the art-directed product showcase.
 - [x] Verify the focused composition across desktop, tablet, and mobile viewports.
+
+## Public domain update
+
+- [x] Locate all references to the previous Vercel domain.
+- [x] Replace metadata, sitemap, and repository links with the new Vercel domain.
+- [x] Verify and synchronize the domain update.
