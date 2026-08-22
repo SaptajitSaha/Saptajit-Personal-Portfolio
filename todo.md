@@ -151,4 +151,4 @@
 
 - [x] Audit the chip spacing, GitHub logo contrast, and hover-pausing selector.
 - [x] Normalize ticker rhythm, invert the GitHub mark for dark mode, and scope hover pause to one row.
-- [ ] Verify row-level motion behavior, responsive layout, checkpoint the fix, and push GitHub.
+- [x] Verify row-level motion behavior, responsive layout, checkpoint the fix, and push GitHub.
