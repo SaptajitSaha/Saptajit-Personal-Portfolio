@@ -259,4 +259,4 @@
 - [x] Prepare the supplied screen assets and create a reusable, accessible phone-carousel component without external stock media.
 - [x] Integrate the carousel into the Nidarr project card with responsive controls and restrained motion.
 - [x] Verify desktop/mobile interaction, keyboard access, reduced-motion behavior, type checks, tests, and build.
-- [ ] Save a checkpoint and synchronize the supplied Nidarr carousel upgrade to GitHub.
+- [x] Save a checkpoint and synchronize the supplied Nidarr carousel upgrade to GitHub.
