@@ -76,7 +76,8 @@ def main():
         about_copy = page.locator(".about-copy").inner_text()
         assert "IIT Madras" in hero_credential and "Indian Institute" not in hero_credential, hero_credential
         assert "Indian Institute of Technology Madras" in about_copy
-        assert page.locator('img[src*="iitm-madras-supplied-logo"]').count() == 1
+        assert page.locator('img[src*="iitm-madras-supplied-logo"]').count() == 0
+        assert page.locator(".education-note svg").count() == 1
 
         learning_titles = page.locator(".learning-card h3").all_text_contents()
         assert learning_titles == ["AI / ML", "DSA / CP", "System Design", "Cloud Architecture"], learning_titles

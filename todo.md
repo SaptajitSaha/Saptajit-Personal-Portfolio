@@ -173,3 +173,9 @@
 - [x] Replace the failed About credential logo with the user-supplied IIT Madras mark only.
 - [x] Constrain foreground label motion to a stable portrait-adjacent orbit with hover pause and reduced-motion fallback.
 - [x] Verify bounded motion, image loading, desktop/mobile layout, checkpoint, and push GitHub.
+
+## About credential symbol restoration
+
+- [x] Locate the About-only IIT Madras logo implementation.
+- [x] Restore the generic academic symbol while retaining the full institution name.
+- [x] Verify, checkpoint, and push the symbol correction.

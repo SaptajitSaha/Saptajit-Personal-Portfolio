@@ -11,6 +11,7 @@ import {
   CircleDotDashed,
   Code2,
   Database,
+  GraduationCap,
   Github,
   Layers3,
   Linkedin,
@@ -25,7 +26,6 @@ import { useEffect, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
-const iitMadrasLogo = "/manus-storage/iitm-madras-supplied-logo_aa069a2c.png";
 const nidarrEvidence = {
   home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/ZuhcSYWKTRzpFYal.png",
   report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/gDDTVyQMOfOWXWDG.png",
@@ -263,7 +263,7 @@ export default function Home() {
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
             <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at Indian Institute of Technology Madras. I&apos;m interested in AI, machine learning, data science, and software engineering because I like seeing an unclear system become something a person can actually use.</p>
             <p>I build because the fastest way to understand an idea is to give it edges, constraints, and a user. Right now, I&apos;m looking for the next problem worth taking apart carefully.</p>
-            <div className="education-note"><img className="education-note__logo" src={iitMadrasLogo} alt="Official IIT Madras logo" width="272" height="60" /><span><strong>Indian Institute of Technology Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
+            <div className="education-note"><GraduationCap size={20} aria-hidden="true" /><span><strong>Indian Institute of Technology Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
           </div>
         </section>
 
