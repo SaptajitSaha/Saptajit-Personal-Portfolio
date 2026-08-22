@@ -63,7 +63,7 @@ const projects: Project[] = [
     status: "Concept prototype. No outcome metrics are claimed.",
     href: "https://www.linkedin.com/in/saptajitsaha/",
     linkLabel: "See project context",
-    className: "work-compact election-card",
+    className: "work-compact",
   },
   {
     title: "Operational Analytics",
@@ -184,12 +184,11 @@ export default function Home() {
           <div className="work-layout">
             {projects.map((project) => {
               const isNidarr = project.title === "Nidarr";
-              const isElection = project.title === "Interactive Election Assistant";
               return (
               <article className={`${project.className} project-card`} key={project.title}>
                 {isNidarr ? (
                   <NidarrEvidence />
-                ) : isElection ? <ElectionArtifact /> : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
+                ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>
                   <h3>{project.title}</h3>
@@ -264,18 +263,6 @@ function NidarrEvidence() {
         <img src={nidarrEvidence.map} alt="Nidarr safety map screen centered on Kolkata" width="433" height="873" loading="lazy" />
         <span>Safety map</span>
       </a>
-    </div>
-  );
-}
-
-function ElectionArtifact() {
-  return (
-    <div className="election-artifact" aria-label="Election Assistant decision-flow artifact">
-      <p>Decision guide / civic questions</p>
-      <div className="election-artifact__flow">
-        <span>Eligibility</span><i aria-hidden="true">→</i><span>Documents</span><i aria-hidden="true">→</i><span>Next step</span>
-      </div>
-      <div className="election-artifact__topics"><span>Voter list</span><span>Relocation</span><span>Correction</span></div>
     </div>
   );
 }

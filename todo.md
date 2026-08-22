@@ -67,3 +67,9 @@
 - [x] Locate all references to the previous Vercel domain.
 - [x] Replace metadata, sitemap, and repository links with the new Vercel domain.
 - [x] Verify and synchronize the domain update.
+
+## Secondary card visual alignment
+
+- [x] Inspect the Election Assistant and Operational Analytics visual modifiers.
+- [x] Remove the Election Assistant preview artifact and apply the shared field-grid treatment.
+- [x] Verify the aligned cards on desktop and mobile.
