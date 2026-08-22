@@ -1,14 +1,26 @@
 import { useEffect, useRef } from "react";
 
-type TrailPoint = { x: number; y: number; life: number };
+type Rgb = [number, number, number];
+type TrailPoint = { x: number; y: number; life: number; color: Rgb };
 
 const BASE = [23, 20, 26] as const;
 const ACTIVE = [232, 76, 53] as const;
 const MAX_TRAIL_POINTS = 10;
 const TRAIL_DURATION = 0.78;
+const COLOR_SETTLE_DURATION = 0.18;
 
 function mixColor(from: readonly number[], to: readonly number[], amount: number) {
   return from.map((channel, index) => Math.round(channel + (to[index] - channel) * amount));
+}
+
+function parseAccent(value: string | undefined): Rgb {
+  const channels = value?.split(",").map(Number);
+  if (!channels || channels.length !== 3 || channels.some(channel => !Number.isFinite(channel))) return [...ACTIVE];
+  return [channels[0], channels[1], channels[2]];
+}
+
+function sameColor(a: readonly number[], b: readonly number[]) {
+  return a.every((channel, index) => Math.abs(channel - b[index]) < 1);
 }
 
 export function InteractivePixelGrid({ className = "" }: { className?: string }) {
@@ -27,10 +39,12 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
     let frame = 0;
     let lastTime = 0;
     let inView = true;
-    let pointer = { x: -1000, y: -1000, active: false };
+    let pointer = { x: -1000, y: -1000, active: false, color: [...ACTIVE] as Rgb };
     let previousPoint: { x: number; y: number } | null = null;
     let lastPointerClient: { x: number; y: number } | null = null;
     let trail: TrailPoint[] = [];
+    let currentAccent: Rgb = [...ACTIVE];
+    let targetAccent: Rgb = [...ACTIVE];
 
     const gridMetrics = () => {
       const cell = Math.max(16, Math.min(24, Math.round(bounds.width / 48)));
@@ -60,12 +74,17 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
           const y = row * cell + cell * 0.5;
           const pointerDistance = Math.hypot(pointer.x - x, pointer.y - y);
           let energy = pointer.active ? Math.max(0, 1 - pointerDistance / (cell * 5.8)) : 0;
+          let dominantColor: Rgb = pointer.color;
           for (const point of trail) {
             const distance = Math.hypot(point.x - x, point.y - y);
-            energy = Math.max(energy, Math.max(0, 1 - distance / (cell * 3.9)) * point.life * 0.84);
+            const trailEnergy = Math.max(0, 1 - distance / (cell * 3.9)) * point.life * 0.84;
+            if (trailEnergy > energy) {
+              energy = trailEnergy;
+              dominantColor = point.color;
+            }
           }
           const intensity = Math.min(1, energy * energy * 1.18);
-          const color = mixColor(BASE, ACTIVE, intensity);
+          const color = mixColor(BASE, dominantColor, intensity);
           context.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${0.13 + intensity * 0.74})`;
           context.fillRect(column * cell + 1, row * cell + 1, cell - 2, cell - 2);
         }
@@ -86,11 +105,13 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
         return;
       }
       const next = { x: clientX - bounds.left, y: clientY - bounds.top };
+      const section = document.elementFromPoint(clientX, clientY)?.closest<HTMLElement>("[data-trail-color]");
+      targetAccent = parseAccent(section?.dataset.trailColor);
       if (shouldTrail && (!previousPoint || Math.hypot(next.x - previousPoint.x, next.y - previousPoint.y) > gridMetrics().cell * 0.35)) {
-        trail = [...trail.slice(-(MAX_TRAIL_POINTS - 1)), { ...next, life: 1 }];
+        trail = [...trail.slice(-(MAX_TRAIL_POINTS - 1)), { ...next, life: 1, color: [...currentAccent] }];
         previousPoint = next;
       }
-      pointer = { ...next, active: true };
+      pointer = { ...next, active: true, color: [...currentAccent] };
       requestRender();
     };
 
@@ -99,13 +120,16 @@ export function InteractivePixelGrid({ className = "" }: { className?: string })
       const delta = lastTime ? Math.min((now - lastTime) / 1000, 0.05) : 0;
       lastTime = now;
       if (!motionQuery.matches) {
+        const colorStep = Math.min(1, delta / COLOR_SETTLE_DURATION);
+        currentAccent = currentAccent.map((channel, index) => channel + (targetAccent[index] - channel) * colorStep) as Rgb;
+        pointer.color = [...currentAccent];
         trail = trail.map(point => ({ ...point, life: Math.max(0, point.life - delta / TRAIL_DURATION) })).filter(point => point.life > 0.01);
       } else {
-        pointer = { x: -1000, y: -1000, active: false };
+        pointer = { x: -1000, y: -1000, active: false, color: [...ACTIVE] };
         trail = [];
       }
       render();
-      if (!motionQuery.matches && trail.length > 0) requestRender();
+      if (!motionQuery.matches && (trail.length > 0 || !sameColor(currentAccent, targetAccent))) requestRender();
     };
 
     const onPointerMove = (event: PointerEvent) => {

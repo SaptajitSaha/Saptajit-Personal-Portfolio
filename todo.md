@@ -245,3 +245,10 @@
 - [x] Restore the mesh-drift shader as a low-contrast hero layer underneath the pixel grid.
 - [x] Verify scroll continuity, page-level cursor response, layered contrast, reduced-motion behavior, performance safeguards, and responsive containment.
 - [x] Save a checkpoint and synchronize the combined background correction to GitHub.
+
+## Section-aware pixel trail palette
+
+- [x] Map hero, work, learning, About, toolbox, and contact areas to restrained, legible trail accents.
+- [x] Detect the hovered section and interpolate the pixel trail to its target accent without increasing render-loop cost.
+- [x] Verify desktop and mobile section transitions, reduced-motion behavior, trail fading, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the section-aware trail enhancement to GitHub.

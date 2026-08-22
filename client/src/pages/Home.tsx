@@ -144,7 +144,7 @@ export default function Home() {
       </header>
 
       <main id="main-content">
-        <section className="hero" aria-labelledby="hero-title">
+        <section className="hero" data-trail-color="232,76,53" aria-labelledby="hero-title">
           <div className="hero-mesh" aria-hidden="true"><div className="hero-mesh__fallback" /><MeshDriftShader className="hero-mesh__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
@@ -161,12 +161,12 @@ export default function Home() {
           <OrbitalScene portraitSrc={portrait} portraitAlt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" />
         </section>
 
-        <section className="signal-strip" aria-label="Current portfolio signal">
+        <section className="signal-strip" data-trail-color="232,76,53" aria-label="Current portfolio signal">
           <p>Currently building <strong>Nidarr</strong>, learning in public, and mapping the systems behind useful software.</p>
           <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer">Open Nidarr <ArrowUpRight size={17} aria-hidden="true" /></a>
         </section>
 
-        <section id="work" className="section work-section" aria-labelledby="work-heading">
+        <section id="work" className="section work-section" data-trail-color="157,119,255" aria-labelledby="work-heading">
           <div className="section-heading section-heading--work">
             <span>Selected work</span>
             <h2 id="work-heading">What I&apos;m<br /><em>making real.</em></h2>
@@ -193,7 +193,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="learning" className="section learning-section" aria-labelledby="learning-heading">
+        <section id="learning" className="section learning-section" data-trail-color="76,202,181" aria-labelledby="learning-heading">
           <div className="learning-copy">
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
@@ -208,7 +208,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="section about-section" aria-labelledby="about-heading">
+        <section id="about" className="section about-section" data-trail-color="226,178,84" aria-labelledby="about-heading">
           <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at Indian Institute of Technology Madras" width="1084" height="1448" loading="lazy" /></div>
           <div className="about-copy">
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section toolbox-section" aria-labelledby="toolbox-heading">
+        <section className="section toolbox-section" data-trail-color="85,163,255" aria-labelledby="toolbox-heading">
           <div className="toolbox-topline"><span>Tools I use or am learning</span></div>
           <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
           <div className="toolbox-ticker" aria-label="Technology and tool groups">
@@ -242,7 +242,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer id="contact" className="site-footer">
+      <footer id="contact" className="site-footer" data-trail-color="236,103,157">
         <section className="connect-panel" aria-labelledby="connect-heading">
           <div className="connect-panel__intro">
             <p className="connect-panel__kicker">Open channel</p>

@@ -1,3 +1,5 @@
+from math import sqrt
+
 from playwright.sync_api import sync_playwright
 
 
@@ -18,10 +20,42 @@ def sample_grid(page, x, y):
             const pixel = context.getImageData(Math.max(0, Math.min(canvas.width - 1, px + dx)), Math.max(0, Math.min(canvas.height - 1, py + dy)), 1, 1).data;
             red += pixel[0]; green += pixel[1]; samples += 1;
           }
-          return { red: red / samples, green: green / samples };
+          return { red: red / samples, green: green / samples, blue: (() => {
+            let blue = 0;
+            for (let dy = -8; dy <= 8; dy += 2) for (let dx = -8; dx <= 8; dx += 2) {
+              blue += context.getImageData(Math.max(0, Math.min(canvas.width - 1, px + dx)), Math.max(0, Math.min(canvas.height - 1, py + dy)), 1, 1).data[2];
+            }
+            return blue / samples;
+          })() };
         }""",
         {"x": x, "y": y},
     )
+
+
+def section_point(page, selector):
+    return page.evaluate(
+        """selector => {
+          const bounds = document.querySelector(selector).getBoundingClientRect();
+          return {
+            x: Math.max(72, Math.min(innerWidth - 72, bounds.left + bounds.width * .62)),
+            y: Math.max(110, Math.min(innerHeight - 120, bounds.top + Math.min(bounds.height * .22, 220))),
+          };
+        }""",
+        selector,
+    )
+
+
+def color_distance(sample, target):
+    return abs(sample["red"] - target[0]) + abs(sample["green"] - target[1]) + abs(sample["blue"] - target[2])
+
+
+def color_alignment(sample, target):
+    base = (23, 20, 26)
+    observed = (sample["red"] - base[0], sample["green"] - base[1], sample["blue"] - base[2])
+    expected = tuple(channel - base[index] for index, channel in enumerate(target))
+    observed_norm = sqrt(sum(channel * channel for channel in observed))
+    expected_norm = sqrt(sum(channel * channel for channel in expected))
+    return sum(observed[index] * expected[index] for index in range(3)) / (observed_norm * expected_norm)
 
 
 def assert_grid(page):
@@ -59,22 +93,27 @@ def assert_grid(page):
     point_two = {"x": metrics["viewport"]["width"] * 0.52, "y": metrics["viewport"]["height"] * 0.58}
     base = sample_grid(page, **point_one)
     page.mouse.move(point_one["x"], point_one["y"])
-    page.wait_for_timeout(90)
+    page.wait_for_timeout(280)
     lit = sample_grid(page, **point_one)
-    assert lit["red"] > base["red"] + 18 and lit["red"] > lit["green"] * 1.45, {"base": base, "lit": lit}
+    assert color_distance(lit, (232, 76, 53)) < 110, {"base": base, "lit": lit}
     page.mouse.move(point_two["x"], point_two["y"])
     page.wait_for_timeout(180)
     trailing = sample_grid(page, **point_one)
     assert trailing["red"] > base["red"] + 3, {"base": base, "trailing": trailing}
 
-    page.locator("#about").scroll_into_view_if_needed()
-    page.wait_for_timeout(120)
-    lower_point = {"x": metrics["viewport"]["width"] * 0.68, "y": metrics["viewport"]["height"] * 0.52}
-    lower_base = sample_grid(page, **lower_point)
-    page.mouse.move(lower_point["x"], lower_point["y"])
-    page.wait_for_timeout(90)
-    lower_lit = sample_grid(page, **lower_point)
-    assert lower_lit["red"] > lower_base["red"] + 18 and lower_lit["red"] > lower_lit["green"] * 1.45, {"lower_base": lower_base, "lower_lit": lower_lit}
+    accents = [("#work", (157, 119, 255)), ("#learning", (76, 202, 181)), ("#about", (226, 178, 84)), (".toolbox-section", (85, 163, 255)), ("#contact", (236, 103, 157))]
+    lower_lit = None
+    lower_point = None
+    for selector, expected in accents:
+        page.locator(selector).scroll_into_view_if_needed()
+        page.wait_for_timeout(120)
+        point = section_point(page, selector)
+        page.mouse.move(point["x"], point["y"])
+        page.wait_for_timeout(280)
+        sample = sample_grid(page, **point)
+        assert color_alignment(sample, expected) > .96, {"selector": selector, "expected": expected, "sample": sample}
+        assert color_alignment(sample, expected) > color_alignment(sample, (232, 76, 53)) + .08, {"selector": selector, "sample": sample}
+        lower_lit, lower_point = sample, point
     assert page.evaluate("window.scrollY > 0"), "Expected lower-section scroll coverage"
 
     page.evaluate("window.dispatchEvent(new PointerEvent('pointermove', { clientX: -40, clientY: -40, pointerType: 'mouse' }))")
