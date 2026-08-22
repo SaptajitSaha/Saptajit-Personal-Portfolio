@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saptajit-personal-portfolio.vercel.app/sitemap.xml

@@ -1,5 +1,6 @@
-/** Signal Field: dimensional editorial portfolio, dark vermilion palette, and evidence-led student storytelling. */
+/** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
+import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import {
   ArrowUpRight,
   Braces,
@@ -12,72 +13,90 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Menu,
   MoveUpRight,
   Sparkles,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
-const projectVisuals = [
-  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/BMnAXVrOFGqqWdYJ.png",
-  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/UtdAOpvBoDaBXJlq.png",
-  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/hChvUijntSWcHDuB.png",
-];
+const nidarrPrototype = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/fKVqKGHQXJEYtIuU.png";
 
-const projects = [
+type Project = CaseStudy & { title: string; tagline: string; image?: string; className: string };
+
+const projects: Project[] = [
   {
-    index: "01 / FIELD BUILD",
     title: "Nidarr",
-    tools: "React · TypeScript · Gemini · Location-aware UX",
-    description:
-      "A mobile-first personal safety prototype that turns scattered safety signals into a guided, more usable experience.",
-    outcome: "Safety Map, Walk With Me, AI-assisted reports, and a community-verification flow.",
+    category: "Personal safety prototype",
+    year: "2026",
+    role: "Product & frontend prototype builder",
+    tagline: "A mobile safety prototype that brings critical actions into one guided, more usable flow.",
+    problem: "Safety tools can become hard to navigate when a person needs a clear next action quickly.",
+    approach: "Started with one mobile entry point, then shaped a flow around visible safety signals and concrete actions.",
+    system: "React, TypeScript, Gemini-powered analysis, location-aware reporting, Safety Map, and Walk With Me.",
+    contribution: "Built the product flow, safety overview, incident-report experience, and the Walk With Me concept.",
+    learning: "How can a safety interaction stay clear and useful when location or community context is incomplete?",
+    status: "Prototype. Public performance results are not published.",
     href: "https://nidarr.vercel.app/",
-    image: projectVisuals[0],
+    linkLabel: "Visit prototype",
+    image: nidarrPrototype,
     className: "work-feature",
   },
   {
-    index: "02 / CIVIC PROTOTYPE",
     title: "Interactive Election Assistant",
-    tools: "AI-guided flow · Product thinking · Accessible UX",
-    description:
-      "A decision-based guide designed to make real voting questions easier to navigate, from eligibility and documents to voter-list issues.",
-    outcome: "A shift from generic answers toward context-aware civic guidance.",
+    category: "Civic AI concept",
+    year: "2026",
+    role: "Experience prototype builder",
+    tagline: "A decision-based guide for questions around voting eligibility, documents, voter lists, and relocation.",
+    problem: "Civic questions are often personal and context-specific, while generic answers can leave people uncertain about what to do.",
+    approach: "Framed guidance as a decision flow so the next useful question remains visible.",
+    system: "AI-guided interaction design, accessible UX principles, and product prototyping.",
+    contribution: "Shaped the decision-flow concept and the interaction model for practical voter questions.",
+    learning: "How can AI guidance be helpful without hiding uncertainty or making decisions for people?",
+    status: "Concept prototype. No outcome metrics are claimed.",
     href: "https://www.linkedin.com/in/saptajitsaha/",
-    image: projectVisuals[1],
+    linkLabel: "See project context",
     className: "work-compact",
   },
   {
-    index: "03 / DATA PRACTICE",
-    title: "Operational analytics",
-    tools: "Python · SQL · Power BI · Looker Studio · Excel",
-    description:
-      "Explorations across placement, scholarship, and e-commerce datasets, designed to make patterns, bottlenecks, and next decisions easier to see.",
-    outcome: "Dashboards and reporting built around questions, not vanity metrics.",
+    title: "Operational Analytics",
+    category: "Data practice",
+    year: "2025–26",
+    role: "Analyst & dashboard builder",
+    tagline: "A set of placement, scholarship, and e-commerce explorations that turn messy records into clearer questions.",
+    problem: "Operational data often hides the patterns, bottlenecks, and choices that deserve attention.",
+    approach: "Used analysis and dashboards to move from raw records toward decision-ready views.",
+    system: "Python, SQL, Power BI, Looker Studio, Excel, Pandas, and data visualization.",
+    contribution: "Cleaned data, explored trends, and structured dashboards around useful operational questions.",
+    learning: "The visual is only useful when the question behind it is precise.",
+    status: "Portfolio practice across multiple datasets. No performance metrics are claimed.",
     href: "https://github.com/SaptajitSaha",
-    image: projectVisuals[2],
+    linkLabel: "Visit GitHub",
     className: "work-compact work-compact--dark",
   },
 ];
 
 const learningTracks = [
-  ["01", "AI systems", "LLMs, agentic flows, responsible AI"],
-  ["02", "Machine learning", "statistical foundations, model thinking"],
-  ["03", "Software craft", "React, TypeScript, product prototyping"],
-  ["04", "Quantitative finance", "market signals, ML methods, NLP"],
+  { title: "AI systems", now: "LLMs, agentic flows, and responsible AI", tools: "Gemini · Python", question: "How can an assistant stay useful without hiding uncertainty?", project: "Interactive Election Assistant" },
+  { title: "Machine learning", now: "model evaluation, statistical foundations, and model thinking", tools: "Python · Pandas · PyTorch (learning)", question: "How do models fail outside the conditions they were tested in?", project: "Study thread" },
+  { title: "Software craft", now: "responsive interfaces, frontend structure, and product prototyping", tools: "React · TypeScript · Git", question: "What makes a small prototype feel trustworthy enough to use?", project: "Nidarr" },
+  { title: "Quantitative finance", now: "market signals, machine-learning methods, and NLP", tools: "Python · SQL", question: "How much signal survives beyond the backtest?", project: "Study thread" },
 ];
 
-const toolbox = ["Python", "SQL", "TypeScript", "React", "Power BI", "Pandas", "Git", "Gemini", "Looker Studio", "C++"];
+const toolboxGroups = [
+  ["Build", ["Python", "TypeScript", "JavaScript", "React"]],
+  ["Data", ["SQL", "Pandas", "Statistics", "Power BI", "Looker Studio"]],
+  ["AI", ["Machine learning", "PyTorch", "Gemini"]],
+  ["Tools", ["Git", "GitHub", "Excel"]],
+] as const;
 
 export default function Home() {
   const stageRef = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const stage = stageRef.current;
-    if (!stage || reduceMotion) return;
+    if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const onPointerMove = (event: PointerEvent) => {
       if (event.pointerType === "touch") return;
@@ -98,144 +117,124 @@ export default function Home() {
       stage.removeEventListener("pointermove", onPointerMove);
       stage.removeEventListener("pointerleave", resetStage);
     };
-  }, [reduceMotion]);
+  }, []);
 
   return (
-    <div className="signal-field">
+    <div id="top" className="signal-field">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
-        <a className="brand-mark" href="#top" aria-label="Saptajit Saha home">
-          <img src={logoMark} alt="" />
-          <span>SS / 01</span>
-        </a>
+        <a className="brand-mark" href="#top" aria-label="Saptajit Saha home"><img src={logoMark} alt="" width="25" height="25" /><span>Saptajit Saha</span><i className="brand-signal" aria-hidden="true" /></a>
         <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#learning">Learning</a>
-          <a href="#about">About</a>
+          <a href="#top">Home</a><a href="#work">Work</a><a href="#learning">Learning</a><a href="#about">About</a><a href="#contact">Contact</a>
         </nav>
-        <a className="header-cta" href="mailto:sahasaptajit@gmail.com">Let&apos;s talk <MoveUpRight size={15} /></a>
+        <a className="header-cta" href="mailto:sahasaptajit@gmail.com">Email me <MoveUpRight size={16} aria-hidden="true" /></a>
+        <details className="mobile-nav">
+          <summary aria-label="Open navigation"><Menu size={20} aria-hidden="true" /></summary>
+          <nav aria-label="Mobile navigation"><a href="#top">Home</a><a href="#work">Work</a><a href="#learning">Learning</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+        </details>
       </header>
 
-      <main id="top">
+      <main id="main-content">
         <section className="hero" ref={stageRef} aria-labelledby="hero-title">
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="kicker"><CircleDotDashed size={14} /> Kolkata, India · IIT Madras ’29</p>
+            <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
             <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
-            <p className="hero-detail">Early in the work. Serious about the work. Exploring ideas that move from a difficult system to a usable tool.</p>
+            <p className="hero-detail">I build small, serious experiments that turn difficult questions into useful tools.</p>
             <div className="hero-actions">
-              <a className="button button--signal" href="#work">Trace the work <ArrowUpRight size={17} /></a>
-              <a className="button button--quiet" href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer">GitHub <Github size={16} /></a>
+              <a className="button button--signal" href="#work">Explore work <ArrowUpRight size={18} aria-hidden="true" /></a>
+              <a className="button button--quiet" href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer">GitHub <Github size={17} aria-hidden="true" /></a>
             </div>
           </div>
 
-          <div className="stage-wrap" aria-label="Interactive project constellation">
+          <div className="stage-wrap" aria-label="Portrait and project constellation">
             <div className="stage-scene">
-              <div className="stage-orbit orbit--one" aria-hidden="true" />
-              <div className="stage-orbit orbit--two" aria-hidden="true" />
-              <span className="orbit-label orbit-label--one">NIDARR / 2026</span>
-              <span className="orbit-label orbit-label--two">AI + SAFETY</span>
-              <span className="orbit-label orbit-label--three">IITM / DS</span>
+              <div className="stage-orbit orbit--one" aria-hidden="true" /><div className="stage-orbit orbit--two" aria-hidden="true" />
+              <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
               <figure className="portrait-plane">
-                <div className="portrait-backdrop" />
-                <img src={portrait} alt="Saptajit Saha standing before a colorful IITM mural" />
-                <figcaption><span>FIELD NOTE 01</span><strong>Builder / learner</strong></figcaption>
+                <div className="portrait-backdrop" aria-hidden="true" />
+                <img src={portrait} alt="Saptajit Saha standing before a colorful IITM mural" width="1084" height="1448" fetchPriority="high" />
+                <figcaption><span>IIT Madras</span><strong>Builder & learner</strong></figcaption>
               </figure>
-              <div className="stage-chip stage-chip--ai"><Sparkles size={15} /> AI systems</div>
-              <div className="stage-chip stage-chip--data"><Database size={15} /> Data practice</div>
-              <div className="stage-chip stage-chip--code"><Code2 size={15} /> Software craft</div>
+              <div className="stage-chip stage-chip--ai"><Sparkles size={15} aria-hidden="true" /> AI systems</div>
+              <div className="stage-chip stage-chip--data"><Database size={15} aria-hidden="true" /> Data practice</div>
+              <div className="stage-chip stage-chip--code"><Code2 size={15} aria-hidden="true" /> Software craft</div>
             </div>
-            <p className="stage-hint">Move through the field <span aria-hidden="true">↗</span></p>
           </div>
         </section>
 
         <section className="signal-strip" aria-label="Current portfolio signal">
           <p>Currently building <strong>Nidarr</strong>, learning in public, and mapping the systems behind useful software.</p>
-          <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer">Open Nidarr <ArrowUpRight size={16} /></a>
+          <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer">Open Nidarr <ArrowUpRight size={17} aria-hidden="true" /></a>
         </section>
 
         <section id="work" className="section work-section" aria-labelledby="work-heading">
-          <div className="section-heading">
-            <span>01 / BUILDS WITH A POINT OF VIEW</span>
-            <h2>What I&apos;m<br /><em>making real.</em></h2>
-            <p>Three active threads: safer interfaces, more human civic guidance, and operational data that makes the next move clearer.</p>
+          <div className="section-heading section-heading--work">
+            <span>Selected work</span>
+            <h2 id="work-heading">What I&apos;m<br /><em>making real.</em></h2>
+            <p>Projects that explore safer interfaces, more human civic guidance, and data systems built around the next useful decision.</p>
           </div>
           <div className="work-layout">
-            {projects.map((project, index) => (
-              <motion.article
-                className={project.className}
-                key={project.title}
-                initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(5px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <a href={project.href} target="_blank" rel="noreferrer" className="work-card-link" aria-label={`Open ${project.title}`}>
-                  <div className="work-visual"><img src={project.image} alt="Abstract data-inspired project visual" /></div>
-                  <div className="work-meta"><span>{project.index}</span><ArrowUpRight size={17} /></div>
+            {projects.map((project) => (
+              <article className={`${project.className} project-card`} key={project.title}>
+                <div className={`work-visual${project.image ? "" : " work-visual--field"}`}>
+                  {project.image ? <img src={project.image} alt="Nidarr prototype interface" width="1440" height="960" loading="lazy" /> : <div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div>}
+                </div>
+                <div className="project-card__content">
+                  <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>
                   <h3>{project.title}</h3>
-                  <p className="work-tools">{project.tools}</p>
-                  <p className="work-description">{project.description}</p>
-                  <p className="work-outcome">{project.outcome}</p>
-                </a>
-              </motion.article>
+                  <p className="work-tools">{project.role}</p>
+                  <p className="work-description">{project.tagline}</p>
+                  <CaseStudyPanel study={project} />
+                </div>
+              </article>
             ))}
           </div>
         </section>
 
         <section id="learning" className="section learning-section" aria-labelledby="learning-heading">
           <div className="learning-copy">
-            <span>02 / IN MOTION</span>
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
-            <p>My student years are for building foundations and testing ideas: systems, models, interfaces, and the math that holds them together.</p>
+            <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
           </div>
           <div className="learning-list">
-            {learningTracks.map(([number, title, detail]) => (
-              <article key={title}>
-                <span>{number}</span>
-                <h3>{title}</h3>
-                <p>{detail}</p>
-              </article>
+            {learningTracks.map((track, index) => (
+              <details className="learning-card" key={track.title}>
+                <summary><span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span></summary>
+                <div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div>
+              </details>
             ))}
           </div>
         </section>
 
         <section id="about" className="section about-section" aria-labelledby="about-heading">
-          <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at IIT Madras" /></div>
+          <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at IIT Madras" width="1084" height="1448" loading="lazy" /></div>
           <div className="about-copy">
-            <span>03 / THE LONG GAME</span>
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
-            <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at IIT Madras. I&apos;m drawn to AI, machine learning, data science, software engineering, creative web work, and quantitative finance because difficult systems become more interesting when they become useful.</p>
-            <p>I am not trying to look ten years ahead of where I am. I&apos;m building seriously, documenting what I learn, and looking for the next problem worth understanding.</p>
-            <div className="education-note"><GraduationCap size={19} /><span><strong>IIT Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
+            <p>I&apos;m Saptajit, an incoming second-year B.S. Data Science and Applications student at IIT Madras. I&apos;m interested in AI, machine learning, data science, and software engineering because I like seeing an unclear system become something a person can actually use.</p>
+            <p>I build because the fastest way to understand an idea is to give it edges, constraints, and a user. Right now, I&apos;m looking for the next problem worth taking apart carefully.</p>
+            <div className="education-note"><GraduationCap size={20} aria-hidden="true" /><span><strong>IIT Madras</strong> B.S. in Data Science and Applications · 2029</span></div>
           </div>
         </section>
 
         <section className="section toolbox-section" aria-labelledby="toolbox-heading">
-          <div className="toolbox-topline"><span>04 / TOOLBOX</span><Layers3 size={19} /></div>
-          <h2 id="toolbox-heading">Tools are just the surface.<br /><em>Thinking is the system.</em></h2>
-          <div className="toolbox-cloud" aria-label="Technologies and tools">
-            {toolbox.map((tool, index) => <span key={tool} style={{ animationDelay: `${index * 70}ms` }}>{tool}</span>)}
+          <div className="toolbox-topline"><span>Tools I use or am learning</span><Layers3 size={20} aria-hidden="true" /></div>
+          <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
+          <div className="toolbox-groups" aria-label="Technology and tool groups">
+            {toolboxGroups.map(([group, tools]) => <div className="toolbox-group" key={group}><h3>{group}</h3><p>{tools.join(" · ")}</p></div>)}
           </div>
-          <div className="learning-notes">
-            <p><Braces size={17} /> Building with: Python, SQL, React, TypeScript, BI tools, and product prototypes.</p>
-            <p><MapPin size={17} /> Based in Kolkata, looking outward.</p>
-          </div>
+          <div className="learning-notes"><p><Braces size={18} aria-hidden="true" />Building with code, data, and small product experiments.</p><p><MapPin size={18} aria-hidden="true" />Based in Kolkata, looking outward.</p></div>
         </section>
       </main>
 
       <footer id="contact" className="site-footer">
-        <div className="footer-main">
-          <p>Have a difficult system<br />worth making <em>usable?</em></p>
-          <a className="footer-mail" href="mailto:sahasaptajit@gmail.com">sahasaptajit@gmail.com <ArrowUpRight size={22} /></a>
-        </div>
-        <div className="footer-links">
-          <a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
-          <a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
-          <a href="mailto:sahasaptajit@gmail.com"><Mail size={16} /> Email</a>
-        </div>
-        <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Signal Field / 01</span></div>
+        <div className="footer-main"><p>Have something<br />interesting to <em>build?</em></p><a className="footer-mail" href="mailto:sahasaptajit@gmail.com">sahasaptajit@gmail.com <ArrowUpRight size={23} aria-hidden="true" /></a></div>
+        <div className="footer-links"><a href="https://www.linkedin.com/in/saptajitsaha/" target="_blank" rel="noreferrer"><Linkedin size={17} aria-hidden="true" /> LinkedIn</a><a href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer"><Github size={17} aria-hidden="true" /> GitHub</a><a href="mailto:sahasaptajit@gmail.com"><Mail size={17} aria-hidden="true" /> Email</a></div>
+        <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
     </div>
   );
 }
+
+function PlusMark() { return <span aria-hidden="true">+</span>; }

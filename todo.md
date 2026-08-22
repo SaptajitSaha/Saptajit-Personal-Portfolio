@@ -27,3 +27,11 @@
 - [x] Rebuild the portfolio with corrected identity, contact links, and portrait usage.
 - [x] Verify responsive rendering, production build, and GitHub repository rename.
 - [ ] Deliver the redesign and publishing handoff.
+
+## Premium refinement pass
+
+- [x] Audit the current Signal Field implementation against the approved refinement brief.
+- [x] Improve typography, metadata restraint, hero communication, and personal content.
+- [x] Add reusable project-storytelling and learning-detail interactions without fabricating claims.
+- [x] Verify the refined desktop and mobile experience.
+- [ ] Deliver the refined portfolio checkpoint.

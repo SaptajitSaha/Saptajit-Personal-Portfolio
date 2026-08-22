@@ -43,3 +43,6 @@ Reading this as: an editorial-tech student portfolio for curious recruiters and 
 - Keep dark mode as the primary art direction; offer a clean light mode later only if it can preserve the same hierarchy.
 - Use one 3D scene in the hero and shallow dimensionality elsewhere; no decorative WebGL environment, ambient spinning, or neon fog.
 - Use the verified portrait in the hero and a controlled crop in the personal narrative only. No synthetic replacement portraits.
+- Keep display type highly condensed in feeling, but preserve visible word spaces and scan-at-a-glance legibility.
+- Carry a single vermilion signal line and coordinate-glyph motif through every major section, rather than treating them as hero-only decoration.
+- Prefer real interfaces, captured prototypes, dashboards, notebooks, and process fragments for project media over generic cinematic tech art.
