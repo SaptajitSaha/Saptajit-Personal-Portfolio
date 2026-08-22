@@ -73,3 +73,9 @@
 - [x] Inspect the Election Assistant and Operational Analytics visual modifiers.
 - [x] Remove the Election Assistant preview artifact and apply the shared field-grid treatment.
 - [x] Verify the aligned cards on desktop and mobile.
+
+## Orbital hero refinement
+
+- [x] Inspect the current right-side portrait and label structure.
+- [x] Replace it with the circular portrait, orbital rings, and CSS-driven role labels.
+- [x] Verify desktop, mobile, and reduced-motion hero behavior.

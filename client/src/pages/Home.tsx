@@ -156,16 +156,17 @@ export default function Home() {
 
           <div className="stage-wrap" aria-label="Portrait and project constellation">
             <div className="stage-scene">
-              <div className="stage-orbit orbit--one" aria-hidden="true" /><div className="stage-orbit orbit--two" aria-hidden="true" />
+              <div className="role-orbit role-orbit--outer" aria-hidden="true"><span className="orbit-dot" /></div>
+              <div className="role-orbit role-orbit--mid" aria-hidden="true"><span className="orbit-dot" /></div>
+              <div className="role-orbit role-orbit--inner" aria-hidden="true"><span className="orbit-dot" /></div>
               <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
-              <figure className="portrait-plane">
+              <figure className="portrait-orb">
                 <div className="portrait-backdrop" aria-hidden="true" />
                 <img src={portrait} alt="Saptajit Saha standing before a colorful IITM mural" width="1084" height="1448" fetchPriority="high" />
-                <figcaption><span>IIT Madras</span><strong>Builder & learner</strong></figcaption>
               </figure>
-              <div className="stage-chip stage-chip--ai"><Sparkles size={15} aria-hidden="true" /> AI systems</div>
-              <div className="stage-chip stage-chip--data"><Database size={15} aria-hidden="true" /> Data practice</div>
-              <div className="stage-chip stage-chip--code"><Code2 size={15} aria-hidden="true" /> Software craft</div>
+              <div className="role-planet-orbit role-planet-orbit--ai"><div className="role-planet role-planet--ai"><Sparkles size={15} aria-hidden="true" /> AI systems</div></div>
+              <div className="role-planet-orbit role-planet-orbit--data"><div className="role-planet role-planet--data"><Database size={15} aria-hidden="true" /> Data practice</div></div>
+              <div className="role-planet-orbit role-planet-orbit--code"><div className="role-planet role-planet--code"><Code2 size={15} aria-hidden="true" /> Software craft</div></div>
             </div>
           </div>
         </section>
