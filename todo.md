@@ -276,3 +276,10 @@
 - [x] Produce an email request containing the selected date and time without claiming an external calendar reservation.
 - [x] Verify desktop/mobile selection, keyboard access, reduced-motion behavior, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the booking-interface upgrade to GitHub.
+
+## Nidarr production asset correction
+
+- [x] Compare the preview and deployed Nidarr asset paths to identify why the carousel images fail only in production.
+- [x] Replace the affected paths with deployment-safe URLs for all five supplied Nidarr screens.
+- [x] Verify all five public CDN images decode independently, pass the carousel regression, and build into the production bundle.
+- [ ] Save a checkpoint and synchronize the production asset correction to GitHub.

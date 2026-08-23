@@ -26,11 +26,11 @@ import { useEffect, useRef, useState } from "react";
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
 const nidarrEvidence = {
-  home: "/manus-storage/home_d2862183.png",
-  report: "/manus-storage/report_9e231a32.png",
-  walk: "/manus-storage/walk-with-me_d75097e1.png",
-  map: "/manus-storage/map_77654001.png",
-  profile: "/manus-storage/profile_0d06adce.png",
+  home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/xHpPFFzQCHOIAQUb.png",
+  report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/uEhrNwQQJlfwiDhG.png",
+  walk: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/IQFeiEyaHqJyAIMr.png",
+  map: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/itwEKDpYWSWiAWaR.png",
+  profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/VueDxQFucIUBOyFH.png",
 };
 
 type Project = CaseStudy & { title: string; tagline: string; className: string };
