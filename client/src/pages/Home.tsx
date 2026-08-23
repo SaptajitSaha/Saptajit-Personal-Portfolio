@@ -6,6 +6,7 @@ import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
+import { triggerInteractionRipple } from "@/lib/interactionRipple";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
@@ -201,7 +202,7 @@ export default function Home() {
           <div className="learning-list">
             {learningTracks.map((track, index) => (
               <details className="learning-card" key={track.title}>
-                <summary><span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span></summary>
+                <summary onPointerDown={triggerInteractionRipple}><span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span></summary>
                 <div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div>
               </details>
             ))}

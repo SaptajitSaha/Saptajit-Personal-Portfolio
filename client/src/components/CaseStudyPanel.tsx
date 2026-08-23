@@ -1,5 +1,6 @@
 /** Signal Field refinement: reusable, evidence-led project detail disclosure with no fabricated results. */
 import { ArrowUpRight, Plus } from "lucide-react";
+import { triggerInteractionRipple } from "@/lib/interactionRipple";
 
 export type CaseStudy = {
   category: string;
@@ -26,7 +27,7 @@ export function CaseStudyPanel({ study }: { study: CaseStudy }) {
 
   return (
     <details className="case-study">
-      <summary>
+      <summary onPointerDown={triggerInteractionRipple}>
         <span>View case study</span>
         <Plus size={16} aria-hidden="true" />
       </summary>

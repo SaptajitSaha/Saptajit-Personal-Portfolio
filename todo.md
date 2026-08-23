@@ -291,3 +291,11 @@
 - [x] Add restrained transform and opacity feedback to existing case-study, learning, and action controls without changing their behavior.
 - [x] Verify desktop/mobile interaction, reduced-motion behavior, timer cleanup, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the portfolio motion enhancement to GitHub.
+
+## Carousel progress and replayable feedback repair
+
+- [x] Audit the current autoplay timer and interaction-feedback implementation for pause synchronization and repeat-trigger gaps.
+- [x] Add a visible carousel time-left indicator that pauses and resets in sync with slide rotation.
+- [x] Add repeatable, pointer-origin ripple feedback to case-study and learning controls without changing their native disclosure behavior.
+- [x] Verify repeated touch/click activation, hover/focus pause states, reduced-motion behavior, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the progress and feedback repair to GitHub.

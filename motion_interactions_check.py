@@ -10,17 +10,28 @@ def main():
         page = browser.new_page(viewport={"width": 1440, "height": 900})
         page.goto(URL, wait_until="networkidle")
 
-        case_study = page.locator(".case-study").first
+        case_study = page.locator(".case-study").nth(1)
         case_study.scroll_into_view_if_needed()
         case_study.locator("summary").click()
         assert case_study.evaluate("element => element.open")
         assert case_study.locator(".case-study__body").evaluate("element => getComputedStyle(element).animationName") == "case-study-reveal"
+        first_ripple = case_study.locator("summary .interaction-ripple")
+        assert first_ripple.count() == 1
+        assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
+        page.wait_for_timeout(520)
+        assert first_ripple.count() == 0
+        case_study.locator("summary").click()
+        assert case_study.locator("summary .interaction-ripple").count() == 1
 
         learning = page.locator(".learning-card").first
         learning.scroll_into_view_if_needed()
         learning.locator("summary").click()
         assert learning.evaluate("element => element.open")
         assert learning.locator(".learning-card__detail").evaluate("element => getComputedStyle(element).animationName") == "learning-detail-reveal"
+        assert learning.locator("summary .interaction-ripple").count() == 1
+        page.wait_for_timeout(520)
+        learning.locator("summary").click()
+        assert learning.locator("summary .interaction-ripple").count() == 1
 
         action = page.locator(".project-live-link").first
         action.scroll_into_view_if_needed()
@@ -35,6 +46,7 @@ def main():
         reduced_case.locator("summary").click()
         duration = reduced_case.locator(".case-study__body").evaluate("element => getComputedStyle(element).animationDuration")
         assert float(duration.removesuffix("s")) <= .001, duration
+        assert reduced_case.locator("summary .interaction-ripple").count() == 0
         reduced.close()
         browser.close()
         print("motion_interactions_check: PASS")

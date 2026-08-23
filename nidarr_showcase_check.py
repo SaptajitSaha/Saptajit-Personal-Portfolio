@@ -28,6 +28,12 @@ def carousel_metrics(page):
     )
 
 
+def progress_fraction(page):
+    return page.locator(".phone-carousel__progress span").evaluate(
+        "element => Number((element.style.transform.match(/scaleX\\(([^)]+)\\)/) || [, '0'])[1])"
+    )
+
+
 def verify(page, check_autoplay=False):
     page.goto(URL, wait_until="networkidle")
     page.locator(".nidarr-showcase").scroll_into_view_if_needed()
@@ -38,20 +44,25 @@ def verify(page, check_autoplay=False):
     assert metrics["showcase"]["width"] > 0 and metrics["carousel"]["width"] <= metrics["showcase"]["width"] + 1, metrics
 
     if check_autoplay:
-        page.wait_for_timeout(5100)
+        page.wait_for_timeout(900)
+        moving_progress = progress_fraction(page)
+        assert moving_progress > .1, moving_progress
+        page.locator(".phone-carousel").hover()
+        paused_progress = progress_fraction(page)
+        page.wait_for_timeout(900)
+        assert abs(progress_fraction(page) - paused_progress) < .015
+        page.mouse.move(0, 0)
+        page.wait_for_timeout(900)
+        assert progress_fraction(page) > paused_progress + .05
+        page.wait_for_timeout(3600)
         autoplay_metrics = carousel_metrics(page)
         assert autoplay_metrics["activeSrc"] != metrics["activeSrc"], autoplay_metrics
-        page.locator(".phone-carousel").hover()
-        paused_src = carousel_metrics(page)["activeSrc"]
-        page.wait_for_timeout(5100)
-        assert carousel_metrics(page)["activeSrc"] == paused_src
-        page.mouse.move(0, 0)
 
-    first_src = metrics["activeSrc"]
-    page.get_by_role("button", name="Show next screen: Incident report").click()
+    first_src = carousel_metrics(page)["activeSrc"]
+    page.locator(".phone-carousel__arrow").nth(1).click()
     page.wait_for_timeout(460)
     next_metrics = carousel_metrics(page)
-    assert next_metrics["status"].startswith("2 of 5: Incident report") and next_metrics["activeSrc"] != first_src, next_metrics
+    assert next_metrics["activeSrc"] != first_src and progress_fraction(page) < .12, next_metrics
 
     page.get_by_role("button", name="Show Profile").click()
     page.wait_for_timeout(460)
