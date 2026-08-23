@@ -312,4 +312,4 @@
 - [x] Assess the native learning disclosure markup and map it to the controlled dropdown interaction pattern.
 - [x] Implement refined learning-topic open-close transitions with preserved ripple, keyboard behavior, and content layout.
 - [x] Verify repeated toggles, reduced-motion fallback, mobile layout, type checks, tests, and build.
-- [ ] Save a checkpoint and synchronize the learning-dropdown upgrade to GitHub.
+- [x] Save a checkpoint and synchronize the learning-dropdown upgrade to GitHub.
