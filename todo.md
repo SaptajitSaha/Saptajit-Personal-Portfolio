@@ -282,4 +282,4 @@
 - [x] Compare the preview and deployed Nidarr asset paths to identify why the carousel images fail only in production.
 - [x] Replace the affected paths with deployment-safe URLs for all five supplied Nidarr screens.
 - [x] Verify all five public CDN images decode independently, pass the carousel regression, and build into the production bundle.
-- [ ] Save a checkpoint and synchronize the production asset correction to GitHub.
+- [x] Save a checkpoint and synchronize the production asset correction to GitHub.
