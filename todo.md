@@ -290,4 +290,4 @@
 - [x] Add smooth Nidarr autoplay that pauses on hover, focus, visibility change, and reduced-motion preference.
 - [x] Add restrained transform and opacity feedback to existing case-study, learning, and action controls without changing their behavior.
 - [x] Verify desktop/mobile interaction, reduced-motion behavior, timer cleanup, type checks, tests, and build.
-- [ ] Save a checkpoint and synchronize the portfolio motion enhancement to GitHub.
+- [x] Save a checkpoint and synchronize the portfolio motion enhancement to GitHub.
