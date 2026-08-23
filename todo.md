@@ -305,4 +305,4 @@
 - [x] Assess the current native disclosure markup and one-way reveal behavior for an accessible interruptible dropdown treatment.
 - [x] Implement a refined open-close case-study dropdown that preserves the existing ripple and keyboard semantics.
 - [x] Verify repeated toggles, reduced-motion fallback, responsive layout, type checks, tests, and build.
-- [ ] Save a checkpoint and synchronize the dropdown-animation upgrade to GitHub.
+- [x] Save a checkpoint and synchronize the dropdown-animation upgrade to GitHub.
