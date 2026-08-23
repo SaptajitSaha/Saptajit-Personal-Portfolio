@@ -28,7 +28,7 @@ def carousel_metrics(page):
     )
 
 
-def verify(page):
+def verify(page, check_autoplay=False):
     page.goto(URL, wait_until="networkidle")
     page.locator(".nidarr-showcase").scroll_into_view_if_needed()
     metrics = carousel_metrics(page)
@@ -37,20 +37,33 @@ def verify(page):
     assert metrics["prototype"] == 1 and metrics["status"] == "1 of 5: Safety overview", metrics
     assert metrics["showcase"]["width"] > 0 and metrics["carousel"]["width"] <= metrics["showcase"]["width"] + 1, metrics
 
+    if check_autoplay:
+        page.wait_for_timeout(5100)
+        autoplay_metrics = carousel_metrics(page)
+        assert autoplay_metrics["activeSrc"] != metrics["activeSrc"], autoplay_metrics
+        page.locator(".phone-carousel").hover()
+        paused_src = carousel_metrics(page)["activeSrc"]
+        page.wait_for_timeout(5100)
+        assert carousel_metrics(page)["activeSrc"] == paused_src
+        page.mouse.move(0, 0)
+
     first_src = metrics["activeSrc"]
     page.get_by_role("button", name="Show next screen: Incident report").click()
     page.wait_for_timeout(460)
     next_metrics = carousel_metrics(page)
-    assert next_metrics["status"] == "2 of 5: Incident report" and next_metrics["activeSrc"] != first_src, next_metrics
+    assert next_metrics["status"].startswith("2 of 5: Incident report") and next_metrics["activeSrc"] != first_src, next_metrics
 
     page.get_by_role("button", name="Show Profile").click()
     page.wait_for_timeout(460)
-    assert carousel_metrics(page)["status"] == "5 of 5: Profile"
+    assert carousel_metrics(page)["status"].startswith("5 of 5: Profile")
 
     page.locator(".phone-carousel").focus()
     page.keyboard.press("ArrowLeft")
     page.wait_for_timeout(460)
-    assert carousel_metrics(page)["status"] == "4 of 5: Walk with me"
+    assert carousel_metrics(page)["status"].startswith("4 of 5: Walk with me")
+    focused_src = carousel_metrics(page)["activeSrc"]
+    page.wait_for_timeout(5100)
+    assert carousel_metrics(page)["activeSrc"] == focused_src
 
 
 def main():
@@ -58,12 +71,15 @@ def main():
         browser = playwright.chromium.launch(headless=True, executable_path="/usr/bin/chromium")
         for width in (1440, 1024, 768, 430, 390, 320):
             page = browser.new_page(viewport={"width": width, "height": 900})
-            verify(page)
+            verify(page, check_autoplay=width == 1440)
             assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"), width
             page.close()
 
         reduced = browser.new_page(viewport={"width": 390, "height": 900}, reduced_motion="reduce")
         verify(reduced)
+        reduced_start = carousel_metrics(reduced)["activeSrc"]
+        reduced.wait_for_timeout(5100)
+        assert carousel_metrics(reduced)["activeSrc"] == reduced_start
         assert reduced.locator(".phone-carousel__phone[data-slot='active']").count() == 1
         reduced.close()
         browser.close()
