@@ -299,3 +299,10 @@
 - [x] Add repeatable, pointer-origin ripple feedback to case-study and learning controls without changing their native disclosure behavior.
 - [x] Verify repeated touch/click activation, hover/focus pause states, reduced-motion behavior, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the progress and feedback repair to GitHub.
+
+## Case-study dropdown animation refinement
+
+- [x] Assess the current native disclosure markup and one-way reveal behavior for an accessible interruptible dropdown treatment.
+- [x] Implement a refined open-close case-study dropdown that preserves the existing ripple and keyboard semantics.
+- [x] Verify repeated toggles, reduced-motion fallback, responsive layout, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the dropdown-animation upgrade to GitHub.

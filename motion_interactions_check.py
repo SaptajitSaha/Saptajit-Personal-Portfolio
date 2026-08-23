@@ -12,16 +12,29 @@ def main():
 
         case_study = page.locator(".case-study").nth(1)
         case_study.scroll_into_view_if_needed()
-        case_study.locator("summary").click()
-        assert case_study.evaluate("element => element.open")
-        assert case_study.locator(".case-study__body").evaluate("element => getComputedStyle(element).animationName") == "case-study-reveal"
-        first_ripple = case_study.locator("summary .interaction-ripple")
+        trigger = case_study.locator(".case-study__trigger")
+        trigger.click()
+        assert trigger.get_attribute("aria-expanded") == "true"
+        assert case_study.locator(".case-study__dropdown").count() == 1
+        body = case_study.locator(".case-study__body")
+        assert "clip-path" in body.evaluate("element => getComputedStyle(element).transitionProperty")
+        first_ripple = case_study.locator(".case-study__trigger .interaction-ripple")
         assert first_ripple.count() == 1
         assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
         page.wait_for_timeout(520)
         assert first_ripple.count() == 0
-        case_study.locator("summary").click()
-        assert case_study.locator("summary .interaction-ripple").count() == 1
+        trigger.click()
+        assert trigger.get_attribute("aria-expanded") == "false"
+        assert case_study.locator(".case-study__dropdown").count() == 1
+        trigger.click()
+        page.wait_for_timeout(32)
+        assert trigger.get_attribute("aria-expanded") == "true"
+        page.wait_for_timeout(320)
+        assert case_study.locator(".case-study__dropdown").count() == 1
+        trigger.press("Enter")
+        assert trigger.get_attribute("aria-expanded") == "false"
+        page.wait_for_timeout(320)
+        assert case_study.locator(".case-study__dropdown").count() == 0
 
         learning = page.locator(".learning-card").first
         learning.scroll_into_view_if_needed()
@@ -43,10 +56,11 @@ def main():
         reduced.goto(URL, wait_until="networkidle")
         reduced_case = reduced.locator(".case-study").nth(1)
         reduced_case.scroll_into_view_if_needed()
-        reduced_case.locator("summary").click()
-        duration = reduced_case.locator(".case-study__body").evaluate("element => getComputedStyle(element).animationDuration")
-        assert float(duration.removesuffix("s")) <= .001, duration
-        assert reduced_case.locator("summary .interaction-ripple").count() == 0
+        reduced_trigger = reduced_case.locator(".case-study__trigger")
+        reduced_trigger.click()
+        duration = reduced_case.locator(".case-study__body").evaluate("element => getComputedStyle(element).transitionDuration")
+        assert all(float(part.removesuffix("s")) <= .001 for part in duration.split(", ")), duration
+        assert reduced_case.locator(".case-study__trigger .interaction-ripple").count() == 0
         reduced.close()
         browser.close()
         print("motion_interactions_check: PASS")
