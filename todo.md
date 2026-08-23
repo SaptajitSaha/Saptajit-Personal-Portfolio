@@ -298,4 +298,4 @@
 - [x] Add a visible carousel time-left indicator that pauses and resets in sync with slide rotation.
 - [x] Add repeatable, pointer-origin ripple feedback to case-study and learning controls without changing their native disclosure behavior.
 - [x] Verify repeated touch/click activation, hover/focus pause states, reduced-motion behavior, type checks, tests, and build.
-- [ ] Save a checkpoint and synchronize the progress and feedback repair to GitHub.
+- [x] Save a checkpoint and synchronize the progress and feedback repair to GitHub.
