@@ -38,13 +38,23 @@ def main():
 
         learning = page.locator(".learning-card").first
         learning.scroll_into_view_if_needed()
-        learning.locator("summary").click()
-        assert learning.evaluate("element => element.open")
-        assert learning.locator(".learning-card__detail").evaluate("element => getComputedStyle(element).animationName") == "learning-detail-reveal"
-        assert learning.locator("summary .interaction-ripple").count() == 1
+        learning_trigger = learning.locator(".learning-card__trigger")
+        learning_trigger.click()
+        page.wait_for_timeout(32)
+        assert learning_trigger.get_attribute("aria-expanded") == "true"
+        detail = learning.locator(".learning-card__detail")
+        assert "clip-path" in detail.evaluate("element => getComputedStyle(element).transitionProperty")
+        assert learning.locator(".learning-card__trigger .interaction-ripple").count() == 1
         page.wait_for_timeout(520)
-        learning.locator("summary").click()
-        assert learning.locator("summary .interaction-ripple").count() == 1
+        learning_trigger.click()
+        assert learning_trigger.get_attribute("aria-expanded") == "false"
+        learning_trigger.click()
+        page.wait_for_timeout(32)
+        assert learning_trigger.get_attribute("aria-expanded") == "true"
+        learning_trigger.press("Enter")
+        assert learning_trigger.get_attribute("aria-expanded") == "false"
+        page.wait_for_timeout(300)
+        assert learning.locator(".learning-card__dropdown").count() == 0
 
         action = page.locator(".project-live-link").first
         action.scroll_into_view_if_needed()
@@ -61,6 +71,13 @@ def main():
         duration = reduced_case.locator(".case-study__body").evaluate("element => getComputedStyle(element).transitionDuration")
         assert all(float(part.removesuffix("s")) <= .001 for part in duration.split(", ")), duration
         assert reduced_case.locator(".case-study__trigger .interaction-ripple").count() == 0
+        reduced_learning = reduced.locator(".learning-card").first
+        reduced_learning.scroll_into_view_if_needed()
+        reduced_learning_trigger = reduced_learning.locator(".learning-card__trigger")
+        reduced_learning_trigger.click()
+        learning_duration = reduced_learning.locator(".learning-card__detail").evaluate("element => getComputedStyle(element).transitionDuration")
+        assert all(float(part.removesuffix("s")) <= .001 for part in learning_duration.split(", ")), learning_duration
+        assert reduced_learning.locator(".learning-card__trigger .interaction-ripple").count() == 0
         reduced.close()
         browser.close()
         print("motion_interactions_check: PASS")

@@ -306,3 +306,10 @@
 - [x] Implement a refined open-close case-study dropdown that preserves the existing ripple and keyboard semantics.
 - [x] Verify repeated toggles, reduced-motion fallback, responsive layout, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the dropdown-animation upgrade to GitHub.
+
+## Learning-topic dropdown animation refinement
+
+- [x] Assess the native learning disclosure markup and map it to the controlled dropdown interaction pattern.
+- [x] Implement refined learning-topic open-close transitions with preserved ripple, keyboard behavior, and content layout.
+- [x] Verify repeated toggles, reduced-motion fallback, mobile layout, type checks, tests, and build.
+- [ ] Save a checkpoint and synchronize the learning-dropdown upgrade to GitHub.

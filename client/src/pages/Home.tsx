@@ -22,7 +22,7 @@ import {
   MapPin,
   Menu,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
@@ -86,6 +86,40 @@ const projects: Project[] = [
     className: "work-compact work-compact--dark",
   },
 ];
+
+const LEARNING_CLOSE_DELAY = 240;
+
+function LearningTopic({ track, index }: { track: (typeof learningTracks)[number]; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const expandedRef = useRef(false);
+  const closeTimerRef = useRef<number | undefined>(undefined);
+  const panelId = useId();
+
+  useEffect(() => () => { if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current); }, []);
+
+  const toggle = () => {
+    const nextExpanded = !expandedRef.current;
+    expandedRef.current = nextExpanded;
+    if (!nextExpanded) {
+      setExpanded(false);
+      closeTimerRef.current = window.setTimeout(() => setMounted(false), LEARNING_CLOSE_DELAY);
+      return;
+    }
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    setMounted(true);
+    window.requestAnimationFrame(() => { if (expandedRef.current) setExpanded(true); });
+  };
+
+  return (
+    <article className="learning-card" data-state={expanded ? "open" : "closed"}>
+      <button className="learning-card__trigger" type="button" aria-expanded={expanded} aria-controls={panelId} onClick={toggle} onPointerDown={triggerInteractionRipple}>
+        <span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span>
+      </button>
+      {mounted && <div id={panelId} className="learning-card__dropdown" aria-hidden={!expanded} inert={!expanded}><div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></div>}
+    </article>
+  );
+}
 
 export default function Home() {
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
@@ -200,12 +234,7 @@ export default function Home() {
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
           </div>
           <div className="learning-list">
-            {learningTracks.map((track, index) => (
-              <details className="learning-card" key={track.title}>
-                <summary onPointerDown={triggerInteractionRipple}><span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span></summary>
-                <div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div>
-              </details>
-            ))}
+            {learningTracks.map((track, index) => <LearningTopic track={track} index={index} key={track.title} />)}
           </div>
         </section>
 
