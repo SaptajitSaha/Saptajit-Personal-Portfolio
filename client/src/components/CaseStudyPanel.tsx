@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { triggerInteractionRipple } from "@/lib/interactionRipple";
 
 export type CaseStudy = {
+  title: string;
   category: string;
   year: string;
   role: string;
@@ -24,7 +25,7 @@ export function CaseStudyPanel({ study }: { study: CaseStudy }) {
     <Accordion type="single" collapsible className="case-study-accordion">
       <AccordionItem value="case-study" className="case-study">
         <AccordionTrigger className="case-study__trigger" onPointerDown={triggerInteractionRipple}>
-          <span>View case study</span>
+          <span>Explore {study.title} case study</span>
         </AccordionTrigger>
         <AccordionContent className="case-study__dropdown">
           <div className="case-study__body">

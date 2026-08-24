@@ -344,3 +344,11 @@
 - [x] Rebuild learning-topic disclosure behavior with the same reliable state and keyboard model.
 - [x] Apply a refined open/close transition that remains reversible under rapid input and becomes instant under reduced motion.
 - [x] Verify repeated pointer and keyboard toggles, mobile behavior, reduced-motion behavior, regression coverage, type checks, tests, build, checkpoint, and GitHub sync.
+
+## Portfolio audit remediation
+
+- [x] Establish a clear three-tier motion and typography contract for utility controls, disclosures, and showcase surfaces.
+- [x] Separate the Nidarr carousel from its case-study control lane and enlarge all carousel navigation hit targets to touch-safe dimensions.
+- [x] Reset disclosure-control tracking to readable values and remove obsolete competing disclosure selectors.
+- [x] Reduce repetitive glass framing through a more deliberate section hierarchy and consolidate conflicting responsive overrides.
+- [x] Verify desktop/mobile interaction geometry, keyboard and reduced-motion paths, all regressions, type checks, unit tests, production build, checkpoint, and GitHub sync.

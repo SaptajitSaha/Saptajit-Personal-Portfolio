@@ -1,0 +1,718 @@
+{
+  "desktop": {
+    "viewport": "desktop",
+    "nav_box": {
+      "x": 440,
+      "y": 18,
+      "width": 560,
+      "height": 56
+    },
+    "nav_computed": {
+      "position": "fixed",
+      "top": "18px",
+      "bottom": "926px",
+      "zIndex": "72"
+    },
+    "nidarr_trigger_box": {
+      "x": 128.1875,
+      "y": 2239.71875,
+      "width": 360,
+      "height": 40
+    },
+    "nidarr_carousel_box": {
+      "x": 628.4375,
+      "y": 1704.4375,
+      "width": 716.375,
+      "height": 506.28125
+    },
+    "interactive_metrics": [
+      {
+        "text": "Home",
+        "className": "",
+        "width": 102,
+        "height": 44,
+        "fontSize": "11px",
+        "letterSpacing": "0.275px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Work",
+        "className": "",
+        "width": 102,
+        "height": 44,
+        "fontSize": "11px",
+        "letterSpacing": "0.275px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Learning",
+        "className": "",
+        "width": 102,
+        "height": 44,
+        "fontSize": "11px",
+        "letterSpacing": "0.275px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "About",
+        "className": "",
+        "width": 102,
+        "height": 44,
+        "fontSize": "11px",
+        "letterSpacing": "0.275px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Contact",
+        "className": "",
+        "width": 102,
+        "height": 44,
+        "fontSize": "11px",
+        "letterSpacing": "0.275px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Skip to content",
+        "className": "skip-link",
+        "width": 124,
+        "height": 35,
+        "fontSize": "13px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "fixed"
+      },
+      {
+        "text": "Explore work",
+        "className": "button button--signal",
+        "width": 152,
+        "height": 46,
+        "fontSize": "12px",
+        "letterSpacing": "0.24px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "GitHub",
+        "className": "button button--quiet",
+        "width": 107,
+        "height": 46,
+        "fontSize": "12px",
+        "letterSpacing": "0.24px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "Open Nidarr",
+        "className": "",
+        "width": 104,
+        "height": 17,
+        "fontSize": "12px",
+        "letterSpacing": "normal",
+        "transition": "0s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__arrow",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__arrow",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__autoplay",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "absolute"
+      },
+      {
+        "text": "Open prototype",
+        "className": "nidarr-showcase__prototype",
+        "width": 127,
+        "height": 40,
+        "fontSize": "9px",
+        "letterSpacing": "0.36px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "absolute"
+      },
+      {
+        "text": "Open live prototype",
+        "className": "project-live-link",
+        "width": 161,
+        "height": 24,
+        "fontSize": "12px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "Explore Nidarr case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 360,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Explore Interactive Election Assistant case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 420,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Explore Operational Analytics case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 420,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "01AI / MLExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 692,
+        "height": 110,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "02DSA / CPExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 694,
+        "height": 71,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "03System DesignExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 694,
+        "height": 71,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "04Cloud ArchitectureExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 694,
+        "height": 71,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Direct messageStart a conversationSend a note through th",
+        "className": "reach-out__message",
+        "width": 714,
+        "height": 126,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Conversation windowBook a 30 min callChoose a preferred ",
+        "className": "booking-calendar",
+        "width": 352,
+        "height": 215,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Email mesahasaptajit@gmail.com",
+        "className": "reach-out__email",
+        "width": 352,
+        "height": 215,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "LinkedIn",
+        "className": "",
+        "width": 409,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "GitHub",
+        "className": "",
+        "width": 409,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "Email",
+        "className": "",
+        "width": 409,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      }
+    ],
+    "case_study": {
+      "expanded": "true",
+      "content_state": "open",
+      "animation": "signal-accordion-down"
+    },
+    "learning": {
+      "expanded": "true",
+      "animation": "signal-accordion-down"
+    }
+  },
+  "mobile": {
+    "viewport": "mobile",
+    "nav_box": {
+      "x": 10,
+      "y": 772,
+      "width": 370,
+      "height": 58
+    },
+    "nav_computed": {
+      "position": "fixed",
+      "top": "772px",
+      "bottom": "14px",
+      "zIndex": "72"
+    },
+    "nidarr_trigger_box": {
+      "x": 69,
+      "y": 2081.90625,
+      "width": 252,
+      "height": 40
+    },
+    "nidarr_carousel_box": {
+      "x": 43,
+      "y": 2147.28125,
+      "width": 304,
+      "height": 363.1875
+    },
+    "interactive_metrics": [
+      {
+        "text": "Home",
+        "className": "",
+        "width": 72,
+        "height": 44,
+        "fontSize": "9.5px",
+        "letterSpacing": "0.095px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Work",
+        "className": "",
+        "width": 72,
+        "height": 44,
+        "fontSize": "9.5px",
+        "letterSpacing": "0.095px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Learning",
+        "className": "",
+        "width": 72,
+        "height": 44,
+        "fontSize": "9.5px",
+        "letterSpacing": "0.095px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "About",
+        "className": "",
+        "width": 72,
+        "height": 44,
+        "fontSize": "9.5px",
+        "letterSpacing": "0.095px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Contact",
+        "className": "",
+        "width": 72,
+        "height": 44,
+        "fontSize": "9.5px",
+        "letterSpacing": "0.095px",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Skip to content",
+        "className": "skip-link",
+        "width": 124,
+        "height": 35,
+        "fontSize": "13px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "fixed"
+      },
+      {
+        "text": "Explore work",
+        "className": "button button--signal",
+        "width": 152,
+        "height": 46,
+        "fontSize": "12px",
+        "letterSpacing": "0.24px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "GitHub",
+        "className": "button button--quiet",
+        "width": 107,
+        "height": 46,
+        "fontSize": "12px",
+        "letterSpacing": "0.24px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "Open Nidarr",
+        "className": "",
+        "width": 104,
+        "height": 17,
+        "fontSize": "12px",
+        "letterSpacing": "normal",
+        "transition": "0s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__arrow",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__dot",
+        "width": 36,
+        "height": 36,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__arrow",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "static"
+      },
+      {
+        "text": "",
+        "className": "phone-carousel__autoplay",
+        "width": 40,
+        "height": 40,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s, 0.16s, 0.16s",
+        "position": "absolute"
+      },
+      {
+        "text": "Open prototype",
+        "className": "nidarr-showcase__prototype",
+        "width": 116,
+        "height": 40,
+        "fontSize": "8px",
+        "letterSpacing": "0.32px",
+        "transition": "0.16s, 0.16s, 0.16s",
+        "position": "absolute"
+      },
+      {
+        "text": "Open live prototype",
+        "className": "project-live-link",
+        "width": 161,
+        "height": 24,
+        "fontSize": "12px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "Explore Nidarr case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 252,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Explore Interactive Election Assistant case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 278,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Explore Operational Analytics case study",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 case-study__trigger",
+        "width": 278,
+        "height": 40,
+        "fontSize": "12px",
+        "letterSpacing": "0.12px",
+        "transition": "0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "01AI / MLExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 354,
+        "height": 94,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "02DSA / CPExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 356,
+        "height": 84,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "03System DesignExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 356,
+        "height": 84,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "04Cloud ArchitectureExplore",
+        "className": "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 learning-card__trigger",
+        "width": 356,
+        "height": 84,
+        "fontSize": "14px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.16s",
+        "position": "relative"
+      },
+      {
+        "text": "Direct messageStart a conversationSend a note through th",
+        "className": "reach-out__message",
+        "width": 316,
+        "height": 120,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Conversation windowBook a 30 min callChoose a preferred ",
+        "className": "booking-calendar",
+        "width": 316,
+        "height": 104,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "Email mesahasaptajit@gmail.com",
+        "className": "reach-out__email",
+        "width": 316,
+        "height": 112,
+        "fontSize": "16px",
+        "letterSpacing": "normal",
+        "transition": "0.18s, 0.18s, 0.18s",
+        "position": "relative"
+      },
+      {
+        "text": "LinkedIn",
+        "className": "",
+        "width": 316,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "GitHub",
+        "className": "",
+        "width": 316,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      },
+      {
+        "text": "Email",
+        "className": "",
+        "width": 316,
+        "height": 38,
+        "fontSize": "10px",
+        "letterSpacing": "normal",
+        "transition": "0.16s, 0.18s, 0.18s, 0.18s",
+        "position": "static"
+      }
+    ],
+    "case_study": {
+      "expanded": "true",
+      "content_state": "open",
+      "animation": "signal-accordion-down"
+    },
+    "learning": {
+      "expanded": "true",
+      "animation": "signal-accordion-down"
+    }
+  }
+}
