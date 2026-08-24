@@ -320,4 +320,4 @@
 - [x] Install Anime.js and verify dependency compatibility with the Vite/React portfolio.
 - [x] Document safe integration boundaries, accessibility requirements, and recommended future motion use cases.
 - [x] Run project verification, including the Anime.js module test, the portfolio interaction regressions, and production build.
-- [ ] Save a checkpoint and synchronize the Anime.js capability setup to GitHub.
+- [x] Save a checkpoint and synchronize the Anime.js capability setup to GitHub.
