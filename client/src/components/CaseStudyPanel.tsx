@@ -24,6 +24,7 @@ export function CaseStudyPanel({ study }: { study: CaseStudy }) {
   const [mounted, setMounted] = useState(false);
   const closeTimer = useRef<number | undefined>(undefined);
   const expandedRef = useRef(false);
+  const mountedRef = useRef(false);
   const panelId = useId();
   const sections = [["Problem", study.problem], ["Approach", study.approach], ["System", study.system], ["My contribution", study.contribution], ["Learning", study.learning]];
 
@@ -34,10 +35,18 @@ export function CaseStudyPanel({ study }: { study: CaseStudy }) {
     expandedRef.current = nextExpanded;
     if (!nextExpanded) {
       setExpanded(false);
-      closeTimer.current = window.setTimeout(() => setMounted(false), CLOSE_DELAY);
+      closeTimer.current = window.setTimeout(() => {
+        mountedRef.current = false;
+        setMounted(false);
+      }, CLOSE_DELAY);
       return;
     }
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    if (mountedRef.current) {
+      setExpanded(true);
+      return;
+    }
+    mountedRef.current = true;
     setMounted(true);
     window.requestAnimationFrame(() => { if (expandedRef.current) setExpanded(true); });
   };

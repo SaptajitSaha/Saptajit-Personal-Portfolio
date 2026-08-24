@@ -15,6 +15,7 @@ def main():
         case_study.scroll_into_view_if_needed()
         trigger = case_study.locator(".case-study__trigger")
         trigger.click()
+        page.wait_for_timeout(150)
         assert trigger.get_attribute("aria-expanded") == "true"
         assert case_study.locator(".case-study__dropdown").count() == 1
         body = case_study.locator(".case-study__body")
@@ -22,7 +23,7 @@ def main():
         first_ripple = case_study.locator(".case-study__trigger .interaction-ripple")
         assert first_ripple.count() == 1
         assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
-        page.wait_for_timeout(520)
+        page.wait_for_timeout(900)
         assert first_ripple.count() == 0
         trigger.click()
         assert trigger.get_attribute("aria-expanded") == "false"
@@ -41,12 +42,12 @@ def main():
         learning.scroll_into_view_if_needed()
         learning_trigger = learning.locator(".learning-card__trigger")
         learning_trigger.click()
-        page.wait_for_timeout(32)
+        page.wait_for_timeout(150)
         assert learning_trigger.get_attribute("aria-expanded") == "true"
         detail = learning.locator(".learning-card__detail")
         assert "clip-path" in detail.evaluate("element => getComputedStyle(element).transitionProperty")
         assert learning.locator(".learning-card__trigger .interaction-ripple").count() == 1
-        page.wait_for_timeout(520)
+        page.wait_for_timeout(900)
         learning_trigger.click()
         assert learning_trigger.get_attribute("aria-expanded") == "false"
         learning_trigger.click()

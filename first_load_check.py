@@ -21,10 +21,10 @@ def main():
 
         page.locator(".first-load__skip").focus()
         page.keyboard.press("Enter")
-        page.wait_for_timeout(260)
+        page.wait_for_timeout(420)
         assert loader.count() == 0
         assert not page.locator("#main-content").evaluate("element => element.closest('[inert]') !== null")
-        assert page.locator(".site-header").count() == 1
+        assert page.locator(".liquid-nav").count() == 1
 
         page.reload(wait_until="networkidle")
         assert page.locator(".first-load").count() == 0

@@ -328,3 +328,11 @@
 - [x] Build a scoped Anime.js loader overlay using transform, opacity, and filter only, with deterministic cleanup and a skip option.
 - [x] Integrate the post-loader handoff so portfolio content becomes immediately interactive and the sequence is remembered for the session.
 - [x] Verify desktop/mobile timing, skip behavior, reduced-motion behavior, focus safety, type checks, tests, build, checkpoint, and GitHub sync.
+
+## Premium liquid-glass portfolio redesign
+
+- [x] Define a distinctive liquid-glass art direction that preserves real portfolio content while replacing the current generic framing.
+- [x] Remove the conventional top bar, including the header name and email action, and introduce an always-available floating liquid-glass navigation.
+- [x] Rebuild the hero and shared page surfaces with layered glass depth, editorial hierarchy, and a premium 3D composition.
+- [x] Add purposeful, reduced-motion-safe 3D and interaction motion without regressing the carousel, contact flow, booking scheduler, orbit, shader, or cursor grid.
+- [x] Verify the redesigned desktop and mobile layouts, all existing interaction regressions, type checks, unit tests, production build, checkpoint, and GitHub sync.

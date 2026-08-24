@@ -55,7 +55,11 @@ def verify(page, check_autoplay=False):
         page.mouse.move(0, 0)
         page.wait_for_timeout(900)
         assert progress_fraction(page) > paused_progress + .05
-        page.wait_for_timeout(3600)
+        page.wait_for_function(
+            "source => document.querySelector('.phone-carousel__phone[data-slot=\"active\"] img')?.getAttribute('src') !== source",
+            arg=metrics["activeSrc"],
+            timeout=8000,
+        )
         autoplay_metrics = carousel_metrics(page)
         assert autoplay_metrics["activeSrc"] != metrics["activeSrc"], autoplay_metrics
 

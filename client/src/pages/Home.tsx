@@ -1,6 +1,7 @@
 /** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
 import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
+import { FloatingLiquidNav } from "@/components/FloatingLiquidNav";
 import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
@@ -18,13 +19,10 @@ import {
   CircleDotDashed,
   GraduationCap,
   Github,
-  Layers3,
-  Linkedin,
   Mail,
   MapPin,
-  Menu,
 } from "lucide-react";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
@@ -36,7 +34,7 @@ const nidarrEvidence = {
   profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/VueDxQFucIUBOyFH.png",
 };
 
-type Project = CaseStudy & { title: string; tagline: string; className: string };
+type Project = CaseStudy & { title: string; tagline: string; className: string; trace?: string[] };
 
 const projects: Project[] = [
   {
@@ -70,6 +68,7 @@ const projects: Project[] = [
     href: "https://www.linkedin.com/in/saptajitsaha/",
     linkLabel: "See project context",
     className: "work-compact",
+    trace: ["Decision flow", "Eligibility routes", "Context-aware guidance"],
   },
   {
     title: "Operational Analytics",
@@ -86,6 +85,7 @@ const projects: Project[] = [
     href: "https://github.com/SaptajitSaha",
     linkLabel: "Visit GitHub",
     className: "work-compact work-compact--dark",
+    trace: ["Python · SQL", "Dashboard logic", "Decision-ready views"],
   },
 ];
 
@@ -95,6 +95,7 @@ function LearningTopic({ track, index }: { track: (typeof learningTracks)[number
   const [expanded, setExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const expandedRef = useRef(false);
+  const mountedRef = useRef(false);
   const closeTimerRef = useRef<number | undefined>(undefined);
   const panelId = useId();
 
@@ -105,10 +106,18 @@ function LearningTopic({ track, index }: { track: (typeof learningTracks)[number
     expandedRef.current = nextExpanded;
     if (!nextExpanded) {
       setExpanded(false);
-      closeTimerRef.current = window.setTimeout(() => setMounted(false), LEARNING_CLOSE_DELAY);
+      closeTimerRef.current = window.setTimeout(() => {
+        mountedRef.current = false;
+        setMounted(false);
+      }, LEARNING_CLOSE_DELAY);
       return;
     }
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    if (mountedRef.current) {
+      setExpanded(true);
+      return;
+    }
+    mountedRef.current = true;
     setMounted(true);
     window.requestAnimationFrame(() => { if (expandedRef.current) setExpanded(true); });
   };
@@ -167,28 +176,20 @@ export default function Home() {
   }, []);
 
   return (
-    <div id="top" className="signal-field">
+    <div id="top" className="signal-field signal-field--liquid">
       {!introComplete && <FirstLoadExperience onComplete={completeFirstLoad} />}
+      {introComplete && <FloatingLiquidNav activeSection={activeSection} onNavigate={activateNavigation} />}
       <div aria-hidden={!introComplete} inert={!introComplete}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="site-pixel-grid" aria-hidden="true"><div className="site-pixel-grid__fallback" /><InteractivePixelGrid className="site-pixel-grid__canvas" /></div>
-      <header className="site-header">
-        <a className="brand-mark" href="#top" aria-label="Saptajit Saha home"><img src={logoMark} alt="" width="25" height="25" /><span>Saptajit Saha</span><i className="brand-signal" aria-hidden="true" /></a>
-        <nav className="bubble-nav" aria-label="Primary navigation">
-          {primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} aria-current={activeSection === item.id ? "location" : undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}
-        </nav>
-        <a className="bubble-email" href="mailto:sahasaptajit@gmail.com"><Mail size={15} aria-hidden="true" /><span>Email</span></a>
-        <details className="mobile-bubble-nav">
-          <summary aria-label="Open navigation"><Menu size={19} aria-hidden="true" /><span>Menu</span></summary>
-          <nav aria-label="Mobile navigation">{primaryNavigation.map((item) => <a key={item.id} href={`#${item.id}`} data-active={activeSection === item.id || undefined} onClick={() => activateNavigation(item.id)}>{item.label}</a>)}</nav>
-        </details>
-      </header>
+      <div className="liquid-signal-thread" aria-hidden="true"><i /><i /><i /></div>
 
       <main id="main-content">
         <section className="hero" data-trail-color="232,76,53" aria-labelledby="hero-title">
           <div className="hero-mesh" aria-hidden="true"><div className="hero-mesh__fallback" /><MeshDriftShader className="hero-mesh__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
+            <div className="liquid-hero-mark" aria-hidden="true"><img src={logoMark} alt="" /><i /></div>
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
             <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
@@ -217,7 +218,7 @@ export default function Home() {
             {projects.map((project) => {
               const isNidarr = project.title === "Nidarr";
               return (
-              <article className={`${project.className} project-card`} key={project.title}>
+              <article className={`${project.className} project-card`} key={project.title} onPointerMove={isNidarr ? undefined : tiltGlassSurface} onPointerLeave={isNidarr ? undefined : resetGlassTilt}>
                 {isNidarr ? (
                   <NidarrShowcase assets={nidarrEvidence} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
@@ -226,6 +227,7 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <p className="work-tools">{project.role}</p>
                   <p className="work-description">{project.tagline}</p>
+                  {project.trace && <div className="project-card__trace" aria-label="Project system trace">{project.trace.map((trace, index) => <span key={trace}><b>{String(index + 1).padStart(2, "0")}</b>{trace}</span>)}</div>}
                   {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a></div>}
                   <CaseStudyPanel study={project} />
                 </div>
@@ -280,7 +282,7 @@ export default function Home() {
 
       <footer id="contact" className="site-footer" data-trail-color="236,103,157">
         <ReachOutPanel />
-        <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
+        <div className="footer-bottom"><span className="footer-signal-mark"><img src={logoMark} alt="" />© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
       </div>
     </div>
@@ -288,6 +290,20 @@ export default function Home() {
 }
 
 function PlusMark() { return <span aria-hidden="true">+</span>; }
+
+function tiltGlassSurface(event: ReactPointerEvent<HTMLElement>) {
+  if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const horizontal = (event.clientX - bounds.left) / bounds.width - .5;
+  const vertical = (event.clientY - bounds.top) / bounds.height - .5;
+  event.currentTarget.style.setProperty("--glass-tilt-x", `${(-vertical * 2.2).toFixed(2)}deg`);
+  event.currentTarget.style.setProperty("--glass-tilt-y", `${(horizontal * 2.8).toFixed(2)}deg`);
+}
+
+function resetGlassTilt(event: ReactPointerEvent<HTMLElement>) {
+  event.currentTarget.style.setProperty("--glass-tilt-x", "0deg");
+  event.currentTarget.style.setProperty("--glass-tilt-y", "0deg");
+}
 
 function ToolboxMark({ tool }: { tool: ToolboxTickerRow["tools"][number] }) {
   const className = `toolbox-chip__logo${tool.name === "GitHub" ? " toolbox-chip__logo--inverse" : ""}`;
