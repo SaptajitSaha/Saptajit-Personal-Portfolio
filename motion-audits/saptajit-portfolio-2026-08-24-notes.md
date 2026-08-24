@@ -44,3 +44,7 @@ Desktop verification confirms the further-compacted navigation remains centered 
 Live Vercel inspection confirmed that the deployed `/manus-storage/iitm-madras-emblem_ce837c30.png` path does not resolve as an image outside the Manus preview environment. The final replacement is a publicly reachable 600 × 600 color IIT Madras emblem served from a direct `files.manuscdn.com` CDN URL. The image request returns `200 image/png` and is used consistently for the hero mark, footer mark, and favicon.
 
 The initial black-and-white public SVG replacement was reachable but did not provide the required visible emblem treatment on the portfolio’s dark mark surface. The final color emblem retains its vermilion outer ring, gold field, white lamp, and red lotus at compact hero and footer mark sizes.
+
+After the user redeployed GitHub commit `8055bc3` on Vercel, the live portfolio served the final `files.manuscdn.com` color PNG rather than either the former Manus storage URL or the monochrome Wikimedia SVG. Direct desktop inspection confirmed the small hero emblem is visible and colored on the dark liquid-glass surface.
+
+The deployed liquid-glass navigation, disclosure motion, and reach-out regression checks also passed after the branding redeployment.
