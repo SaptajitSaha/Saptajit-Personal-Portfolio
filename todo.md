@@ -336,3 +336,11 @@
 - [x] Rebuild the hero and shared page surfaces with layered glass depth, editorial hierarchy, and a premium 3D composition.
 - [x] Add purposeful, reduced-motion-safe 3D and interaction motion without regressing the carousel, contact flow, booking scheduler, orbit, shader, or cursor grid.
 - [x] Verify the redesigned desktop and mobile layouts, all existing interaction regressions, type checks, unit tests, production build, checkpoint, and GitHub sync.
+
+## Disclosure interaction rebuild
+
+- [x] Translate the supplied accordion reference into a portfolio-specific controlled-disclosure contract for case studies and learning topics.
+- [x] Replace the current mount-delay and timeout-driven case-study disclosure implementation with a stable semantic accordion-style interaction.
+- [x] Rebuild learning-topic disclosure behavior with the same reliable state and keyboard model.
+- [x] Apply a refined open/close transition that remains reversible under rapid input and becomes instant under reduced motion.
+- [x] Verify repeated pointer and keyboard toggles, mobile behavior, reduced-motion behavior, regression coverage, type checks, tests, build, checkpoint, and GitHub sync.

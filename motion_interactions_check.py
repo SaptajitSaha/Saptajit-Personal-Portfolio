@@ -15,11 +15,10 @@ def main():
         case_study.scroll_into_view_if_needed()
         trigger = case_study.locator(".case-study__trigger")
         trigger.click()
-        page.wait_for_timeout(150)
+        page.wait_for_timeout(80)
         assert trigger.get_attribute("aria-expanded") == "true"
         assert case_study.locator(".case-study__dropdown").count() == 1
-        body = case_study.locator(".case-study__body")
-        assert "clip-path" in body.evaluate("element => getComputedStyle(element).transitionProperty")
+        assert "signal-accordion-down" in case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).animationName")
         first_ripple = case_study.locator(".case-study__trigger .interaction-ripple")
         assert first_ripple.count() == 1
         assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
@@ -27,36 +26,33 @@ def main():
         assert first_ripple.count() == 0
         trigger.click()
         assert trigger.get_attribute("aria-expanded") == "false"
-        assert case_study.locator(".case-study__dropdown").count() == 1
         trigger.click()
-        page.wait_for_timeout(120)
+        page.wait_for_timeout(48)
         assert trigger.get_attribute("aria-expanded") == "true"
-        page.wait_for_timeout(320)
-        assert case_study.locator(".case-study__dropdown").count() == 1
         trigger.press("Enter")
         assert trigger.get_attribute("aria-expanded") == "false"
-        page.wait_for_timeout(320)
-        assert case_study.locator(".case-study__dropdown").count() == 0
+        page.wait_for_timeout(420)
+        assert case_study.locator(".case-study__dropdown").get_attribute("data-state") == "closed"
 
-        learning = page.locator(".learning-card").first
-        learning.scroll_into_view_if_needed()
-        learning_trigger = learning.locator(".learning-card__trigger")
-        learning_trigger.click()
-        page.wait_for_timeout(150)
-        assert learning_trigger.get_attribute("aria-expanded") == "true"
-        detail = learning.locator(".learning-card__detail")
-        assert "clip-path" in detail.evaluate("element => getComputedStyle(element).transitionProperty")
-        assert learning.locator(".learning-card__trigger .interaction-ripple").count() == 1
+        learning_triggers = page.locator(".learning-card__trigger")
+        first_learning = learning_triggers.nth(0)
+        second_learning = learning_triggers.nth(1)
+        first_learning.scroll_into_view_if_needed()
+        first_learning.click()
+        page.wait_for_timeout(80)
+        assert first_learning.get_attribute("aria-expanded") == "true"
+        first_learning_item = page.locator(".learning-card").nth(0)
+        assert "signal-accordion-down" in first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).animationName")
+        assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 1
         page.wait_for_timeout(900)
-        learning_trigger.click()
-        assert learning_trigger.get_attribute("aria-expanded") == "false"
-        learning_trigger.click()
-        page.wait_for_timeout(120)
-        assert learning_trigger.get_attribute("aria-expanded") == "true"
-        learning_trigger.press("Enter")
-        assert learning_trigger.get_attribute("aria-expanded") == "false"
-        page.wait_for_timeout(300)
-        assert learning.locator(".learning-card__dropdown").count() == 0
+        second_learning.click()
+        page.wait_for_timeout(60)
+        assert first_learning.get_attribute("aria-expanded") == "false"
+        assert second_learning.get_attribute("aria-expanded") == "true"
+        second_learning.press("Enter")
+        assert second_learning.get_attribute("aria-expanded") == "false"
+        page.wait_for_timeout(360)
+        assert page.locator(".learning-card").nth(1).locator(".learning-card__dropdown").get_attribute("data-state") == "closed"
 
         action = page.locator(".project-live-link").first
         action.scroll_into_view_if_needed()
@@ -71,15 +67,16 @@ def main():
         reduced_case.scroll_into_view_if_needed()
         reduced_trigger = reduced_case.locator(".case-study__trigger")
         reduced_trigger.click()
-        duration = reduced_case.locator(".case-study__body").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert all(float(part.removesuffix("s")) <= .001 for part in duration.split(", ")), duration
+        reduced_case_content = reduced_case.locator(".case-study__dropdown")
+        duration = reduced_case_content.evaluate("element => getComputedStyle(element).animationDuration")
+        assert all(float(part.removesuffix("s")) <= .01 for part in duration.split(", ")), duration
         assert reduced_case.locator(".case-study__trigger .interaction-ripple").count() == 0
         reduced_learning = reduced.locator(".learning-card").first
         reduced_learning.scroll_into_view_if_needed()
         reduced_learning_trigger = reduced_learning.locator(".learning-card__trigger")
         reduced_learning_trigger.click()
-        learning_duration = reduced_learning.locator(".learning-card__detail").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert all(float(part.removesuffix("s")) <= .001 for part in learning_duration.split(", ")), learning_duration
+        learning_duration = reduced_learning.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).animationDuration")
+        assert all(float(part.removesuffix("s")) <= .01 for part in learning_duration.split(", ")), learning_duration
         assert reduced_learning.locator(".learning-card__trigger .interaction-ripple").count() == 0
         reduced.close()
         browser.close()

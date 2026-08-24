@@ -5,6 +5,7 @@ import { FloatingLiquidNav } from "@/components/FloatingLiquidNav";
 import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
 import { FirstLoadExperience } from "@/components/FirstLoadExperience";
@@ -22,7 +23,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-import { useCallback, useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
@@ -89,46 +90,14 @@ const projects: Project[] = [
   },
 ];
 
-const LEARNING_CLOSE_DELAY = 240;
-
 function LearningTopic({ track, index }: { track: (typeof learningTracks)[number]; index: number }) {
-  const [expanded, setExpanded] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const expandedRef = useRef(false);
-  const mountedRef = useRef(false);
-  const closeTimerRef = useRef<number | undefined>(undefined);
-  const panelId = useId();
-
-  useEffect(() => () => { if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current); }, []);
-
-  const toggle = () => {
-    const nextExpanded = !expandedRef.current;
-    expandedRef.current = nextExpanded;
-    if (!nextExpanded) {
-      setExpanded(false);
-      closeTimerRef.current = window.setTimeout(() => {
-        mountedRef.current = false;
-        setMounted(false);
-      }, LEARNING_CLOSE_DELAY);
-      return;
-    }
-    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
-    if (mountedRef.current) {
-      setExpanded(true);
-      return;
-    }
-    mountedRef.current = true;
-    setMounted(true);
-    window.requestAnimationFrame(() => { if (expandedRef.current) setExpanded(true); });
-  };
-
   return (
-    <article className="learning-card" data-state={expanded ? "open" : "closed"}>
-      <button className="learning-card__trigger" type="button" aria-expanded={expanded} aria-controls={panelId} onClick={toggle} onPointerDown={triggerInteractionRipple}>
-        <span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore <PlusMark /></span>
-      </button>
-      {mounted && <div id={panelId} className="learning-card__dropdown" aria-hidden={!expanded} inert={!expanded}><div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></div>}
-    </article>
+    <AccordionItem value={track.title} className="learning-card">
+      <AccordionTrigger className="learning-card__trigger" onPointerDown={triggerInteractionRipple}>
+        <span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore</span>
+      </AccordionTrigger>
+      <AccordionContent className="learning-card__dropdown"><div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></AccordionContent>
+    </AccordionItem>
   );
 }
 
@@ -241,9 +210,9 @@ export default function Home() {
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
           </div>
-          <div className="learning-list">
+          <Accordion type="single" collapsible className="learning-list">
             {learningTracks.map((track, index) => <LearningTopic track={track} index={index} key={track.title} />)}
-          </div>
+          </Accordion>
         </section>
 
         <section id="about" className="section about-section" data-trail-color="226,178,84" aria-labelledby="about-heading">
@@ -288,8 +257,6 @@ export default function Home() {
     </div>
   );
 }
-
-function PlusMark() { return <span aria-hidden="true">+</span>; }
 
 function tiltGlassSurface(event: ReactPointerEvent<HTMLElement>) {
   if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
