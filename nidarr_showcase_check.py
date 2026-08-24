@@ -35,6 +35,7 @@ def progress_fraction(page):
 
 
 def verify(page, check_autoplay=False):
+    page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
     page.goto(URL, wait_until="networkidle")
     page.locator(".nidarr-showcase").scroll_into_view_if_needed()
     metrics = carousel_metrics(page)

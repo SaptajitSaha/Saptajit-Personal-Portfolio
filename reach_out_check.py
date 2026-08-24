@@ -5,6 +5,7 @@ URL = "http://localhost:5173"
 
 
 def verify(page):
+    page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
     page.goto(URL, wait_until="networkidle")
     page.locator(".reach-out").scroll_into_view_if_needed()
     metrics = page.evaluate(

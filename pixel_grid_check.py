@@ -59,6 +59,7 @@ def color_alignment(sample, target):
 
 
 def assert_grid(page):
+    page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
     page.goto(URL, wait_until="networkidle")
     metrics = page.evaluate(
         """() => {

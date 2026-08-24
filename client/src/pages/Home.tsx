@@ -6,7 +6,9 @@ import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
+import { FirstLoadExperience } from "@/components/FirstLoadExperience";
 import { triggerInteractionRipple } from "@/lib/interactionRipple";
+import { shouldSkipFirstLoadExperience } from "@/lib/firstLoadExperience";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
@@ -22,7 +24,7 @@ import {
   MapPin,
   Menu,
 } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
@@ -125,6 +127,8 @@ export default function Home() {
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
   const navigationTimerRef = useRef<number | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
+  const [introComplete, setIntroComplete] = useState(shouldSkipFirstLoadExperience);
+  const completeFirstLoad = useCallback(() => setIntroComplete(true), []);
 
   function activateNavigation(id: PrimaryNavigationId) {
     pendingNavigationRef.current = id;
@@ -164,6 +168,8 @@ export default function Home() {
 
   return (
     <div id="top" className="signal-field">
+      {!introComplete && <FirstLoadExperience onComplete={completeFirstLoad} />}
+      <div aria-hidden={!introComplete} inert={!introComplete}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="site-pixel-grid" aria-hidden="true"><div className="site-pixel-grid__fallback" /><InteractivePixelGrid className="site-pixel-grid__canvas" /></div>
       <header className="site-header">
@@ -276,6 +282,7 @@ export default function Home() {
         <ReachOutPanel />
         <div className="footer-bottom"><span>© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
+      </div>
     </div>
   );
 }

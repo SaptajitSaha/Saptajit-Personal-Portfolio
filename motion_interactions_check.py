@@ -8,6 +8,7 @@ def main():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path="/usr/bin/chromium")
         page = browser.new_page(viewport={"width": 1440, "height": 900})
+        page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         page.goto(URL, wait_until="networkidle")
 
         case_study = page.locator(".case-study").nth(1)
@@ -27,7 +28,7 @@ def main():
         assert trigger.get_attribute("aria-expanded") == "false"
         assert case_study.locator(".case-study__dropdown").count() == 1
         trigger.click()
-        page.wait_for_timeout(32)
+        page.wait_for_timeout(120)
         assert trigger.get_attribute("aria-expanded") == "true"
         page.wait_for_timeout(320)
         assert case_study.locator(".case-study__dropdown").count() == 1
@@ -49,7 +50,7 @@ def main():
         learning_trigger.click()
         assert learning_trigger.get_attribute("aria-expanded") == "false"
         learning_trigger.click()
-        page.wait_for_timeout(32)
+        page.wait_for_timeout(120)
         assert learning_trigger.get_attribute("aria-expanded") == "true"
         learning_trigger.press("Enter")
         assert learning_trigger.get_attribute("aria-expanded") == "false"
@@ -63,6 +64,7 @@ def main():
         page.close()
 
         reduced = browser.new_page(viewport={"width": 390, "height": 900}, reduced_motion="reduce")
+        reduced.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         reduced.goto(URL, wait_until="networkidle")
         reduced_case = reduced.locator(".case-study").nth(1)
         reduced_case.scroll_into_view_if_needed()

@@ -321,3 +321,10 @@
 - [x] Document safe integration boundaries, accessibility requirements, and recommended future motion use cases.
 - [x] Run project verification, including the Anime.js module test, the portfolio interaction regressions, and production build.
 - [x] Save a checkpoint and synchronize the Anime.js capability setup to GitHub.
+
+## Anime.js first-load experience
+
+- [x] Define a one-time Signal Field introduction sequence with a meaningful loading state, a reduced-motion instant path, and no repeated-session interruption.
+- [x] Build a scoped Anime.js loader overlay using transform, opacity, and filter only, with deterministic cleanup and a skip option.
+- [x] Integrate the post-loader handoff so portfolio content becomes immediately interactive and the sequence is remembered for the session.
+- [x] Verify desktop/mobile timing, skip behavior, reduced-motion behavior, focus safety, type checks, tests, build, checkpoint, and GitHub sync.
