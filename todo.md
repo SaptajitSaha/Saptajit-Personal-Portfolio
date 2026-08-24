@@ -313,3 +313,11 @@
 - [x] Implement refined learning-topic open-close transitions with preserved ripple, keyboard behavior, and content layout.
 - [x] Verify repeated toggles, reduced-motion fallback, mobile layout, type checks, tests, and build.
 - [x] Save a checkpoint and synchronize the learning-dropdown upgrade to GitHub.
+
+## Anime.js capability setup
+
+- [x] Review Anime.js documentation and map its suitable use cases against the current portfolio motion architecture.
+- [x] Install Anime.js and verify dependency compatibility with the Vite/React portfolio.
+- [x] Document safe integration boundaries, accessibility requirements, and recommended future motion use cases.
+- [x] Run project verification, including the Anime.js module test, the portfolio interaction regressions, and production build.
+- [ ] Save a checkpoint and synchronize the Anime.js capability setup to GitHub.
