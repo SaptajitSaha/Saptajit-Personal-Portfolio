@@ -14,6 +14,7 @@ import { shouldSkipFirstLoadExperience } from "@/lib/firstLoadExperience";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { toolboxPractices, toolboxTickerRows, type ToolboxTickerRow } from "@/lib/toolboxTicker";
+import { iitmBrandAssetUrl } from "@/lib/brandAssets";
 import {
   ArrowUpRight,
   Braces,
@@ -26,7 +27,7 @@ import {
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
-const logoMark = "/manus-storage/iitm-madras-emblem_ce837c30.png";
+const logoMark = iitmBrandAssetUrl;
 const nidarrEvidence = {
   home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/xHpPFFzQCHOIAQUb.png",
   report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/uEhrNwQQJlfwiDhG.png",

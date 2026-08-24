@@ -374,3 +374,9 @@
 - [x] Refine the indicated heading and emphasis letter spacing without compromising responsive hierarchy.
 - [x] Add an accessible copy-email action to the reach-out panel with clear feedback.
 - [x] Verify desktop/mobile presentation, interaction and reduced-motion behavior, tests, production build, checkpoint, and GitHub synchronization.
+
+## Vercel-safe IIT Madras branding delivery
+
+- [x] Confirm the deployed Manus storage path is the cause of the missing IIT Madras logo and favicon.
+- [x] Replace the logo and favicon with a publicly reachable, Vercel-safe IIT Madras asset source.
+- [ ] Verify local and deployed asset responses, visual rendering, checkpoint, and GitHub synchronization.
