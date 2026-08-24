@@ -358,3 +358,9 @@
 - [x] Test the deployed liquid-glass navigation for desktop persistence, mobile placement, and section navigation.
 - [x] Test deployed case-study and learning disclosure interactions for repeated pointer, keyboard, and reduced-motion behavior.
 - [x] Compare live behavior with the current production-ready implementation and report any deployment discrepancy.
+
+## Compact floating navigation refinement
+
+- [x] Reduce the floating navigation footprint while retaining accessible target sizes and persistent placement.
+- [x] Replace the blunt navigation type treatment with a more refined, legible display style aligned to the portfolio.
+- [x] Verify the compact navigation on desktop/mobile, type-check, checkpoint, and synchronize the update.

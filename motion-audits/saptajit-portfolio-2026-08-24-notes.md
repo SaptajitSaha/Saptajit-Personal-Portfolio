@@ -26,3 +26,7 @@ At the narrow mobile breakpoint, the page retains a single-column reading order 
 The live Vercel deployment served the liquid-glass navigation after the first-load handoff. Direct browser interaction confirmed the Work link updated the URL fragment, completed the section scroll, retained the fixed navigation, and showed the active navigation state.
 
 Production Playwright checks passed for desktop and mobile liquid-glass navigation, navigation persistence, mobile placement, reduced-motion fallback, case-study disclosure open/close behavior, learning-topic single-open behavior, keyboard toggles, ripple cleanup, and reduced-motion disclosure behavior.
+
+## Compact navigation refinement
+
+The revised desktop navigation is visually smaller and quieter while retaining a clear active state. Its labels now use the portfolio’s sans display treatment rather than the former monospaced utility styling. On mobile, the reduced-width control strip stays legible, keeps every link at a 44px minimum control height, and remains comfortably offset above the safe-area edge.
