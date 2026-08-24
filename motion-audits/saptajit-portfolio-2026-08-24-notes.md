@@ -33,7 +33,7 @@ The revised desktop navigation is visually smaller and quieter while retaining a
 
 ## IIT Madras emblem asset
 
-The requested IIT Madras emblem now uses the directly addressable Wikimedia Commons original for the hero mark, footer mark, and favicon. This replaces the Manus preview-only storage path so the asset can render both locally and on Vercel. The source identifies Indian Institute of Technology Madras and is licensed CC BY-SA 4.0.
+The requested IIT Madras emblem now uses a publicly reachable 600 × 600 color CDN image for the hero mark, footer mark, and favicon. This replaces the Manus preview-only storage path while retaining the vermilion outer ring, gold field, white lamp, and red lotus on the portfolio’s dark brand surface.
 
 ## Visual-editor refinement validation
 
@@ -41,4 +41,6 @@ Desktop verification confirms the further-compacted navigation remains centered 
 
 ## Vercel asset-delivery correction
 
-Live Vercel inspection confirmed that the deployed `/manus-storage/iitm-madras-emblem_ce837c30.png` path does not resolve as an image outside the Manus preview environment. The selected replacement is the publicly reachable, 23 KB, 512 × 512 Wikimedia Commons original file for the IIT Madras logo: `https://commons.wikimedia.org/wiki/Special:FilePath/IIT_Madras_Logo_(Black_and_White).svg`. Its Commons page identifies Indian Institute of Technology Madras as the source and lists CC BY-SA 4.0 licensing.
+Live Vercel inspection confirmed that the deployed `/manus-storage/iitm-madras-emblem_ce837c30.png` path does not resolve as an image outside the Manus preview environment. The final replacement is a publicly reachable 600 × 600 color IIT Madras emblem served from a direct `files.manuscdn.com` CDN URL. The image request returns `200 image/png` and is used consistently for the hero mark, footer mark, and favicon.
+
+The initial black-and-white public SVG replacement was reachable but did not provide the required visible emblem treatment on the portfolio’s dark mark surface. The final color emblem retains its vermilion outer ring, gold field, white lamp, and red lotus at compact hero and footer mark sizes.

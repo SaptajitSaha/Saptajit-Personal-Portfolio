@@ -379,4 +379,5 @@
 
 - [x] Confirm the deployed Manus storage path is the cause of the missing IIT Madras logo and favicon.
 - [x] Replace the logo and favicon with a publicly reachable, Vercel-safe IIT Madras asset source.
+- [x] Replace the insufficiently visible monochrome public SVG with a color IIT Madras emblem that remains legible on dark surfaces.
 - [ ] Verify local and deployed asset responses, visual rendering, checkpoint, and GitHub synchronization.
