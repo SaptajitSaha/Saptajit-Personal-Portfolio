@@ -56,7 +56,7 @@ function AccordionContent({
       className={cn("overflow-hidden", className)}
       {...props}
     >
-      {children}
+      <div className="accordion-content__inner">{children}</div>
     </AccordionPrimitive.Content>
   );
 }

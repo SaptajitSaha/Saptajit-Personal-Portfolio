@@ -13,14 +13,16 @@ def main():
         page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         page.goto(URL, wait_until="networkidle")
 
-        case_study = page.locator(".case-study").nth(1)
+        case_study = page.locator(".case-study").first
         case_study.scroll_into_view_if_needed()
         trigger = case_study.locator(".case-study__trigger")
         trigger.click()
         page.wait_for_timeout(80)
         assert trigger.get_attribute("aria-expanded") == "true"
         assert case_study.locator(".case-study__dropdown").count() == 1
-        assert "signal-accordion-down" in case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).animationName")
+        case_transition = case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
+        assert case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).display") == "grid"
+        assert any(float(value.strip().removesuffix("s")) > .01 for value in case_transition.split(",")), case_transition
         first_ripple = case_study.locator(".case-study__trigger .interaction-ripple")
         assert first_ripple.count() == 1
         assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
@@ -44,7 +46,9 @@ def main():
         page.wait_for_timeout(80)
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
-        assert "signal-accordion-down" in first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).animationName")
+        learning_transition = first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
+        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "grid"
+        assert any(float(value.strip().removesuffix("s")) > .01 for value in learning_transition.split(",")), learning_transition
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 1
         page.wait_for_timeout(900)
         second_learning.click()
@@ -65,19 +69,19 @@ def main():
         reduced = browser.new_page(viewport={"width": 390, "height": 900}, reduced_motion="reduce")
         reduced.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         reduced.goto(URL, wait_until="networkidle")
-        reduced_case = reduced.locator(".case-study").nth(1)
+        reduced_case = reduced.locator(".case-study").first
         reduced_case.scroll_into_view_if_needed()
         reduced_trigger = reduced_case.locator(".case-study__trigger")
         reduced_trigger.click()
         reduced_case_content = reduced_case.locator(".case-study__dropdown")
-        duration = reduced_case_content.evaluate("element => getComputedStyle(element).animationDuration")
+        duration = reduced_case_content.evaluate("element => getComputedStyle(element).transitionDuration")
         assert all(float(part.removesuffix("s")) <= .01 for part in duration.split(", ")), duration
         assert reduced_case.locator(".case-study__trigger .interaction-ripple").count() == 0
         reduced_learning = reduced.locator(".learning-card").first
         reduced_learning.scroll_into_view_if_needed()
         reduced_learning_trigger = reduced_learning.locator(".learning-card__trigger")
         reduced_learning_trigger.click()
-        learning_duration = reduced_learning.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).animationDuration")
+        learning_duration = reduced_learning.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
         assert all(float(part.removesuffix("s")) <= .01 for part in learning_duration.split(", ")), learning_duration
         assert reduced_learning.locator(".learning-card__trigger .interaction-ripple").count() == 0
         reduced.close()

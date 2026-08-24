@@ -29,10 +29,9 @@ def main():
         assert desktop.locator("#about").evaluate("element => element.getBoundingClientRect().top < innerHeight")
         assert nav.get_by_role("link", name="About").get_attribute("aria-current") == "location"
 
-        card = desktop.locator(".project-card.work-compact").first
-        card.hover(position={"x": 40, "y": 40})
-        desktop.wait_for_timeout(40)
-        assert card.evaluate("element => getComputedStyle(element).getPropertyValue('--glass-tilt-x').trim()") != "0deg"
+        card = desktop.locator(".project-card.nidarr-card")
+        assert card.count() == 1
+        assert card.evaluate("element => getComputedStyle(element).getPropertyValue('--glass-tilt-x').trim()") == "0deg"
         desktop.close()
 
         mobile = browser.new_page(viewport={"width": 390, "height": 812})
@@ -43,8 +42,7 @@ def main():
 
         reduced = browser.new_page(viewport={"width": 1280, "height": 800}, reduced_motion="reduce")
         prepare(reduced)
-        reduced_card = reduced.locator(".project-card.work-compact").first
-        reduced_card.hover(position={"x": 40, "y": 40})
+        reduced_card = reduced.locator(".project-card.nidarr-card")
         assert reduced_card.evaluate("element => getComputedStyle(element).getPropertyValue('--glass-tilt-x').trim()") == "0deg"
         assert reduced.locator(".liquid-nav__surface").evaluate("element => getComputedStyle(element).transitionDuration") == "0s"
         reduced.close()

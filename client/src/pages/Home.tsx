@@ -26,7 +26,7 @@ import {
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
-const logoMark = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/jMpoHQKDfmjRxKql.png";
+const logoMark = "/manus-storage/iitm-madras-emblem_ce837c30.png";
 const nidarrEvidence = {
   home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/xHpPFFzQCHOIAQUb.png",
   report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/uEhrNwQQJlfwiDhG.png",
@@ -53,40 +53,6 @@ const projects: Project[] = [
     href: "https://nidarr.vercel.app/",
     linkLabel: "Visit prototype",
     className: "work-feature nidarr-card",
-  },
-  {
-    title: "Interactive Election Assistant",
-    category: "Civic AI concept",
-    year: "2026",
-    role: "Experience prototype builder",
-    tagline: "A decision-based guide for questions around voting eligibility, documents, voter lists, and relocation.",
-    problem: "Civic questions are often personal and context-specific, while generic answers can leave people uncertain about what to do.",
-    approach: "Framed guidance as a decision flow so the next useful question remains visible.",
-    system: "AI-guided interaction design, accessible UX principles, and product prototyping.",
-    contribution: "Shaped the decision-flow concept and the interaction model for practical voter questions.",
-    learning: "How can AI guidance be helpful without hiding uncertainty or making decisions for people?",
-    status: "Concept prototype. No outcome metrics are claimed.",
-    href: "https://www.linkedin.com/in/saptajitsaha/",
-    linkLabel: "See project context",
-    className: "work-compact",
-    trace: ["Decision flow", "Eligibility routes", "Context-aware guidance"],
-  },
-  {
-    title: "Operational Analytics",
-    category: "Data practice",
-    year: "2025–26",
-    role: "Analyst & dashboard builder",
-    tagline: "A set of placement, scholarship, and e-commerce explorations that turn messy records into clearer questions.",
-    problem: "Operational data often hides the patterns, bottlenecks, and choices that deserve attention.",
-    approach: "Used analysis and dashboards to move from raw records toward decision-ready views.",
-    system: "Python, SQL, Power BI, Looker Studio, Excel, Pandas, and data visualization.",
-    contribution: "Cleaned data, explored trends, and structured dashboards around useful operational questions.",
-    learning: "The visual is only useful when the question behind it is precise.",
-    status: "Portfolio practice across multiple datasets. No performance metrics are claimed.",
-    href: "https://github.com/SaptajitSaha",
-    linkLabel: "Visit GitHub",
-    className: "work-compact work-compact--dark",
-    trace: ["Python · SQL", "Dashboard logic", "Decision-ready views"],
   },
 ];
 

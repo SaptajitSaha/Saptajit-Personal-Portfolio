@@ -6,6 +6,7 @@ URL = "http://localhost:5173"
 
 def verify(page):
     page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
+    page.add_init_script("Object.defineProperty(navigator, 'clipboard', { value: { writeText: async () => true }, configurable: true })")
     page.goto(URL, wait_until="networkidle")
     page.locator(".reach-out").scroll_into_view_if_needed()
     metrics = page.evaluate(
@@ -17,7 +18,8 @@ def verify(page):
             messageButtons: document.querySelectorAll('.reach-out__message').length,
             calendarTag: calendar?.tagName,
             calendarDays: document.querySelectorAll('.booking-calendar__days > span').length,
-            emailHref: document.querySelector('.reach-out__email')?.getAttribute('href'),
+            emailHref: document.querySelector('.reach-out__email-link')?.getAttribute('href'),
+            copyButtons: document.querySelectorAll('.reach-out__copy').length,
             socialHrefs: [...document.querySelectorAll('.reach-out__socials a')].map(link => link.getAttribute('href')),
             socialCount: document.querySelectorAll('.reach-out__socials a').length,
           };
@@ -25,13 +27,18 @@ def verify(page):
     )
     assert metrics["panel"]["width"] > 0 and metrics["messageButtons"] == 1, metrics
     assert metrics["calendarTag"] == "BUTTON", metrics
-    assert metrics["calendarDays"] >= 35 and metrics["emailHref"] == "mailto:sahasaptajit@gmail.com", metrics
+    assert metrics["calendarDays"] >= 35 and metrics["emailHref"] == "mailto:sahasaptajit@gmail.com" and metrics["copyButtons"] == 1, metrics
     assert metrics["socialCount"] == 3 and "https://www.linkedin.com/in/saptajitsaha/" in metrics["socialHrefs"] and "https://github.com/SaptajitSaha" in metrics["socialHrefs"], metrics
 
     page.get_by_role("button", name="Direct message Start a conversation Send a note through the portfolio.").click()
     page.wait_for_selector(".contact-dialog")
     assert page.locator(".contact-form input[name='name']").count() == 1
     page.keyboard.press("Escape")
+
+    copy_email = page.locator(".reach-out__copy")
+    copy_email.click()
+    page.wait_for_timeout(120)
+    assert "Copied" in copy_email.inner_text() and copy_email.get_attribute("aria-label") == "Email address copied"
 
     scheduler_trigger = page.get_by_role("button", name="Open the 30-minute call scheduler")
     scheduler_trigger.focus()

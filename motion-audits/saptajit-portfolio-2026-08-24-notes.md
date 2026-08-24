@@ -30,3 +30,11 @@ Production Playwright checks passed for desktop and mobile liquid-glass navigati
 ## Compact navigation refinement
 
 The revised desktop navigation is visually smaller and quieter while retaining a clear active state. Its labels now use the portfolio’s sans display treatment rather than the former monospaced utility styling. On mobile, the reduced-width control strip stays legible, keeps every link at a 44px minimum control height, and remains comfortably offset above the safe-area edge.
+
+## IIT Madras emblem asset
+
+The requested IIT Madras emblem was selected from an image-search result titled “Logos Download | Indian Institute of Technology Madras”, staged at `/home/ubuntu/webdev-static-assets/iitm-madras-emblem.png`, and deployed through the project static-storage path `/manus-storage/iitm-madras-emblem_ce837c30.png` for the hero mark, footer mark, and favicon.
+
+## Visual-editor refinement validation
+
+Desktop verification confirms the further-compacted navigation remains centered and readable; its active Home item carries the requested small white rounded cap above the existing liquid highlight. The IIT Madras emblem appears cleanly at the hero mark. Mobile verification confirms the floating navigation remains bottom-positioned with the active cap visible, while the hero retains comfortable breathing room and no horizontal overflow was observed.

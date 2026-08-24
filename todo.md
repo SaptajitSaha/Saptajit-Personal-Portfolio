@@ -364,3 +364,13 @@
 - [x] Reduce the floating navigation footprint while retaining accessible target sizes and persistent placement.
 - [x] Replace the blunt navigation type treatment with a more refined, legible display style aligned to the portfolio.
 - [x] Verify the compact navigation on desktop/mobile, type-check, checkpoint, and synchronize the update.
+
+## Visual-editor refinement batch
+
+- [x] Further compact the floating liquid-glass navigation and add a restrained white selected-tab cap indicator.
+- [x] Replace repeated personal branding marks with an IIT Madras logo and update the favicon consistently.
+- [x] Remove both Interactive Election Assistant and Operational Analytics, retaining Nidarr as the sole project without disturbing its layout.
+- [x] Rebuild case-study and learning disclosure motion with a smooth iOS-inspired reversible transition.
+- [x] Refine the indicated heading and emphasis letter spacing without compromising responsive hierarchy.
+- [x] Add an accessible copy-email action to the reach-out panel with clear feedback.
+- [x] Verify desktop/mobile presentation, interaction and reduced-motion behavior, tests, production build, checkpoint, and GitHub synchronization.
