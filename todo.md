@@ -352,3 +352,9 @@
 - [x] Reset disclosure-control tracking to readable values and remove obsolete competing disclosure selectors.
 - [x] Reduce repetitive glass framing through a more deliberate section hierarchy and consolidate conflicting responsive overrides.
 - [x] Verify desktop/mobile interaction geometry, keyboard and reduced-motion paths, all regressions, type checks, unit tests, production build, checkpoint, and GitHub sync.
+
+## Live deployment validation
+
+- [x] Test the deployed liquid-glass navigation for desktop persistence, mobile placement, and section navigation.
+- [x] Test deployed case-study and learning disclosure interactions for repeated pointer, keyboard, and reduced-motion behavior.
+- [x] Compare live behavior with the current production-ready implementation and report any deployment discrepancy.

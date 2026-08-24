@@ -1,7 +1,9 @@
 from playwright.sync_api import sync_playwright
 
 
-URL = "http://localhost:5173"
+import os
+
+URL = os.environ.get("PORTFOLIO_URL", "http://localhost:5173")
 
 
 def main():

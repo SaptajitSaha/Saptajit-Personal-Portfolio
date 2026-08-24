@@ -20,3 +20,9 @@
 The revised desktop composition preserves the hero and featured work as intentional glass focal points while allowing the learning and tools regions to sit more quietly on the signal field. The Nidarr disclosure now has a distinct elevated control surface rather than visually merging into the product-stage controls.
 
 At the narrow mobile breakpoint, the page retains a single-column reading order without horizontal overflow. The carousel controls have more generous visual room, the featured disclosure remains visually separated from the active product media, and the lighter learning/tools framing improves the long-scroll rhythm.
+
+## Live deployment validation
+
+The live Vercel deployment served the liquid-glass navigation after the first-load handoff. Direct browser interaction confirmed the Work link updated the URL fragment, completed the section scroll, retained the fixed navigation, and showed the active navigation state.
+
+Production Playwright checks passed for desktop and mobile liquid-glass navigation, navigation persistence, mobile placement, reduced-motion fallback, case-study disclosure open/close behavior, learning-topic single-open behavior, keyboard toggles, ripple cleanup, and reduced-motion disclosure behavior.
