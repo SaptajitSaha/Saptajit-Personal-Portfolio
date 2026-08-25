@@ -1,5 +1,5 @@
 import { Code2, Database, Sparkles } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 
 const TAU = Math.PI * 2;
 const ORBIT_PERIOD_SECONDS = 56;
@@ -31,6 +31,19 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const pausedByHoverRef = useRef(false);
+  const [isHoverPaused, setIsHoverPaused] = useState(false);
+
+  const pauseOrbit = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse" || pausedByHoverRef.current) return;
+    pausedByHoverRef.current = true;
+    setIsHoverPaused(true);
+  };
+
+  const resumeOrbit = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse" || !pausedByHoverRef.current) return;
+    pausedByHoverRef.current = false;
+    setIsHoverPaused(false);
+  };
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -142,8 +155,11 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
       <div
         className="stage-scene"
         ref={sceneRef}
-        onPointerEnter={() => { pausedByHoverRef.current = true; }}
-        onPointerLeave={() => { pausedByHoverRef.current = false; }}
+        data-orbit-paused={isHoverPaused ? "true" : "false"}
+        onPointerEnter={pauseOrbit}
+        onPointerMove={pauseOrbit}
+        onPointerLeave={resumeOrbit}
+        onPointerCancel={resumeOrbit}
       >
         <svg className="orbit-svg" aria-hidden="true"><ellipse className="orbit-svg__ring" ref={ellipseRef} /></svg>
         <span className="orbit-label orbit-label--one">Nidarr / 2026</span>

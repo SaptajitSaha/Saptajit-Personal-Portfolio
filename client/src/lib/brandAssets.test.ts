@@ -6,6 +6,7 @@ describe("IIT Madras branding asset delivery", () => {
   it("uses a public image source rather than the Manus preview storage route", () => {
     expect(iitmBrandAssetUrl).toMatch(/^https:\/\/files\.manuscdn\.com\//);
     expect(iitmBrandAssetUrl).not.toContain("/manus-storage/");
+    expect(iitmBrandAssetUrl).toContain("mgzuDcaJItdoHxHn.png");
   });
 
   it("uses the same public PNG source for the document favicon", () => {

@@ -48,3 +48,7 @@ The initial black-and-white public SVG replacement was reachable but did not pro
 After the user redeployed GitHub commit `8055bc3` on Vercel, the live portfolio served the final `files.manuscdn.com` color PNG rather than either the former Manus storage URL or the monochrome Wikimedia SVG. Direct desktop inspection confirmed the small hero emblem is visible and colored on the dark liquid-glass surface.
 
 The deployed liquid-glass navigation, disclosure motion, and reach-out regression checks also passed after the branding redeployment.
+
+## Visual-editor correction pass
+
+The revised IIT Madras emblem now uses a transparent-background PNG on its public CDN route for the shared hero mark, footer mark, and favicon. The mark receives a circular clip as an additional guard against background artifacts. Hero, work, learning, about, tools, and reach-out display headings now use less-constricted tracking while preserving their existing editorial hierarchy. The orbital scene exposes a mouse-only paused state, pauses on pointer enter or movement, resumes on leave or cancel, and keeps its reduced-motion behavior unchanged. Desktop and 390 px mobile captures, 15 unit tests, the interaction regression, type checking, and the production build all passed.

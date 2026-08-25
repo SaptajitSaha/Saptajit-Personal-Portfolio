@@ -381,3 +381,10 @@
 - [x] Replace the logo and favicon with a publicly reachable, Vercel-safe IIT Madras asset source.
 - [x] Replace the insufficiently visible monochrome public SVG with a color IIT Madras emblem that remains legible on dark surfaces.
 - [x] Verify local and deployed asset responses, visual rendering, checkpoint, and GitHub synchronization.
+
+## Visual-editor correction pass
+
+- [x] Replace the IIT Madras emblem with a transparent-background version for the hero and footer marks.
+- [x] Add readable letter spacing to the hero, work, learning, about, tools, and reach-out headings without weakening the display hierarchy.
+- [x] Restore reliable pointer-hover pause behavior for the orbital motion while retaining reduced-motion support.
+- [x] Verify desktop/mobile visuals, hover interaction, tests, production build, checkpoint, and GitHub synchronization.

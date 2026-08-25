@@ -13,6 +13,19 @@ def main():
         page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         page.goto(URL, wait_until="networkidle")
 
+        orbit = page.locator(".stage-scene")
+        orbit_card = page.locator(".role-planet").first
+        orbit.hover()
+        page.wait_for_timeout(80)
+        assert orbit.get_attribute("data-orbit-paused") == "true"
+        paused_transform = orbit_card.evaluate("element => element.style.transform")
+        page.wait_for_timeout(180)
+        assert orbit_card.evaluate("element => element.style.transform") == paused_transform
+        page.locator(".hero-copy").hover()
+        page.wait_for_timeout(160)
+        assert orbit.get_attribute("data-orbit-paused") == "false"
+        assert orbit_card.evaluate("element => element.style.transform") != paused_transform
+
         case_study = page.locator(".case-study").first
         case_study.scroll_into_view_if_needed()
         trigger = case_study.locator(".case-study__trigger")
