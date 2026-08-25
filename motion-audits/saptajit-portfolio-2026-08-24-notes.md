@@ -64,3 +64,7 @@ The Nidarr case-study affordance now uses only its natural 40 px trigger height 
 ## Disclosure bounce stabilization
 
 Project and lesson disclosures now use direct open/closed display states with no grid-height expansion, transform scale, ripple, or icon-transition effects. The open lesson card also no longer alters its own padding, margin, border, or background, removing the source of page-level bounce. Semantic Radix buttons and keyboard activation remain intact. Repeated interaction checks, 18 unit tests, type checking, and the production build passed.
+
+## iPhone-style disclosure motion refinement
+
+The project and lesson panels now use a compact, reversible iOS-native `cubic-bezier(.32,.72,0,1)` continuity curve: 280 ms for the container and a smaller -2 px content settle. It avoids ripple, scale, layout-card resizing, and overshoot. Keyboard-focused and reduced-motion paths remain immediate. Rapid interaction regression, desktop/mobile review, 19 unit tests, type checking, and the production build passed.

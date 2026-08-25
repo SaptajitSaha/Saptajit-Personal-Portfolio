@@ -403,3 +403,8 @@
 
 - [x] Remove project and lesson disclosure motion that causes page-level bounce on click while preserving stable accessible state changes.
 - [x] Verify repeated pointer and keyboard activation, no page-level bounce, tests, production build, checkpoint, and GitHub synchronization.
+
+## iPhone-style disclosure motion refinement
+
+- [x] Add short reversible iPhone-style disclosure motion for project and lesson controls without ripple, scale, or layout bounce.
+- [x] Verify rapid pointer and keyboard interaction, reduced-motion behavior, tests, production build, checkpoint, and GitHub synchronization.

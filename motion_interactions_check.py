@@ -34,8 +34,8 @@ def main():
         assert trigger.get_attribute("aria-expanded") == "true"
         assert case_study.locator(".case-study__dropdown").count() == 1
         case_transition = case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
-        assert all(float(value.strip().removesuffix("s")) <= .01 for value in case_transition.split(",")), case_transition
+        assert case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).display") == "grid"
+        assert any(float(value.strip().removesuffix("s")) > .01 for value in case_transition.split(",")), case_transition
         assert case_study.locator(".case-study__trigger .interaction-ripple").count() == 0
         trigger.click()
         assert trigger.get_attribute("aria-expanded") == "false"
@@ -56,8 +56,8 @@ def main():
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
         learning_transition = first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
-        assert all(float(value.strip().removesuffix("s")) <= .01 for value in learning_transition.split(",")), learning_transition
+        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "grid"
+        assert any(float(value.strip().removesuffix("s")) > .01 for value in learning_transition.split(",")), learning_transition
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
         second_learning.click()
         page.wait_for_timeout(60)
