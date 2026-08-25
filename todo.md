@@ -418,3 +418,8 @@
 
 - [x] Improve mobile project and lesson typography, spacing, content hierarchy, and trigger sizing for comfortable reading and touch use.
 - [x] Verify phone layouts, touch and keyboard behavior, tests, production build, checkpoint, and GitHub synchronization.
+
+## Nidarr mobile preview spacing correction
+
+- [x] Remove the excessive mobile gap between the Nidarr case-study control and prototype preview while retaining readable copy and touch targets.
+- [x] Verify narrow phone layout, interactions, tests, production build, checkpoint, and GitHub synchronization.

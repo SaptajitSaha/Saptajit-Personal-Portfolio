@@ -76,3 +76,7 @@ At the user's request, the iPhone-style disclosure override was removed. Project
 ## Mobile project and lesson readability refinement
 
 On phones, Nidarr now follows a copy-then-media order rather than competing with its carousel in a fixed-height overlay. The project copy uses more comfortable body rhythm, a 48 px case-study trigger, and a separate 430 px media panel. Lesson controls now provide a 78 px two-row touch target, keeping the topic label, state cue, and chevron distinct; expanded detail text uses the full available width at 15 px. 390 px and 320 px captures showed no horizontal overflow. Nineteen unit tests, interaction regression, type checking, and the production build passed.
+
+## Nidarr mobile preview spacing correction
+
+The leftover 940 px mobile `project-card__content` minimum height from the former overlay composition was removed. Nidarr’s preview now follows immediately after the case-study control instead of being separated by a reserved blank area. The 390 px and 320 px captures confirm the tighter transition without overflow; 20 unit tests, interaction regression, type checking, and the production build passed.
