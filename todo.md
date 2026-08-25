@@ -388,3 +388,8 @@
 - [x] Add readable letter spacing to the hero, work, learning, about, tools, and reach-out headings without weakening the display hierarchy.
 - [x] Restore reliable pointer-hover pause behavior for the orbital motion while retaining reduced-motion support.
 - [x] Verify desktop/mobile visuals, hover interaction, tests, production build, checkpoint, and GitHub synchronization.
+
+## Signal-thread layering correction
+
+- [x] Move the orange signal thread behind the signal strip and work/learning section surfaces while preserving its visible continuity.
+- [x] Verify the affected desktop/mobile transition, regressions, production build, checkpoint, and GitHub synchronization.

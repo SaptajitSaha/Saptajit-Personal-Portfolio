@@ -52,3 +52,7 @@ The deployed liquid-glass navigation, disclosure motion, and reach-out regressio
 ## Visual-editor correction pass
 
 The revised IIT Madras emblem now uses a transparent-background PNG on its public CDN route for the shared hero mark, footer mark, and favicon. The mark receives a circular clip as an additional guard against background artifacts. Hero, work, learning, about, tools, and reach-out display headings now use less-constricted tracking while preserving their existing editorial hierarchy. The orbital scene exposes a mouse-only paused state, pauses on pointer enter or movement, resumes on leave or cancel, and keeps its reduced-motion behavior unchanged. Desktop and 390 px mobile captures, 15 unit tests, the interaction regression, type checking, and the production build all passed.
+
+## Signal-thread layering correction
+
+The long orange signal thread now follows a dedicated outer rail: 16 px from the viewport on smaller screens and 12 px outside the centered 1400 px content width on larger displays. This keeps the accent continuous while preventing it from crossing the translucent signal strip or selected-work/learning surfaces. Desktop, 817 px transition, 16-unit-test, type-check, and production-build verification passed.

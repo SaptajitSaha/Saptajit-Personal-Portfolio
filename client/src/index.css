@@ -221,3 +221,6 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 /* Visual-editor correction: transparent emblem treatment and calmer editorial tracking preserve hierarchy without cramped display faces. */
 .liquid-hero-mark img,.footer-signal-mark img { border-radius:50%; clip-path:circle(49.5% at 50% 50%); background:transparent; }
 .signal-field--liquid h1 { letter-spacing:-.048em; }.signal-field--liquid h1 span { letter-spacing:-.042em; }.signal-field--liquid .section h2 { letter-spacing:-.038em; }.signal-field--liquid .section h2 em { letter-spacing:-.034em; }.signal-field--liquid .reach-out__heading h2 { letter-spacing:-.04em; }.signal-field--liquid .reach-out__heading h2 em { letter-spacing:-.035em; }
+
+/* Keep the long signal thread in an outer rail: it remains continuous without bleeding through translucent content surfaces. */
+.liquid-signal-thread { left:max(16px,calc((100% - 1400px) / 2 - 12px)); }
