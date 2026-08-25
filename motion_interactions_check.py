@@ -36,11 +36,7 @@ def main():
         case_transition = case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
         assert case_study.locator(".case-study__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
         assert all(float(value.strip().removesuffix("s")) <= .01 for value in case_transition.split(",")), case_transition
-        first_ripple = case_study.locator(".case-study__trigger .interaction-ripple")
-        assert first_ripple.count() == 1
-        assert first_ripple.evaluate("element => element.style.getPropertyValue('--ripple-x')")
-        page.wait_for_timeout(900)
-        assert first_ripple.count() == 0
+        assert case_study.locator(".case-study__trigger .interaction-ripple").count() == 0
         trigger.click()
         assert trigger.get_attribute("aria-expanded") == "false"
         trigger.click()
@@ -60,10 +56,9 @@ def main():
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
         learning_transition = first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "grid"
-        assert any(float(value.strip().removesuffix("s")) > .01 for value in learning_transition.split(",")), learning_transition
-        assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 1
-        page.wait_for_timeout(900)
+        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
+        assert all(float(value.strip().removesuffix("s")) <= .01 for value in learning_transition.split(",")), learning_transition
+        assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
         second_learning.click()
         page.wait_for_timeout(60)
         assert first_learning.get_attribute("aria-expanded") == "false"

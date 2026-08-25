@@ -1,7 +1,6 @@
 /** Signal Field refinement: reusable, evidence-led project detail disclosure using stable Radix accordion state. */
 import { ArrowUpRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { triggerInteractionRipple } from "@/lib/interactionRipple";
 
 export type CaseStudy = {
   title: string;
@@ -24,7 +23,7 @@ export function CaseStudyPanel({ study }: { study: CaseStudy }) {
   return (
     <Accordion type="single" collapsible className="case-study-accordion">
       <AccordionItem value="case-study" className="case-study">
-        <AccordionTrigger className="case-study__trigger" onPointerDown={triggerInteractionRipple}>
+        <AccordionTrigger className="case-study__trigger">
           <span>Explore {study.title} case study</span>
         </AccordionTrigger>
         <AccordionContent className="case-study__dropdown">

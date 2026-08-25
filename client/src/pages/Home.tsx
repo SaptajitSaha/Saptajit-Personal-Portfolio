@@ -9,7 +9,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
 import { FirstLoadExperience } from "@/components/FirstLoadExperience";
-import { triggerInteractionRipple } from "@/lib/interactionRipple";
 import { shouldSkipFirstLoadExperience } from "@/lib/firstLoadExperience";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
@@ -60,7 +59,7 @@ const projects: Project[] = [
 function LearningTopic({ track, index }: { track: (typeof learningTracks)[number]; index: number }) {
   return (
     <AccordionItem value={track.title} className="learning-card">
-      <AccordionTrigger className="learning-card__trigger" onPointerDown={triggerInteractionRipple}>
+      <AccordionTrigger className="learning-card__trigger">
         <span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore</span>
       </AccordionTrigger>
       <AccordionContent className="learning-card__dropdown"><div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></AccordionContent>

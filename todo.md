@@ -398,3 +398,8 @@
 
 - [x] Reduce the closed Nidarr case-study control to its natural trigger height and remove all case-study disclosure animation.
 - [x] Verify closed/open structure, keyboard accessibility, tests, production build, checkpoint, and GitHub synchronization.
+
+## Disclosure bounce stabilization
+
+- [x] Remove project and lesson disclosure motion that causes page-level bounce on click while preserving stable accessible state changes.
+- [x] Verify repeated pointer and keyboard activation, no page-level bounce, tests, production build, checkpoint, and GitHub synchronization.

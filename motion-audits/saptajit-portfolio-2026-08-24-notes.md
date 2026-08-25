@@ -60,3 +60,7 @@ The long orange signal thread now follows a dedicated outer rail: 16 px from the
 ## Nidarr case-study control correction
 
 The Nidarr case-study affordance now uses only its natural 40 px trigger height in the closed state rather than a second oversized framed card. Its content switches between `display: none` and `display: block` without disclosure or chevron animation, while retaining the same semantic Radix trigger and keyboard behavior. Closed and expanded local browser checks, 17 unit tests, the interaction regression, type checking, and production build passed.
+
+## Disclosure bounce stabilization
+
+Project and lesson disclosures now use direct open/closed display states with no grid-height expansion, transform scale, ripple, or icon-transition effects. The open lesson card also no longer alters its own padding, margin, border, or background, removing the source of page-level bounce. Semantic Radix buttons and keyboard activation remain intact. Repeated interaction checks, 18 unit tests, type checking, and the production build passed.
