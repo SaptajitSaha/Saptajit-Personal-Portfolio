@@ -393,3 +393,8 @@
 
 - [x] Move the orange signal thread behind the signal strip and work/learning section surfaces while preserving its visible continuity.
 - [x] Verify the affected desktop/mobile transition, regressions, production build, checkpoint, and GitHub synchronization.
+
+## Nidarr case-study control correction
+
+- [x] Reduce the closed Nidarr case-study control to its natural trigger height and remove all case-study disclosure animation.
+- [x] Verify closed/open structure, keyboard accessibility, tests, production build, checkpoint, and GitHub synchronization.

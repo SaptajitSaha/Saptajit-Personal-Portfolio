@@ -56,3 +56,7 @@ The revised IIT Madras emblem now uses a transparent-background PNG on its publi
 ## Signal-thread layering correction
 
 The long orange signal thread now follows a dedicated outer rail: 16 px from the viewport on smaller screens and 12 px outside the centered 1400 px content width on larger displays. This keeps the accent continuous while preventing it from crossing the translucent signal strip or selected-work/learning surfaces. Desktop, 817 px transition, 16-unit-test, type-check, and production-build verification passed.
+
+## Nidarr case-study control correction
+
+The Nidarr case-study affordance now uses only its natural 40 px trigger height in the closed state rather than a second oversized framed card. Its content switches between `display: none` and `display: block` without disclosure or chevron animation, while retaining the same semantic Radix trigger and keyboard behavior. Closed and expanded local browser checks, 17 unit tests, the interaction regression, type checking, and production build passed.
