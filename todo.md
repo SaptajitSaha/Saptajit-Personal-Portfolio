@@ -413,3 +413,8 @@
 
 - [x] Delete the reintroduced iPhone-style project and lesson disclosure animations and restore instant no-bounce state changes.
 - [x] Verify pointer and keyboard interaction, tests, production build, checkpoint, and GitHub synchronization.
+
+## Mobile project and lesson readability refinement
+
+- [x] Improve mobile project and lesson typography, spacing, content hierarchy, and trigger sizing for comfortable reading and touch use.
+- [x] Verify phone layouts, touch and keyboard behavior, tests, production build, checkpoint, and GitHub synchronization.

@@ -72,3 +72,7 @@ The project and lesson panels now use a compact, reversible iOS-native `cubic-be
 ## Disclosure animation rollback
 
 At the user's request, the iPhone-style disclosure override was removed. Project and lesson controls are restored to direct, instant open/closed states with no ripple, scale, chevron, grid-height, or content animation. Pointer and keyboard semantics remain intact. Desktop review, 18 unit tests, interaction regression, type checking, and the production build passed.
+
+## Mobile project and lesson readability refinement
+
+On phones, Nidarr now follows a copy-then-media order rather than competing with its carousel in a fixed-height overlay. The project copy uses more comfortable body rhythm, a 48 px case-study trigger, and a separate 430 px media panel. Lesson controls now provide a 78 px two-row touch target, keeping the topic label, state cue, and chevron distinct; expanded detail text uses the full available width at 15 px. 390 px and 320 px captures showed no horizontal overflow. Nineteen unit tests, interaction regression, type checking, and the production build passed.
