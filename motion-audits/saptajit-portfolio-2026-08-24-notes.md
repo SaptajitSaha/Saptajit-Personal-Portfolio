@@ -68,3 +68,7 @@ Project and lesson disclosures now use direct open/closed display states with no
 ## iPhone-style disclosure motion refinement
 
 The project and lesson panels now use a compact, reversible iOS-native `cubic-bezier(.32,.72,0,1)` continuity curve: 280 ms for the container and a smaller -2 px content settle. It avoids ripple, scale, layout-card resizing, and overshoot. Keyboard-focused and reduced-motion paths remain immediate. Rapid interaction regression, desktop/mobile review, 19 unit tests, type checking, and the production build passed.
+
+## Disclosure animation rollback
+
+At the user's request, the iPhone-style disclosure override was removed. Project and lesson controls are restored to direct, instant open/closed states with no ripple, scale, chevron, grid-height, or content animation. Pointer and keyboard semantics remain intact. Desktop review, 18 unit tests, interaction regression, type checking, and the production build passed.

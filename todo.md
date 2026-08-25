@@ -408,3 +408,8 @@
 
 - [x] Add short reversible iPhone-style disclosure motion for project and lesson controls without ripple, scale, or layout bounce.
 - [x] Verify rapid pointer and keyboard interaction, reduced-motion behavior, tests, production build, checkpoint, and GitHub synchronization.
+
+## Disclosure animation rollback
+
+- [x] Delete the reintroduced iPhone-style project and lesson disclosure animations and restore instant no-bounce state changes.
+- [x] Verify pointer and keyboard interaction, tests, production build, checkpoint, and GitHub synchronization.
