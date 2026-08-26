@@ -428,3 +428,8 @@
 
 - [x] Audit and correct confirmed mobile project-section gaps, spacing imbalance, or overflow beyond the Nidarr preview transition.
 - [x] Verify 320px and 390px project geometry, interactions, tests, production build, checkpoint, and GitHub synchronization.
+
+## Mobile Nidarr content-width correction
+
+- [x] Trace and override the responsive rule constraining Nidarr project copy to a partial-width mobile column.
+- [x] Add regression coverage and verify full-width readable wrapping at 320px and 390px, interactions, tests, build, checkpoint, and GitHub synchronization.
