@@ -80,3 +80,7 @@ On phones, Nidarr now follows a copy-then-media order rather than competing with
 ## Nidarr mobile preview spacing correction
 
 The leftover 940 px mobile `project-card__content` minimum height from the former overlay composition was removed. Nidarr’s preview now follows immediately after the case-study control instead of being separated by a reserved blank area. The 390 px and 320 px captures confirm the tighter transition without overflow; 20 unit tests, interaction regression, type checking, and the production build passed.
+
+## Mobile project-section spacing audit
+
+The full project flow was reviewed at 390 px and 320 px after the spacing correction. The signal strip, section heading, Nidarr copy, case-study control, and media panel now progress without reserved blank regions or horizontal overflow. The remaining media breathing room belongs to the intentional 430 px prototype panel rather than an empty layout reservation, so no additional CSS change was needed.

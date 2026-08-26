@@ -423,3 +423,8 @@
 
 - [x] Remove the excessive mobile gap between the Nidarr case-study control and prototype preview while retaining readable copy and touch targets.
 - [x] Verify narrow phone layout, interactions, tests, production build, checkpoint, and GitHub synchronization.
+
+## Mobile project-section spacing audit
+
+- [x] Audit and correct confirmed mobile project-section gaps, spacing imbalance, or overflow beyond the Nidarr preview transition.
+- [x] Verify 320px and 390px project geometry, interactions, tests, production build, checkpoint, and GitHub synchronization.
