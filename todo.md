@@ -499,3 +499,8 @@
 
 - [x] Add a responsive, reduced-motion-safe interactive desk-lamp procedural-study showcase to the portfolio without degrading the existing project, lesson, orbit, or carousel interactions.
 - [x] Verify desktop and mobile presentation, component picking and controls, render lifecycle cleanup, tests, production build, checkpoint, and GitHub synchronization.
+
+## img2threejs procedural-study removal
+
+- [x] Remove the desk-lamp study section, its Three.js runtime, associated source/test artifacts, styling, and unused dependencies without changing unrelated portfolio content.
+- [ ] Verify the restored portfolio on desktop and mobile, run regression tests and production build, checkpoint the removal, and synchronize GitHub main.
