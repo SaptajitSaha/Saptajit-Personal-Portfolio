@@ -433,3 +433,9 @@
 
 - [x] Trace and override the responsive rule constraining Nidarr project copy to a partial-width mobile column.
 - [x] Add regression coverage and verify full-width readable wrapping at 320px and 390px, interactions, tests, build, checkpoint, and GitHub synchronization.
+
+## Mobile Nidarr prototype swipe navigation
+
+- [x] Inspect the carousel’s existing state, controls, auto-play, and interaction tests to define a non-conflicting touch gesture contract.
+- [x] Add a deliberate horizontal swipe gesture with pointer safeguards, retained keyboard controls, and regression coverage.
+- [x] Verify mobile gesture navigation, layout, auto-play interaction, accessibility, tests, build, checkpoint, and GitHub synchronization.
