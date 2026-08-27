@@ -469,3 +469,8 @@
 - [x] Inspect the existing hover layers and label fit to replace rather than stack prior hover effects.
 - [x] Add a clean, isolated navigation-item pop hover and increase label size without clipping or mobile overflow.
 - [x] Verify independent hover behavior, desktop and mobile label fit, reduced motion, tests, build, checkpoint, and GitHub synchronization.
+
+## Continuous hero orbit refinement
+
+- [x] Inspect and remove the hero orbit’s pointer-hover pause handlers and update its interaction contract.
+- [x] Verify continuous orbit movement during hover at desktop and mobile widths, reduced-motion behavior, tests, build, checkpoint, and GitHub synchronization.

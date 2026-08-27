@@ -12,11 +12,13 @@ def main():
         page = browser.new_page(viewport={"width": 1440, "height": 900})
         page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         page.goto(URL, wait_until="networkidle")
+        page.wait_for_timeout(520)
 
         nav_work = page.locator(".liquid-nav a").nth(1)
         nav_learning = page.locator(".liquid-nav a").nth(2)
         nav_work.hover()
-        page.wait_for_timeout(240)
+        assert nav_work.evaluate("element => element.matches(':hover')")
+        page.wait_for_function("element => Number.parseFloat(getComputedStyle(element, '::before').opacity) >= .69", arg=nav_work.element_handle(), timeout=1000)
         nav_hover = nav_work.evaluate("element => ({transform: getComputedStyle(element).transform, highlight: getComputedStyle(element, '::before').opacity, indicator: getComputedStyle(element, '::after').opacity, fontSize: getComputedStyle(element).fontSize})")
         untouched_nav_item = nav_learning.evaluate("element => ({transform: getComputedStyle(element).transform, highlight: getComputedStyle(element, '::before').opacity})")
         assert nav_hover["transform"] != "none", nav_hover
@@ -35,14 +37,13 @@ def main():
         orbit_card = page.locator(".role-planet").first
         orbit.hover()
         page.wait_for_timeout(80)
-        assert orbit.get_attribute("data-orbit-paused") == "true"
-        paused_transform = orbit_card.evaluate("element => element.style.transform")
-        page.wait_for_timeout(180)
-        assert orbit_card.evaluate("element => element.style.transform") == paused_transform
+        hover_transform = orbit_card.evaluate("element => element.style.transform")
+        page.wait_for_timeout(320)
+        assert orbit_card.evaluate("element => element.style.transform") != hover_transform
         page.locator(".hero-copy").hover()
-        page.wait_for_timeout(160)
-        assert orbit.get_attribute("data-orbit-paused") == "false"
-        assert orbit_card.evaluate("element => element.style.transform") != paused_transform
+        post_hover_transform = orbit_card.evaluate("element => element.style.transform")
+        page.wait_for_timeout(220)
+        assert orbit_card.evaluate("element => element.style.transform") != post_hover_transform
 
         case_study = page.locator(".case-study").first
         case_study.scroll_into_view_if_needed()

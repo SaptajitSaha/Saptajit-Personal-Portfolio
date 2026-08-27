@@ -1,5 +1,5 @@
 import { Code2, Database, Sparkles } from "lucide-react";
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef } from "react";
 
 const TAU = Math.PI * 2;
 const ORBIT_PERIOD_SECONDS = 56;
@@ -30,21 +30,6 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
   const ellipseRef = useRef<SVGEllipseElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const pausedByHoverRef = useRef(false);
-  const [isHoverPaused, setIsHoverPaused] = useState(false);
-
-  const pauseOrbit = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || pausedByHoverRef.current) return;
-    pausedByHoverRef.current = true;
-    setIsHoverPaused(true);
-  };
-
-  const resumeOrbit = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || !pausedByHoverRef.current) return;
-    pausedByHoverRef.current = false;
-    setIsHoverPaused(false);
-  };
-
   useEffect(() => {
     const scene = sceneRef.current;
     const portrait = portraitRef.current;
@@ -117,7 +102,7 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
       if (!previousTime) previousTime = time;
       const delta = Math.min((time - previousTime) / 1000, 0.05);
       previousTime = time;
-      if (visible && !reducedMotion && !pausedByHoverRef.current) {
+      if (visible && !reducedMotion) {
         elapsed += delta;
         renderFrame();
       }
@@ -152,15 +137,7 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
 
   return (
     <div className="stage-wrap" aria-label="Portrait with orbiting capabilities">
-      <div
-        className="stage-scene"
-        ref={sceneRef}
-        data-orbit-paused={isHoverPaused ? "true" : "false"}
-        onPointerEnter={pauseOrbit}
-        onPointerMove={pauseOrbit}
-        onPointerLeave={resumeOrbit}
-        onPointerCancel={resumeOrbit}
-      >
+      <div className="stage-scene" ref={sceneRef}>
         <svg className="orbit-svg" aria-hidden="true"><ellipse className="orbit-svg__ring" ref={ellipseRef} /></svg>
         <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
         <figure className="portrait-orb" ref={portraitRef}>
