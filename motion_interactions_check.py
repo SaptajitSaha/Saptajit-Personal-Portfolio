@@ -14,13 +14,22 @@ def main():
         page.goto(URL, wait_until="networkidle")
 
         nav_work = page.locator(".liquid-nav a").nth(1)
+        nav_learning = page.locator(".liquid-nav a").nth(2)
         nav_work.hover()
-        page.wait_for_timeout(220)
+        page.wait_for_timeout(240)
         nav_hover = nav_work.evaluate("element => ({transform: getComputedStyle(element).transform, highlight: getComputedStyle(element, '::before').opacity, indicator: getComputedStyle(element, '::after').opacity, fontSize: getComputedStyle(element).fontSize})")
+        untouched_nav_item = nav_learning.evaluate("element => ({transform: getComputedStyle(element).transform, highlight: getComputedStyle(element, '::before').opacity})")
         assert nav_hover["transform"] != "none", nav_hover
-        assert float(nav_hover["highlight"]) >= .6, nav_hover
-        assert float(nav_hover["indicator"]) >= .3, nav_hover
-        assert float(nav_hover["fontSize"].removesuffix("px")) >= 10.75, nav_hover
+        assert float(nav_hover["highlight"]) >= .69, nav_hover
+        assert float(nav_hover["indicator"]) >= .39, nav_hover
+        assert float(nav_hover["fontSize"].removesuffix("px")) >= 12, nav_hover
+        assert untouched_nav_item["transform"] == "matrix(1, 0, 0, 1, 0, 0)", untouched_nav_item
+        assert float(untouched_nav_item["highlight"]) == 0, untouched_nav_item
+
+        nav_home = page.locator(".liquid-nav a").nth(0)
+        nav_home.hover()
+        page.wait_for_timeout(240)
+        assert nav_home.evaluate("element => getComputedStyle(element).transform") != "none"
 
         orbit = page.locator(".stage-scene")
         orbit_card = page.locator(".role-planet").first
@@ -110,7 +119,7 @@ def main():
         mobile_nav_box = mobile_nav.bounding_box()
         mobile_nav_font_size = mobile_nav_item.evaluate("element => Number.parseFloat(getComputedStyle(element).fontSize)")
         assert mobile_nav_box is not None and mobile_nav_box["width"] <= 390, mobile_nav_box
-        assert mobile_nav_font_size >= 10.25, mobile_nav_font_size
+        assert mobile_nav_font_size >= 11.25, mobile_nav_font_size
         carousel = mobile.locator(".phone-carousel")
         carousel.scroll_into_view_if_needed()
         carousel.locator(".phone-carousel__autoplay").click()

@@ -463,3 +463,9 @@
 - [x] Inspect the existing navigation item motion, label sizing, and available mobile width.
 - [x] Add a restrained liquid hover transition and slightly larger labels without causing navigation wrapping or motion excess.
 - [x] Verify desktop and mobile interaction, readable labels, keyboard focus, tests, build, checkpoint, and GitHub synchronization.
+
+## Liquid navigation pop and typography refinement
+
+- [x] Inspect the existing hover layers and label fit to replace rather than stack prior hover effects.
+- [x] Add a clean, isolated navigation-item pop hover and increase label size without clipping or mobile overflow.
+- [x] Verify independent hover behavior, desktop and mobile label fit, reduced motion, tests, build, checkpoint, and GitHub synchronization.

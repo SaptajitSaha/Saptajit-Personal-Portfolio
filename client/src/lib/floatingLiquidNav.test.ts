@@ -12,12 +12,14 @@ describe("floating liquid navigation material", () => {
     expect(styles).toContain("@media (prefers-reduced-transparency:reduce)");
   });
 
-  it("gives inactive items a small liquid hover sheen and slightly larger labels", () => {
-    expect(styles).toContain("font:600 10.75px/1 var(--font-sans)");
-    expect(styles).toContain("font-size:10.25px");
-    expect(styles).toContain(".liquid-nav a:hover:not([data-active]) {\n  color:var(--paper);\n  transform:translateY(-1px);");
-    expect(styles).toContain(".liquid-nav a:hover:not([data-active])::before {\n  opacity:.62;\n  transform:scale(1);");
-    expect(styles).toContain(".liquid-nav a:hover:not([data-active])::after {\n  opacity:.32;\n  transform:scaleX(.78);");
+  it("uses one clean liquid pop treatment with larger desktop and mobile labels", () => {
+    expect(styles).toContain("font:600 12px/1 var(--font-sans)");
+    expect(styles).toContain("font-size:11.25px");
+    expect(styles).toContain(".liquid-nav a:hover {\n  color:var(--paper);\n  transform:translateY(-3px) scale(1.065);");
+    expect(styles).toContain("transition:color 160ms var(--ease-out),background-color 180ms var(--ease-out),border-color 180ms var(--ease-out),box-shadow 180ms var(--ease-out),transform 220ms cubic-bezier(.16,1,.3,1)");
+    expect(styles).toContain(".liquid-nav a:hover:not([data-active])::before {\n  opacity:.7;\n  transform:scale(1);");
+    expect(styles).toContain(".liquid-nav a:hover:not([data-active])::after {\n  opacity:.4;\n  transform:scaleX(.82);");
+    expect(styles).not.toContain("translateY(-1px)");
     expect(styles).toContain("@media (prefers-reduced-motion:reduce)");
   });
 });
