@@ -6,13 +6,17 @@ const homeSource = readFileSync(new URL("../pages/Home.tsx", import.meta.url), "
 const caseStudySource = readFileSync(new URL("../components/CaseStudyPanel.tsx", import.meta.url), "utf8");
 
 describe("disclosure stability", () => {
-  it("keeps project disclosure direct while limiting lesson reveal motion to compositor properties", () => {
+  it("keeps project disclosure direct while using a smooth, no-overshoot lesson dropdown transition", () => {
     expect(stylesheet).toContain('.case-study__dropdown[data-state="closed"],.learning-card__dropdown[data-state="closed"] { display:none; }');
     expect(stylesheet).toContain(".interaction-ripple { display:none !important; }");
     expect(stylesheet).toContain(".case-study__trigger:active,.learning-card__trigger:active { transform:none !important; }");
-    expect(stylesheet).toContain(".learning-card__dropdown[data-state=\"open\"] .learning-card__detail { opacity:1; transform:translateY(0); transition:opacity 180ms cubic-bezier(.22,1,.36,1) !important,transform 220ms cubic-bezier(.22,1,.36,1) !important; }");
-    expect(stylesheet).toContain(".learning-card:has(.learning-card__trigger:focus-visible) .learning-card__detail { transition:none !important; }");
+    expect(stylesheet).toContain(".learning-card__dropdown { max-height:0; opacity:0; transition:max-height 480ms cubic-bezier(.16,1,.3,1),opacity 320ms cubic-bezier(.16,1,.3,1) !important; }");
+    expect(stylesheet).toContain(".learning-card__dropdown[data-state=\"open\"][data-motion-ready] { max-height:var(--lesson-detail-height); opacity:1; }");
+    expect(stylesheet).toContain(".learning-card:has(.learning-card__trigger:focus-visible) .learning-card__dropdown[data-state=\"open\"] { max-height:none; opacity:1; transition:none !important; }");
     expect(homeSource).not.toContain("onPointerDown={triggerInteractionRipple}");
+    expect(homeSource).toContain("<AccordionContent forceMount className=\"learning-card__dropdown\" data-motion-ready={motionReady || undefined} style={{ \"--lesson-detail-height\": `${detailHeight}px` } as CSSProperties}>");
+    expect(homeSource).toContain("data-motion-ready={motionReady || undefined}");
+    expect(homeSource).toContain("window.requestAnimationFrame(() => setMotionReadyTopic(value))");
     expect(caseStudySource).not.toContain("onPointerDown={triggerInteractionRipple}");
   });
 });

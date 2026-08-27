@@ -55,10 +55,19 @@ def main():
         page.wait_for_timeout(80)
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
+        first_learning_item.locator(".learning-card__dropdown[data-motion-ready]").wait_for(state="attached", timeout=1000)
+        page.wait_for_timeout(120)
         learning_detail = first_learning_item.locator(".learning-card__detail")
         learning_transition = learning_detail.evaluate("element => getComputedStyle(element).transitionDuration")
+        learning_motion = first_learning_item.locator(".learning-card__dropdown").evaluate("element => ({property: getComputedStyle(element).transitionProperty, duration: getComputedStyle(element).transitionDuration, opacity: Number(getComputedStyle(element).opacity), height: Number.parseFloat(getComputedStyle(element).height), maxHeight: getComputedStyle(element).maxHeight, contentHeight: element.scrollHeight})")
         assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
-        assert .18 <= max(float(value.strip().removesuffix("s")) for value in learning_transition.split(",")) <= .22, learning_transition
+        assert all(float(value.strip().removesuffix("s")) <= .01 for value in learning_transition.split(",")), learning_transition
+        assert learning_motion["property"] == "max-height, opacity", learning_motion
+        assert learning_motion["duration"] == "0.48s, 0.32s", learning_motion
+        assert 0 < learning_motion["height"] < learning_motion["contentHeight"], learning_motion
+        assert first_learning_item.locator(".learning-card__dropdown").get_attribute("data-motion-ready") == "true"
+        assert learning_motion["maxHeight"].endswith("px") and learning_motion["maxHeight"] != "0px", learning_motion
+        assert 0 < learning_motion["opacity"] < 1, learning_motion
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
         second_learning.scroll_into_view_if_needed()
         stable_scroll = page.evaluate("window.scrollY")
@@ -71,8 +80,9 @@ def main():
         assert second_learning.get_attribute("aria-expanded") == "false"
         second_learning.press("Enter")
         page.wait_for_timeout(20)
-        keyboard_duration = page.locator(".learning-card").nth(1).locator(".learning-card__detail").evaluate("element => getComputedStyle(element).transitionDuration")
-        assert all(float(value.strip().removesuffix("s")) <= .01 for value in keyboard_duration.split(",")), keyboard_duration
+        keyboard_motion = page.locator(".learning-card").nth(1).locator(".learning-card__dropdown").evaluate("element => ({height: getComputedStyle(element).height, transition: getComputedStyle(element).transitionDuration})")
+        assert keyboard_motion["height"] != "0px", keyboard_motion
+        assert all(float(value.strip().removesuffix("s")) <= .01 for value in keyboard_motion["transition"].split(",")), keyboard_motion
         page.wait_for_timeout(360)
         assert page.locator(".learning-card").nth(1).locator(".learning-card__dropdown").get_attribute("data-state") == "open"
 

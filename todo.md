@@ -445,3 +445,9 @@
 - [x] Inspect the Radix lesson disclosure structure and final stability overrides to define an interruptible, no-bounce transition.
 - [x] Add a restrained lesson-detail reveal that preserves immediate keyboard and reduced-motion behavior, then extend regression coverage.
 - [x] Verify repeated toggles at desktop and mobile widths, accessibility, interaction regression, tests, build, checkpoint, and GitHub synchronization.
+
+## Perceptible lesson animation refinement
+
+- [x] Measure the currently rendered lesson reveal and identify why the motion is not visually apparent.
+- [x] Improve the disclosure transition’s perceptibility and continuity without reintroducing layout bounce, then update regression coverage.
+- [x] Verify repeated desktop and mobile toggles, keyboard and reduced-motion behavior, tests, build, checkpoint, and GitHub synchronization.

@@ -23,7 +23,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = iitmBrandAssetUrl;
@@ -56,13 +56,29 @@ const projects: Project[] = [
   },
 ];
 
-function LearningTopic({ track, index }: { track: (typeof learningTracks)[number]; index: number }) {
+function LearningTopic({ track, index, motionReady }: { track: (typeof learningTracks)[number]; index: number; motionReady: boolean }) {
+  const detailRef = useRef<HTMLDivElement>(null);
+  const [detailHeight, setDetailHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    const detail = detailRef.current;
+    if (!detail) return;
+    const syncHeight = () => {
+      const nextHeight = detail.scrollHeight;
+      setDetailHeight(current => current === nextHeight ? current : nextHeight);
+    };
+    syncHeight();
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(detail);
+    return () => observer.disconnect();
+  }, [track.title]);
+
   return (
     <AccordionItem value={track.title} className="learning-card">
       <AccordionTrigger className="learning-card__trigger">
         <span>{String(index + 1).padStart(2, "0")}</span><h3>{track.title}</h3><span className="learning-open">Explore</span>
       </AccordionTrigger>
-      <AccordionContent className="learning-card__dropdown"><div className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></AccordionContent>
+      <AccordionContent forceMount className="learning-card__dropdown" data-motion-ready={motionReady || undefined} style={{ "--lesson-detail-height": `${detailHeight}px` } as CSSProperties}><div ref={detailRef} className="learning-card__detail"><p><strong>Currently exploring</strong>{track.now}</p><p><strong>Tools</strong>{track.tools}</p><p><strong>Question</strong>{track.question}</p><p><strong>Current project</strong>{track.project}</p></div></AccordionContent>
     </AccordionItem>
   );
 }
@@ -70,7 +86,10 @@ function LearningTopic({ track, index }: { track: (typeof learningTracks)[number
 export default function Home() {
   const pendingNavigationRef = useRef<PrimaryNavigationId | null>(null);
   const navigationTimerRef = useRef<number | undefined>(undefined);
+  const learningMotionFrameRef = useRef<number | undefined>(undefined);
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
+  const [openLearningTopic, setOpenLearningTopic] = useState("");
+  const [motionReadyTopic, setMotionReadyTopic] = useState("");
   const [introComplete, setIntroComplete] = useState(shouldSkipFirstLoadExperience);
   const completeFirstLoad = useCallback(() => setIntroComplete(true), []);
 
@@ -107,7 +126,14 @@ export default function Home() {
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
       if (navigationTimerRef.current) window.clearTimeout(navigationTimerRef.current);
+      if (learningMotionFrameRef.current) window.cancelAnimationFrame(learningMotionFrameRef.current);
     };
+  }, []);
+
+  const selectLearningTopic = useCallback((value: string) => {
+    setOpenLearningTopic(value);
+    if (learningMotionFrameRef.current) window.cancelAnimationFrame(learningMotionFrameRef.current);
+    learningMotionFrameRef.current = window.requestAnimationFrame(() => setMotionReadyTopic(value));
   }, []);
 
   return (
@@ -176,8 +202,8 @@ export default function Home() {
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
           </div>
-          <Accordion type="single" collapsible className="learning-list">
-            {learningTracks.map((track, index) => <LearningTopic track={track} index={index} key={track.title} />)}
+          <Accordion type="single" collapsible className="learning-list" value={openLearningTopic} onValueChange={selectLearningTopic}>
+            {learningTracks.map((track, index) => <LearningTopic track={track} index={index} motionReady={motionReadyTopic === track.title} key={track.title} />)}
           </Accordion>
         </section>
 
