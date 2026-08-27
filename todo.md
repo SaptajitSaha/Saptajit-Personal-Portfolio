@@ -457,3 +457,9 @@
 - [x] Inspect the floating navigation material layers, opacity, blur, and contrast states.
 - [x] Reduce the navigation surface density and blur while preserving liquid translucency, readable labels, and accessible focus states.
 - [x] Verify desktop and mobile navigation over varied page colors, tests, build, checkpoint, and GitHub synchronization.
+
+## Liquid navigation hover and label refinement
+
+- [x] Inspect the existing navigation item motion, label sizing, and available mobile width.
+- [x] Add a restrained liquid hover transition and slightly larger labels without causing navigation wrapping or motion excess.
+- [x] Verify desktop and mobile interaction, readable labels, keyboard focus, tests, build, checkpoint, and GitHub synchronization.

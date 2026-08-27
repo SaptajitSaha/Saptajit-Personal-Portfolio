@@ -13,6 +13,15 @@ def main():
         page.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         page.goto(URL, wait_until="networkidle")
 
+        nav_work = page.locator(".liquid-nav a").nth(1)
+        nav_work.hover()
+        page.wait_for_timeout(220)
+        nav_hover = nav_work.evaluate("element => ({transform: getComputedStyle(element).transform, highlight: getComputedStyle(element, '::before').opacity, indicator: getComputedStyle(element, '::after').opacity, fontSize: getComputedStyle(element).fontSize})")
+        assert nav_hover["transform"] != "none", nav_hover
+        assert float(nav_hover["highlight"]) >= .6, nav_hover
+        assert float(nav_hover["indicator"]) >= .3, nav_hover
+        assert float(nav_hover["fontSize"].removesuffix("px")) >= 10.75, nav_hover
+
         orbit = page.locator(".stage-scene")
         orbit_card = page.locator(".role-planet").first
         orbit.hover()
@@ -96,6 +105,12 @@ def main():
         mobile = browser.new_page(viewport={"width": 390, "height": 900})
         mobile.add_init_script("sessionStorage.setItem('signal-field-intro-seen', 'true')")
         mobile.goto(URL, wait_until="networkidle")
+        mobile_nav = mobile.locator(".liquid-nav")
+        mobile_nav_item = mobile.locator(".liquid-nav a").nth(2)
+        mobile_nav_box = mobile_nav.bounding_box()
+        mobile_nav_font_size = mobile_nav_item.evaluate("element => Number.parseFloat(getComputedStyle(element).fontSize)")
+        assert mobile_nav_box is not None and mobile_nav_box["width"] <= 390, mobile_nav_box
+        assert mobile_nav_font_size >= 10.25, mobile_nav_font_size
         carousel = mobile.locator(".phone-carousel")
         carousel.scroll_into_view_if_needed()
         carousel.locator(".phone-carousel__autoplay").click()
