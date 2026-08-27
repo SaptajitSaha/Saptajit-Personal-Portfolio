@@ -480,3 +480,9 @@
 - [x] Inspect the supplied carousel reference and existing controls to locate the cropped redundant action, wide dot spacing, and linear progress implementation.
 - [x] Remove the redundant control, tighten the preview dots, and implement an active-dot circular countdown while preserving carousel controls and accessibility.
 - [x] Verify desktop and mobile control geometry, circular progress, auto-play, swipe and keyboard navigation, tests, build, checkpoint, and GitHub synchronization.
+
+## Nidarr carousel feedback enhancement
+
+- [x] Inspect the active-dot ring, dot hover styles, and swipe boundaries to define an isolated no-conflict feedback contract.
+- [x] Thicken and glow the active ring, add a smooth dot-hover scale, and add touch-only elastic boundary feedback without changing normal slide selection.
+- [x] Verify desktop hover, mobile boundary feedback, regular swipe and keyboard navigation, reduced motion, tests, build, checkpoint, and GitHub synchronization.

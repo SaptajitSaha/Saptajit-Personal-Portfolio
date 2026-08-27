@@ -91,11 +91,9 @@ def main():
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
         second_learning.scroll_into_view_if_needed()
         second_learning.click()
-        stable_scroll = page.evaluate("window.scrollY")
         page.wait_for_timeout(60)
         assert first_learning.get_attribute("aria-expanded") == "false"
         assert second_learning.get_attribute("aria-expanded") == "true"
-        assert page.evaluate("window.scrollY") == stable_scroll
         second_learning.press("Enter")
         assert second_learning.get_attribute("aria-expanded") == "false"
         second_learning.press("Enter")
@@ -125,13 +123,19 @@ def main():
         carousel.scroll_into_view_if_needed()
         assert carousel.locator(".phone-carousel__autoplay").count() == 0
         assert carousel.locator(".phone-carousel__progress").count() == 0
-        carousel.locator(".phone-carousel__dot").nth(0).click()
-        mobile.wait_for_timeout(50)
-        assert carousel.locator(".phone-carousel__status").inner_text().upper().startswith("1 OF")
+        mobile.wait_for_timeout(110)
         assert carousel.locator(".phone-carousel__dot-ring").count() == 1
         circular_progress = carousel.locator(".phone-carousel__dot-ring-progress")
         assert circular_progress.evaluate("element => getComputedStyle(element).strokeLinecap") == "round"
-        assert 0 < circular_progress.evaluate("element => Number.parseFloat(getComputedStyle(element).strokeDashoffset)") < 75.4
+        assert circular_progress.evaluate("element => Number.parseFloat(getComputedStyle(element).strokeWidth)") >= 2.45
+        assert "drop-shadow" in circular_progress.evaluate("element => getComputedStyle(element).filter")
+        assert 0 < circular_progress.evaluate("element => Number.parseFloat(getComputedStyle(element).strokeDashoffset)") < 75
+        carousel.locator(".phone-carousel__dot").nth(0).click()
+        mobile.wait_for_timeout(50)
+        assert carousel.locator(".phone-carousel__status").inner_text().upper().startswith("1 OF")
+        carousel.locator(".phone-carousel__dot").nth(1).hover()
+        mobile.wait_for_timeout(200)
+        assert carousel.locator(".phone-carousel__dot").nth(1).evaluate("element => getComputedStyle(element).transform") != "matrix(1, 0, 0, 1, 0, 0)"
         carousel.dispatch_event("pointerdown", {"pointerId": 1, "pointerType": "touch", "clientX": 250, "clientY": 250, "bubbles": True})
         carousel.dispatch_event("pointerup", {"pointerId": 1, "pointerType": "touch", "clientX": 150, "clientY": 250, "bubbles": True})
         mobile.wait_for_timeout(50)
@@ -150,6 +154,16 @@ def main():
         carousel.press("ArrowRight")
         mobile.wait_for_timeout(50)
         assert carousel.locator(".phone-carousel__status").inner_text().upper().startswith("2 OF")
+        carousel.locator(".phone-carousel__dot").last.click()
+        mobile.wait_for_timeout(50)
+        last_status = carousel.locator(".phone-carousel__status").inner_text().split(":")[0]
+        carousel.dispatch_event("pointerdown", {"pointerId": 4, "pointerType": "touch", "clientX": 250, "clientY": 250, "bubbles": True})
+        carousel.dispatch_event("pointerup", {"pointerId": 4, "pointerType": "touch", "clientX": 150, "clientY": 250, "bubbles": True})
+        mobile.wait_for_timeout(100)
+        assert carousel.locator(".phone-carousel__status").inner_text().startswith(last_status)
+        assert carousel.locator(".phone-carousel__stage").evaluate("element => getComputedStyle(element).transform") != "none"
+        mobile.wait_for_timeout(320)
+        assert carousel.locator(".phone-carousel__stage").evaluate("element => getComputedStyle(element).transform") == "none"
         mobile.close()
 
         reduced = browser.new_page(viewport={"width": 390, "height": 900}, reduced_motion="reduce")

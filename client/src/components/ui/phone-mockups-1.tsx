@@ -24,6 +24,8 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
   const [pageHidden, setPageHidden] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const carouselRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const boundaryAnimationRef = useRef<Animation | null>(null);
   const progressRef = useRef<SVGCircleElement>(null);
   const elapsedRef = useRef(0);
   const swipeStartRef = useRef<{ pointerId: number; x: number; y: number } | null>(null);
@@ -36,6 +38,16 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
   }, []);
   const resetProgress = useCallback(() => { elapsedRef.current = 0; updateProgress(0); }, [updateProgress]);
   const select = useCallback((index: number) => { resetProgress(); setActiveIndex(current => (index + images.length) % images.length); }, [images.length, resetProgress]);
+  const triggerEndBounce = useCallback(() => {
+    if (reducedMotion) return;
+    boundaryAnimationRef.current?.cancel();
+    boundaryAnimationRef.current = stageRef.current?.animate([
+      { transform: "translateX(0)" },
+      { transform: "translateX(-12px)", offset: .34 },
+      { transform: "translateX(3px)", offset: .68 },
+      { transform: "translateX(0)" },
+    ], { duration: 360, easing: "cubic-bezier(.2,.9,.25,1)" }) ?? null;
+  }, [reducedMotion]);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -45,6 +57,8 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     media.addEventListener("change", syncMotion); document.addEventListener("visibilitychange", syncVisibility);
     return () => { media.removeEventListener("change", syncMotion); document.removeEventListener("visibilitychange", syncVisibility); };
   }, []);
+
+  useEffect(() => () => boundaryAnimationRef.current?.cancel(), []);
 
   useEffect(() => {
     if (images.length < 2 || autoplayPaused) return;
@@ -92,6 +106,10 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     const deltaY = event.clientY - swipeStart.y;
     clearSwipe(event);
     if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    if (deltaX < 0 && activeIndex === images.length - 1) {
+      triggerEndBounce();
+      return;
+    }
     select(activeIndex + (deltaX < 0 ? 1 : -1));
   };
 
@@ -99,7 +117,7 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     <section ref={carouselRef} className={`phone-carousel ${className}`} data-autoplay={autoplayPaused ? "paused" : "playing"} aria-roledescription="carousel" aria-label="Nidarr mobile product screens" aria-describedby="phone-carousel-swipe-instructions" onKeyDown={onKeyDown} onFocusCapture={() => setFocusPaused(true)} onBlurCapture={onBlurCapture} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={clearSwipe} tabIndex={0}>
       <p id="phone-carousel-swipe-instructions" className="phone-carousel__swipe-instructions">Swipe left or right to browse the Nidarr product screens. Previous and next buttons are also available.</p>
       <p className="phone-carousel__status" aria-live={autoplayPaused ? "polite" : "off"}>{activeIndex + 1} of {images.length}: {activeImage.label}</p>
-      <div className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}</div>
+      <div ref={stageRef} className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}</div>
       <div className="phone-carousel__controls">
         <button className="phone-carousel__arrow" type="button" onClick={() => select(activeIndex - 1)} aria-label={`Show previous screen: ${images[(activeIndex - 1 + images.length) % images.length].label}`}><ChevronLeft size={17} aria-hidden="true" /></button>
         <div className="phone-carousel__dots" aria-label="Choose a Nidarr product screen">{images.map((image, index) => <button className="phone-carousel__dot" type="button" key={image.src} data-active={index === activeIndex || undefined} onClick={() => select(index)} aria-label={`Show ${image.label}`} aria-current={index === activeIndex ? "true" : undefined}>{index === activeIndex && <svg className="phone-carousel__dot-ring" viewBox="0 0 32 32" aria-hidden="true"><circle className="phone-carousel__dot-ring-track" cx="16" cy="16" r={DOT_PROGRESS_RADIUS} /><circle ref={progressRef} className="phone-carousel__dot-ring-progress" cx="16" cy="16" r={DOT_PROGRESS_RADIUS} strokeDasharray={DOT_PROGRESS_CIRCUMFERENCE} strokeDashoffset={DOT_PROGRESS_CIRCUMFERENCE} /></svg>}</button>)}</div>
