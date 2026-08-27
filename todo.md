@@ -474,3 +474,9 @@
 
 - [x] Inspect and remove the hero orbit’s pointer-hover pause handlers and update its interaction contract.
 - [x] Verify continuous orbit movement during hover at desktop and mobile widths, reduced-motion behavior, tests, build, checkpoint, and GitHub synchronization.
+
+## Nidarr carousel control refinement
+
+- [x] Inspect the supplied carousel reference and existing controls to locate the cropped redundant action, wide dot spacing, and linear progress implementation.
+- [x] Remove the redundant control, tighten the preview dots, and implement an active-dot circular countdown while preserving carousel controls and accessibility.
+- [x] Verify desktop and mobile control geometry, circular progress, auto-play, swipe and keyboard navigation, tests, build, checkpoint, and GitHub synchronization.

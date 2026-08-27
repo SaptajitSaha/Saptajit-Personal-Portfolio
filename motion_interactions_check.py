@@ -90,8 +90,8 @@ def main():
         assert 0 < learning_motion["opacity"] < 1, learning_motion
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
         second_learning.scroll_into_view_if_needed()
-        stable_scroll = page.evaluate("window.scrollY")
         second_learning.click()
+        stable_scroll = page.evaluate("window.scrollY")
         page.wait_for_timeout(60)
         assert first_learning.get_attribute("aria-expanded") == "false"
         assert second_learning.get_attribute("aria-expanded") == "true"
@@ -123,14 +123,20 @@ def main():
         assert mobile_nav_font_size >= 11.25, mobile_nav_font_size
         carousel = mobile.locator(".phone-carousel")
         carousel.scroll_into_view_if_needed()
-        carousel.locator(".phone-carousel__autoplay").click()
+        assert carousel.locator(".phone-carousel__autoplay").count() == 0
+        assert carousel.locator(".phone-carousel__progress").count() == 0
         carousel.locator(".phone-carousel__dot").nth(0).click()
         mobile.wait_for_timeout(50)
         assert carousel.locator(".phone-carousel__status").inner_text().upper().startswith("1 OF")
+        assert carousel.locator(".phone-carousel__dot-ring").count() == 1
+        circular_progress = carousel.locator(".phone-carousel__dot-ring-progress")
+        assert circular_progress.evaluate("element => getComputedStyle(element).strokeLinecap") == "round"
+        assert 0 < circular_progress.evaluate("element => Number.parseFloat(getComputedStyle(element).strokeDashoffset)") < 75.4
         carousel.dispatch_event("pointerdown", {"pointerId": 1, "pointerType": "touch", "clientX": 250, "clientY": 250, "bubbles": True})
         carousel.dispatch_event("pointerup", {"pointerId": 1, "pointerType": "touch", "clientX": 150, "clientY": 250, "bubbles": True})
         mobile.wait_for_timeout(50)
         assert carousel.locator(".phone-carousel__status").inner_text().upper().startswith("2 OF")
+        assert carousel.locator(".phone-carousel__dot-ring").count() == 1
         carousel.dispatch_event("pointerdown", {"pointerId": 2, "pointerType": "touch", "clientX": 150, "clientY": 250, "bubbles": True})
         carousel.dispatch_event("pointerup", {"pointerId": 2, "pointerType": "touch", "clientX": 250, "clientY": 250, "bubbles": True})
         mobile.wait_for_timeout(50)
