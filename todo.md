@@ -498,4 +498,4 @@
 ## img2threejs procedural-study integration
 
 - [x] Add a responsive, reduced-motion-safe interactive desk-lamp procedural-study showcase to the portfolio without degrading the existing project, lesson, orbit, or carousel interactions.
-- [ ] Verify desktop and mobile presentation, component picking and controls, render lifecycle cleanup, tests, production build, checkpoint, and GitHub synchronization.
+- [x] Verify desktop and mobile presentation, component picking and controls, render lifecycle cleanup, tests, production build, checkpoint, and GitHub synchronization.
