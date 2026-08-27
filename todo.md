@@ -503,4 +503,4 @@
 ## img2threejs procedural-study removal
 
 - [x] Remove the desk-lamp study section, its Three.js runtime, associated source/test artifacts, styling, and unused dependencies without changing unrelated portfolio content.
-- [ ] Verify the restored portfolio on desktop and mobile, run regression tests and production build, checkpoint the removal, and synchronize GitHub main.
+- [x] Verify the restored portfolio on desktop and mobile, run regression tests and production build, checkpoint the removal, and synchronize GitHub main.
