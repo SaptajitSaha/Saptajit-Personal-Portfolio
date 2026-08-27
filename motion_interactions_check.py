@@ -55,12 +55,13 @@ def main():
         page.wait_for_timeout(80)
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
+        learning_dropdown = first_learning_item.locator(".learning-card__dropdown")
         first_learning_item.locator(".learning-card__dropdown[data-motion-ready]").wait_for(state="attached", timeout=1000)
-        page.wait_for_timeout(120)
+        page.wait_for_function("element => Number.parseFloat(getComputedStyle(element).height) > 0", arg=learning_dropdown.element_handle(), timeout=1000)
         learning_detail = first_learning_item.locator(".learning-card__detail")
         learning_transition = learning_detail.evaluate("element => getComputedStyle(element).transitionDuration")
-        learning_motion = first_learning_item.locator(".learning-card__dropdown").evaluate("element => ({property: getComputedStyle(element).transitionProperty, duration: getComputedStyle(element).transitionDuration, opacity: Number(getComputedStyle(element).opacity), height: Number.parseFloat(getComputedStyle(element).height), maxHeight: getComputedStyle(element).maxHeight, contentHeight: element.scrollHeight})")
-        assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
+        learning_motion = learning_dropdown.evaluate("element => ({property: getComputedStyle(element).transitionProperty, duration: getComputedStyle(element).transitionDuration, opacity: Number(getComputedStyle(element).opacity), height: Number.parseFloat(getComputedStyle(element).height), maxHeight: getComputedStyle(element).maxHeight, contentHeight: element.scrollHeight})")
+        assert learning_dropdown.evaluate("element => getComputedStyle(element).display") == "block"
         assert all(float(value.strip().removesuffix("s")) <= .01 for value in learning_transition.split(",")), learning_transition
         assert learning_motion["property"] == "max-height, opacity", learning_motion
         assert learning_motion["duration"] == "0.48s, 0.32s", learning_motion

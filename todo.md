@@ -451,3 +451,9 @@
 - [x] Measure the currently rendered lesson reveal and identify why the motion is not visually apparent.
 - [x] Improve the disclosure transition’s perceptibility and continuity without reintroducing layout bounce, then update regression coverage.
 - [x] Verify repeated desktop and mobile toggles, keyboard and reduced-motion behavior, tests, build, checkpoint, and GitHub synchronization.
+
+## Liquid navigation transparency refinement
+
+- [x] Inspect the floating navigation material layers, opacity, blur, and contrast states.
+- [x] Reduce the navigation surface density and blur while preserving liquid translucency, readable labels, and accessible focus states.
+- [x] Verify desktop and mobile navigation over varied page colors, tests, build, checkpoint, and GitHub synchronization.
