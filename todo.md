@@ -486,3 +486,16 @@
 - [x] Inspect the active-dot ring, dot hover styles, and swipe boundaries to define an isolated no-conflict feedback contract.
 - [x] Thicken and glow the active ring, add a smooth dot-hover scale, and add touch-only elastic boundary feedback without changing normal slide selection.
 - [x] Verify desktop hover, mobile boundary feedback, regular swipe and keyboard navigation, reduced motion, tests, build, checkpoint, and GitHub synchronization.
+
+## Reusable img2threejs skill installation
+
+- [x] Review and install the requested img2threejs repository as a reusable local skill, then verify its documented workflow.
+
+## img2threejs sample-scene validation
+
+- [x] Run the installed img2threejs workflow against a controlled sample reference, including staged specification, procedural scene generation, rendering, and visual review.
+
+## img2threejs procedural-study integration
+
+- [x] Add a responsive, reduced-motion-safe interactive desk-lamp procedural-study showcase to the portfolio without degrading the existing project, lesson, orbit, or carousel interactions.
+- [ ] Verify desktop and mobile presentation, component picking and controls, render lifecycle cleanup, tests, production build, checkpoint, and GitHub synchronization.

@@ -5,6 +5,7 @@ import { FloatingLiquidNav } from "@/components/FloatingLiquidNav";
 import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
+import { ProceduralLampStudy } from "@/components/ProceduralLampStudy";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
 import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
@@ -196,6 +197,8 @@ export default function Home() {
             )})}
           </div>
         </section>
+
+        <ProceduralLampStudy />
 
         <section id="learning" className="section learning-section" data-trail-color="76,202,181" aria-labelledby="learning-heading">
           <div className="learning-copy">

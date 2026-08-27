@@ -108,6 +108,25 @@ def main():
         action.scroll_into_view_if_needed()
         action.hover()
         assert action.locator("svg").evaluate("element => getComputedStyle(element).transform") != "none"
+
+        study = page.locator(".procedural-study")
+        study.scroll_into_view_if_needed()
+        study_canvas = study.locator(".lamp-study__canvas")
+        study_canvas.wait_for(state="visible", timeout=4000)
+        assert study.locator("[data-procedural-lamp-study='ready']").count() == 1
+        assert study_canvas.evaluate("element => ({width: element.width, height: element.height, touchAction: getComputedStyle(element).touchAction})")["width"] > 0
+        assert study_canvas.evaluate("element => ({width: element.width, height: element.height, touchAction: getComputedStyle(element).touchAction})")["height"] > 0
+        assert study_canvas.evaluate("element => getComputedStyle(element).touchAction") == "pan-y"
+        study.get_by_role("button", name="Explode assembly").click()
+        page.wait_for_timeout(80)
+        assert study.get_by_role("button", name="Reassemble").get_attribute("aria-pressed") == "true"
+        study.get_by_role("button", name="Reassemble").click()
+        assert study.get_by_role("button", name="Explode assembly").get_attribute("aria-pressed") == "false"
+        study.get_by_role("button", name="Hide shade").click()
+        assert study.get_by_role("button", name="Show shade").get_attribute("aria-pressed") == "true"
+        study.get_by_role("button", name="Show shade").click()
+        study.get_by_role("button", name="Reset").click()
+        assert study.locator(".lamp-study__selection").inner_text() == "Select a component"
         page.close()
 
         mobile = browser.new_page(viewport={"width": 390, "height": 900})
@@ -184,6 +203,11 @@ def main():
         learning_duration = reduced_learning.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
         assert all(float(part.removesuffix("s")) <= .01 for part in learning_duration.split(", ")), learning_duration
         assert reduced_learning.locator(".learning-card__trigger .interaction-ripple").count() == 0
+        reduced_study = reduced.locator(".procedural-study")
+        reduced_study.scroll_into_view_if_needed()
+        reduced_study.locator(".lamp-study__canvas").wait_for(state="visible", timeout=4000)
+        reduced_study.get_by_role("button", name="Explode assembly").click()
+        assert reduced_study.get_by_role("button", name="Reassemble").get_attribute("aria-pressed") == "true"
         reduced.close()
         browser.close()
         print("motion_interactions_check: PASS")
