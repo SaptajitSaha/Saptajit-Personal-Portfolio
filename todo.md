@@ -439,3 +439,9 @@
 - [x] Inspect the carousel’s existing state, controls, auto-play, and interaction tests to define a non-conflicting touch gesture contract.
 - [x] Add a deliberate horizontal swipe gesture with pointer safeguards, retained keyboard controls, and regression coverage.
 - [x] Verify mobile gesture navigation, layout, auto-play interaction, accessibility, tests, build, checkpoint, and GitHub synchronization.
+
+## Lesson disclosure motion refinement
+
+- [x] Inspect the Radix lesson disclosure structure and final stability overrides to define an interruptible, no-bounce transition.
+- [x] Add a restrained lesson-detail reveal that preserves immediate keyboard and reduced-motion behavior, then extend regression coverage.
+- [x] Verify repeated toggles at desktop and mobile widths, accessibility, interaction regression, tests, build, checkpoint, and GitHub synchronization.

@@ -55,18 +55,26 @@ def main():
         page.wait_for_timeout(80)
         assert first_learning.get_attribute("aria-expanded") == "true"
         first_learning_item = page.locator(".learning-card").nth(0)
-        learning_transition = first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
+        learning_detail = first_learning_item.locator(".learning-card__detail")
+        learning_transition = learning_detail.evaluate("element => getComputedStyle(element).transitionDuration")
         assert first_learning_item.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).display") == "block"
-        assert all(float(value.strip().removesuffix("s")) <= .01 for value in learning_transition.split(",")), learning_transition
+        assert .18 <= max(float(value.strip().removesuffix("s")) for value in learning_transition.split(",")) <= .22, learning_transition
         assert first_learning_item.locator(".learning-card__trigger .interaction-ripple").count() == 0
+        second_learning.scroll_into_view_if_needed()
+        stable_scroll = page.evaluate("window.scrollY")
         second_learning.click()
         page.wait_for_timeout(60)
         assert first_learning.get_attribute("aria-expanded") == "false"
         assert second_learning.get_attribute("aria-expanded") == "true"
+        assert page.evaluate("window.scrollY") == stable_scroll
         second_learning.press("Enter")
         assert second_learning.get_attribute("aria-expanded") == "false"
+        second_learning.press("Enter")
+        page.wait_for_timeout(20)
+        keyboard_duration = page.locator(".learning-card").nth(1).locator(".learning-card__detail").evaluate("element => getComputedStyle(element).transitionDuration")
+        assert all(float(value.strip().removesuffix("s")) <= .01 for value in keyboard_duration.split(",")), keyboard_duration
         page.wait_for_timeout(360)
-        assert page.locator(".learning-card").nth(1).locator(".learning-card__dropdown").get_attribute("data-state") == "closed"
+        assert page.locator(".learning-card").nth(1).locator(".learning-card__dropdown").get_attribute("data-state") == "open"
 
         action = page.locator(".project-live-link").first
         action.scroll_into_view_if_needed()

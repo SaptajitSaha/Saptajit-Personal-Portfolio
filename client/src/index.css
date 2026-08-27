@@ -237,3 +237,10 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 
 /* The tablet split must never leak into the phone card: copy spans the full reading width before the prototype panel. */
 @media (max-width:660px) { .signal-field--liquid .nidarr-card .project-card__content { width:100%; } }
+
+/* Lesson details materialize without height or grid animation, preserving the no-bounce disclosure layout. Keyboard and motion-reduced changes remain instant. */
+@media (prefers-reduced-motion:no-preference) {
+  .learning-card__dropdown[data-state="open"] .learning-card__detail { opacity:1; transform:translateY(0); transition:opacity 180ms cubic-bezier(.22,1,.36,1) !important,transform 220ms cubic-bezier(.22,1,.36,1) !important; }
+  @starting-style { .learning-card__dropdown[data-state="open"] .learning-card__detail { opacity:0; transform:translateY(-4px); } }
+  .learning-card:has(.learning-card__trigger:focus-visible) .learning-card__detail { transition:none !important; }
+}
