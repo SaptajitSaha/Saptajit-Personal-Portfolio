@@ -531,3 +531,9 @@
 - [x] Remove Nidarr-specific case-study spacing and disclosure overrides without changing lesson disclosures.
 - [x] Replace obsolete disclosure-control test coverage with a removal regression assertion.
 - [x] Run unit tests, TypeScript validation, production build, browser layout checks, checkpoint, and GitHub synchronization.
+
+## Global case-study CSS cleanup
+
+- [x] Audit remaining case-study selectors and keyframes against active React markup, preserving lesson disclosure styles.
+- [x] Remove unreachable global case-study CSS and update regression coverage for the cleaned stylesheet.
+- [x] Verify tests, TypeScript, production build, responsive layout, checkpoint, and GitHub synchronization.

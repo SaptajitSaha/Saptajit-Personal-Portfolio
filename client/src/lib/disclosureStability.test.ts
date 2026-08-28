@@ -5,10 +5,10 @@ const stylesheet = readFileSync(new URL("../index.css", import.meta.url), "utf8"
 const homeSource = readFileSync(new URL("../pages/Home.tsx", import.meta.url), "utf8");
 
 describe("disclosure stability", () => {
-  it("keeps project disclosure direct while using a smooth, no-overshoot lesson dropdown transition", () => {
-    expect(stylesheet).toContain('.case-study__dropdown[data-state="closed"],.learning-card__dropdown[data-state="closed"] { display:none; }');
+  it("keeps lesson disclosure direct while using a smooth, no-overshoot dropdown transition", () => {
+    expect(stylesheet).toContain('.learning-card__dropdown[data-state="closed"] { display:none; }');
     expect(stylesheet).toContain(".interaction-ripple { display:none !important; }");
-    expect(stylesheet).toContain(".case-study__trigger:active,.learning-card__trigger:active { transform:none !important; }");
+    expect(stylesheet).toContain(".learning-card__trigger:active { transform:none !important; }");
     expect(stylesheet).toContain(".learning-card__dropdown { max-height:0; opacity:0; transition:max-height 480ms cubic-bezier(.16,1,.3,1),opacity 320ms cubic-bezier(.16,1,.3,1) !important; }");
     expect(stylesheet).toContain(".learning-card__dropdown[data-state=\"open\"][data-motion-ready] { max-height:var(--lesson-detail-height); opacity:1; }");
     expect(stylesheet).toContain(".learning-card:has(.learning-card__trigger:focus-visible) .learning-card__dropdown[data-state=\"open\"] { max-height:none; opacity:1; transition:none !important; }");
