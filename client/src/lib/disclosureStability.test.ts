@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 
 const stylesheet = readFileSync(new URL("../index.css", import.meta.url), "utf8");
 const homeSource = readFileSync(new URL("../pages/Home.tsx", import.meta.url), "utf8");
-const caseStudySource = readFileSync(new URL("../components/CaseStudyPanel.tsx", import.meta.url), "utf8");
 
 describe("disclosure stability", () => {
   it("keeps project disclosure direct while using a smooth, no-overshoot lesson dropdown transition", () => {
@@ -17,6 +16,5 @@ describe("disclosure stability", () => {
     expect(homeSource).toContain("<AccordionContent forceMount className=\"learning-card__dropdown\" data-motion-ready={motionReady || undefined} style={{ \"--lesson-detail-height\": `${detailHeight}px` } as CSSProperties}>");
     expect(homeSource).toContain("data-motion-ready={motionReady || undefined}");
     expect(homeSource).toContain("window.requestAnimationFrame(() => setMotionReadyTopic(value))");
-    expect(caseStudySource).not.toContain("onPointerDown={triggerInteractionRipple}");
   });
 });

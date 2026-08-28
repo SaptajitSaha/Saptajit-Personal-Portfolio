@@ -1,6 +1,5 @@
 /** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
-import { CaseStudy, CaseStudyPanel } from "@/components/CaseStudyPanel";
 import { FloatingLiquidNav } from "@/components/FloatingLiquidNav";
 import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
@@ -35,7 +34,7 @@ const nidarrEvidence = {
   profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/VueDxQFucIUBOyFH.png",
 };
 
-type Project = CaseStudy & { title: string; tagline: string; className: string; trace?: string[] };
+type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; className: string; trace?: string[] };
 
 const projects: Project[] = [
   {
@@ -44,14 +43,7 @@ const projects: Project[] = [
     year: "2026",
     role: "Product & frontend prototype builder",
     tagline: "A mobile safety prototype that brings critical actions into one guided, more usable flow.",
-    problem: "Safety tools can become hard to navigate when a person needs a clear next action quickly.",
-    approach: "Started with one mobile entry point, then shaped a flow around visible safety signals and concrete actions.",
-    system: "React, TypeScript, Gemini-powered analysis, location-aware reporting, Safety Map, and Walk With Me.",
-    contribution: "Built the product flow, safety overview, incident-report experience, and the Walk With Me concept.",
-    learning: "How can a safety interaction stay clear and useful when location or community context is incomplete?",
-    status: "Prototype. Public performance results are not published.",
     href: "https://nidarr.vercel.app/",
-    linkLabel: "Visit prototype",
     className: "work-feature nidarr-card",
   },
 ];
@@ -215,7 +207,6 @@ export default function Home() {
                   <p className="work-description">{project.tagline}</p>
                   {project.trace && <div className="project-card__trace" aria-label="Project system trace">{project.trace.map((trace, index) => <span key={trace}><b>{String(index + 1).padStart(2, "0")}</b>{trace}</span>)}</div>}
                   {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a></div>}
-                  <CaseStudyPanel study={project} />
                 </div>
               </article>
             )})}

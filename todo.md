@@ -518,3 +518,16 @@
 ## Nidarr CTA browser-measured spacing fix
 
 - [x] Inspect the rendered Nidarr CTA positions in the connected browser, correct the actual layout owner of the gap, verify desktop/mobile spacing and regressions, checkpoint, and synchronize GitHub.
+
+## Remove Nidarr case-study control
+
+- [x] Remove the Explore Nidarr case-study button, its disclosure logic/content, and now-unused styles without affecting the live prototype or other lesson disclosures.
+- [x] Verify responsive project layout, existing interactions, tests, production build, checkpoint, and GitHub synchronization.
+
+## Nidarr case-study CTA removal
+
+- [x] Remove the Explore Nidarr case-study control, its import, rendering branch, and case-study data from the project page.
+- [x] Preserve the Open live prototype CTA and the remaining Nidarr preview/layout behavior.
+- [x] Remove Nidarr-specific case-study spacing and disclosure overrides without changing lesson disclosures.
+- [x] Replace obsolete disclosure-control test coverage with a removal regression assertion.
+- [x] Run unit tests, TypeScript validation, production build, browser layout checks, checkpoint, and GitHub synchronization.

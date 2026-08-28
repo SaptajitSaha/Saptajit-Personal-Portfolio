@@ -208,8 +208,6 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 .signal-field--liquid .learning-section,.signal-field--liquid .toolbox-section { border-color:transparent; border-radius:0; background:transparent; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }.signal-field--liquid .learning-section::before,.signal-field--liquid .toolbox-section::before { width:44px; box-shadow:8px 0 0 rgba(232,76,53,.14); }.signal-field--liquid .about-section { border-color:rgba(255,255,255,.08); background:linear-gradient(132deg,rgba(255,255,255,.035),rgba(255,255,255,.012)),rgba(16,16,22,.35); box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 48px rgba(0,0,0,.12); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
 @media (max-width:660px) { .learning-card__trigger { grid-template-columns:32px minmax(0,1fr) auto 14px; gap:10px; min-height:60px; padding:16px 0; }.learning-card__detail { padding-left:42px; }.signal-field--liquid .learning-section,.signal-field--liquid .toolbox-section { margin-top:22px; padding-inline:0; }.signal-field--liquid .about-section { margin-top:22px; } }
 
-.nidarr-card .project-card__content { z-index:6; pointer-events:none; }.nidarr-card .project-card__content > * { pointer-events:auto; }.nidarr-card .case-study-accordion { align-self:flex-start; width:min(100%,390px); margin-top:18px; padding:10px 14px; border:1px solid rgba(255,255,255,.14); border-radius:14px; background:rgba(10,10,14,.82); box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 10px 26px rgba(0,0,0,.18); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }.nidarr-card .case-study-accordion .case-study { width:100%; }.nidarr-card .case-study__trigger { width:100%; }
-@media (max-width:660px) { .nidarr-card .case-study-accordion { width:100%; margin-top:16px; padding:9px 12px; } }
 
 /* Editorial type refinement for the final two section headlines. */
 .signal-field--liquid .about-copy h2,.signal-field--liquid .toolbox-section h2 { letter-spacing:-.045em; }.signal-field--liquid .about-copy h2 em,.signal-field--liquid .toolbox-section h2 em { letter-spacing:-.04em; }
@@ -230,8 +228,6 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 /* Phone reading pass: content leads the Nidarr card, while lessons gain an explicit second row for the action state and full-width detail copy. */
 @media (max-width:660px) { .signal-field--liquid .work-section { padding-top:56px; padding-bottom:58px; }.signal-field--liquid .work-section .section-heading > p { max-width:34ch; line-height:1.64; }.nidarr-card .work-meta { gap:10px; font-size:10px; line-height:1.45; }.nidarr-card h3 { margin-top:30px; font-size:clamp(2.65rem,14vw,3.55rem); line-height:.93; }.nidarr-card .work-tools { font-size:11px; line-height:1.55; }.nidarr-card .work-description { margin-top:18px; font-size:16px; line-height:1.64; }.nidarr-card .nidarr-actions { margin-top:18px; }.nidarr-card .case-study-accordion { margin-top:20px; }.nidarr-card .case-study__trigger { min-height:48px; }.signal-field--liquid .learning-section { gap:32px; margin-top:28px; padding-top:56px; padding-bottom:58px; }.signal-field--liquid .learning-copy > p { max-width:35ch; margin-top:22px; line-height:1.65; }.learning-list { margin-top:2px; }.learning-card__trigger { grid-template-columns:30px minmax(0,1fr) 16px; grid-template-rows:auto auto; column-gap:10px; row-gap:5px; min-height:78px; padding:17px 2px; }.learning-card__trigger > span:first-child { grid-column:1; grid-row:1; }.learning-card__trigger h3 { grid-column:2; grid-row:1; font-size:clamp(1.4rem,6.4vw,1.7rem); line-height:1.06; }.learning-card__trigger .learning-open { grid-column:2; grid-row:2; justify-self:start; font-size:10px; line-height:1.2; }.learning-card__trigger > svg { grid-column:3; grid-row:1; width:16px; height:16px; }.learning-card__detail { gap:17px; padding:8px 0 28px; }.learning-card__detail p { font-size:15px; line-height:1.62; }.learning-card__detail strong { margin-bottom:6px; font-size:11px; line-height:1.25; } }
 
-/* The Nidarr disclosure is a compact utility control, not a second card: render its body only when open and avoid transitional motion. */
-.nidarr-card .case-study-accordion { align-self:flex-start; width:min(100%,390px); margin-top:18px; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }.nidarr-card .case-study-accordion .case-study { padding:0; }.nidarr-card .case-study__trigger { min-height:40px; padding:0; }.nidarr-card .case-study__trigger > svg { transition:none !important; }.nidarr-card .case-study__dropdown { display:block; margin-top:14px; overflow:visible; transition:none !important; animation:none !important; }.nidarr-card .case-study__dropdown[data-state="closed"] { display:none; }.nidarr-card .case-study__dropdown[data-state="open"] { display:block; }.nidarr-card .case-study__dropdown .case-study__body { opacity:1; filter:none; clip-path:none; transform:none; transition:none !important; animation:none !important; }
 
 /* Disclosure controls are high-frequency and keyboard-accessible: avoid ripple, scale, grid-height, and icon motion so state changes never bounce the page. */
 .case-study__trigger,.learning-card__trigger { transform:none !important; transition:none !important; }.case-study__trigger:active,.learning-card__trigger:active { transform:none !important; }.case-study__trigger > svg,.learning-card__trigger > svg { transition:none !important; }.case-study__dropdown,.learning-card__dropdown { display:block; grid-template-rows:none; overflow:visible; transition:none !important; animation:none !important; }.case-study__dropdown[data-state="closed"],.learning-card__dropdown[data-state="closed"] { display:none; }.case-study__dropdown[data-state="open"],.learning-card__dropdown[data-state="open"] { display:block; }.case-study__dropdown .case-study__body,.learning-card__dropdown .learning-card__detail { opacity:1; filter:none; clip-path:none; transform:none; transition:none !important; animation:none !important; }.learning-card[data-state="open"] { padding-inline:0 !important; margin-inline:0 !important; border:0; border-radius:0; background:transparent; box-shadow:none; }.interaction-ripple { display:none !important; }
@@ -250,33 +246,12 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
   .learning-card:has(.learning-card__trigger:focus-visible) .learning-card__dropdown[data-state="closed"] { display:none !important; transition:none !important; }
 }
 
-/* Project CTA alignment and section-to-section continuity: keep the live link and case-study trigger close, then reveal only as each section enters the reading path. */
-.nidarr-card .project-card__content { justify-content:flex-start; }
-.nidarr-card .nidarr-actions { gap:8px; margin-top:16px; }
-.nidarr-card .nidarr-actions + .case-study-accordion { margin-top:8px !important; }
+/* Section-to-section continuity: reveal each reading block only as it enters the reading path. */
 [data-scroll-reveal] { opacity:1; transform:none; filter:none; }
 [data-scroll-reveal][data-reveal-ready="true"]:not([data-revealed="true"]) { opacity:0; transform:translateY(18px); filter:blur(4px); }
 [data-scroll-reveal][data-reveal-ready="true"][data-revealed="true"] { opacity:1; transform:translateY(0); filter:blur(0); transition:opacity 520ms cubic-bezier(.16,1,.3,1),transform 520ms cubic-bezier(.16,1,.3,1),filter 520ms cubic-bezier(.16,1,.3,1); transition-delay:var(--reveal-delay,0ms); }
 [data-scroll-reveal][data-reveal-ready="true"]:focus-within { opacity:1; transform:translateY(0); filter:blur(0); }
 @media (prefers-reduced-motion:reduce) { [data-scroll-reveal] { opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; } }
-@media (max-width:660px) { .nidarr-card .nidarr-actions { margin-top:14px; }.nidarr-card .nidarr-actions + .case-study-accordion { margin-top:6px !important; } }
+@media (max-width:660px) { .nidarr-card .nidarr-actions { margin-top:14px; } }
 
-/* Final Nidarr CTA compactness pass: the content column should size to its copy instead of reserving the full feature-card height. */
 .nidarr-card .project-card__content { min-height:0; }
-.nidarr-card .case-study-accordion { margin-top:8px !important; }
-@media (max-width:660px) { .nidarr-card .case-study-accordion { margin-top:6px !important; } }
-
-/* The visible gap is created by the inner case-study flex item, not the Accordion shell. Keep it in normal flow directly after the live CTA. */
-.nidarr-card .case-study { margin-top:0 !important; padding-top:0 !important; }
-
-/* Closed Radix content can retain a measured height while hidden; collapse only the closed shell so the trigger follows the live CTA. */
-.nidarr-card .case-study-accordion { height:auto !important; min-height:0 !important; }
-.nidarr-card .case-study-accordion:has(.case-study[data-state="closed"]) { height:40px !important; }
-@media (max-width:660px) { .nidarr-card .case-study-accordion:has(.case-study[data-state="closed"]) { height:40px !important; } }
-
-/* Explicitly own the disclosure stack: trigger first, then body when open; never distribute the trigger against the card’s reserved height. */
-.nidarr-card .case-study-accordion { display:flex !important; flex-direction:column; align-items:stretch; justify-content:flex-start; }
-.nidarr-card .case-study-accordion .case-study { flex:0 0 auto; }
-
-/* The Radix Accordion.Header renders as h3; prevent the project headline rhythm from pushing the CTA trigger down. */
-.nidarr-card .case-study-accordion h3 { margin:0 !important; }
