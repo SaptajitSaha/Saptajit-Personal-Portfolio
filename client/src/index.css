@@ -260,3 +260,8 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 [data-scroll-reveal][data-reveal-ready="true"]:focus-within { opacity:1; transform:translateY(0); filter:blur(0); }
 @media (prefers-reduced-motion:reduce) { [data-scroll-reveal] { opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; } }
 @media (max-width:660px) { .nidarr-card .nidarr-actions { margin-top:14px; }.nidarr-card .nidarr-actions + .case-study-accordion { margin-top:6px !important; } }
+
+/* Final Nidarr CTA compactness pass: the content column should size to its copy instead of reserving the full feature-card height. */
+.nidarr-card .project-card__content { min-height:0; }
+.nidarr-card .case-study-accordion { margin-top:8px !important; }
+@media (max-width:660px) { .nidarr-card .case-study-accordion { margin-top:6px !important; } }
