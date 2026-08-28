@@ -108,6 +108,18 @@ def main():
         action.scroll_into_view_if_needed()
         action.hover()
         assert action.locator("svg").evaluate("element => getComputedStyle(element).transform") != "none"
+        page.mouse.move(10, 10)
+        project_section = page.locator("#work")
+        project_section.scroll_into_view_if_needed()
+        page.wait_for_timeout(620)
+        project_card = page.locator(".project-card").first
+        assert project_section.get_attribute("data-revealed") == "true"
+        assert project_card.get_attribute("data-revealed") == "true"
+        assert project_card.evaluate("element => getComputedStyle(element).opacity") == "1"
+        settled_transform = project_card.evaluate("element => getComputedStyle(element).transform")
+        assert settled_transform in ("none", "matrix(1, 0, 0, 1, 0, 0)"), settled_transform
+        cta_gap = page.locator(".nidarr-actions + .case-study-accordion").evaluate("element => Number.parseFloat(getComputedStyle(element).marginTop)")
+        assert cta_gap <= 8, cta_gap
         page.close()
 
         mobile = browser.new_page(viewport={"width": 390, "height": 900})
@@ -184,6 +196,9 @@ def main():
         learning_duration = reduced_learning.locator(".learning-card__dropdown").evaluate("element => getComputedStyle(element).transitionDuration")
         assert all(float(part.removesuffix("s")) <= .01 for part in learning_duration.split(", ")), learning_duration
         assert reduced_learning.locator(".learning-card__trigger .interaction-ripple").count() == 0
+        reduced_work = reduced.locator("#work")
+        reduced_work.scroll_into_view_if_needed()
+        assert reduced_work.locator(".project-card").first.evaluate("element => ({opacity: getComputedStyle(element).opacity, transform: getComputedStyle(element).transform})") == {"opacity": "1", "transform": "none"}
         reduced.close()
         browser.close()
         print("motion_interactions_check: PASS")

@@ -90,6 +90,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<PrimaryNavigationId>("top");
   const [openLearningTopic, setOpenLearningTopic] = useState("");
   const [motionReadyTopic, setMotionReadyTopic] = useState("");
+  const [scrollMotionReady, setScrollMotionReady] = useState(false);
   const [introComplete, setIntroComplete] = useState(shouldSkipFirstLoadExperience);
   const completeFirstLoad = useCallback(() => setIntroComplete(true), []);
 
@@ -101,6 +102,30 @@ export default function Home() {
       pendingNavigationRef.current = null;
     }, 1000);
   }
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setScrollMotionReady(true);
+      return;
+    }
+    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-reveal]"));
+    if (!revealTargets.length || !("IntersectionObserver" in window)) {
+      setScrollMotionReady(true);
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target as HTMLElement;
+          target.dataset.revealed = "true";
+          observer.unobserve(target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8%" });
+    revealTargets.forEach(target => observer.observe(target));
+    setScrollMotionReady(true);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -164,22 +189,22 @@ export default function Home() {
           <OrbitalScene portraitSrc={portrait} portraitAlt="Saptajit Saha standing before a colorful Indian Institute of Technology Madras mural" />
         </section>
 
-        <section className="signal-strip" data-trail-color="232,76,53" aria-label="Current portfolio signal">
+        <section className="signal-strip" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53" aria-label="Current portfolio signal">
           <p>Currently building <strong>Nidarr</strong>, learning in public, and mapping the systems behind useful software.</p>
           <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer">Open Nidarr <ArrowUpRight size={17} aria-hidden="true" /></a>
         </section>
 
-        <section id="work" className="section work-section" data-trail-color="157,119,255" aria-labelledby="work-heading">
+        <section id="work" className="section work-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="157,119,255" aria-labelledby="work-heading">
           <div className="section-heading section-heading--work">
             <span>Selected work</span>
             <h2 id="work-heading">What I&apos;m<br /><em>making real.</em></h2>
             <p>Projects that explore safer interfaces, more human civic guidance, and data systems built around the next useful decision.</p>
           </div>
           <div className="work-layout">
-            {projects.map((project) => {
+            {projects.map((project, index) => {
               const isNidarr = project.title === "Nidarr";
               return (
-              <article className={`${project.className} project-card`} key={project.title} onPointerMove={isNidarr ? undefined : tiltGlassSurface} onPointerLeave={isNidarr ? undefined : resetGlassTilt}>
+              <article className={`${project.className} project-card`} data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-reveal-delay={`${index * 70}ms`} key={project.title} onPointerMove={isNidarr ? undefined : tiltGlassSurface} onPointerLeave={isNidarr ? undefined : resetGlassTilt}>
                 {isNidarr ? (
                   <NidarrShowcase assets={nidarrEvidence} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
@@ -197,7 +222,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="learning" className="section learning-section" data-trail-color="76,202,181" aria-labelledby="learning-heading">
+        <section id="learning" className="section learning-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="76,202,181" aria-labelledby="learning-heading">
           <div className="learning-copy">
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
@@ -207,7 +232,7 @@ export default function Home() {
           </Accordion>
         </section>
 
-        <section id="about" className="section about-section" data-trail-color="226,178,84" aria-labelledby="about-heading">
+        <section id="about" className="section about-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="226,178,84" aria-labelledby="about-heading">
           <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at Indian Institute of Technology Madras" width="1084" height="1448" loading="lazy" /></div>
           <div className="about-copy">
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
@@ -217,7 +242,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section toolbox-section" data-trail-color="85,163,255" aria-labelledby="toolbox-heading">
+        <section className="section toolbox-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="85,163,255" aria-labelledby="toolbox-heading">
           <div className="toolbox-topline"><span>Tools I use or am learning</span></div>
           <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
           <div className="toolbox-ticker" aria-label="Technology and tool groups">
@@ -241,7 +266,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer id="contact" className="site-footer" data-trail-color="236,103,157">
+        <footer id="contact" className="site-footer" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="236,103,157">
         <ReachOutPanel />
         <div className="footer-bottom"><span className="footer-signal-mark"><img src={logoMark} alt="" />© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>

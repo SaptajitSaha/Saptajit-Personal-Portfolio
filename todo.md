@@ -504,3 +504,9 @@
 
 - [x] Remove the desk-lamp study section, its Three.js runtime, associated source/test artifacts, styling, and unused dependencies without changing unrelated portfolio content.
 - [x] Verify the restored portfolio on desktop and mobile, run regression tests and production build, checkpoint the removal, and synchronize GitHub main.
+
+## Project CTA spacing and scroll transitions
+
+- [x] Reduce the visual gap between the project live-prototype and case-study controls to match the supplied reference without changing disclosure behavior.
+- [x] Add restrained, interruptible scroll-entry transitions for the remaining portfolio sections, with reduced-motion and keyboard-safe fallbacks.
+- [x] Verify desktop/mobile spacing, scroll transitions, existing interactions, tests, production build, checkpoint, and GitHub synchronization.
