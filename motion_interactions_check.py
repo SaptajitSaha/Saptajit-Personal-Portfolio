@@ -118,7 +118,7 @@ def main():
         assert project_card.evaluate("element => getComputedStyle(element).opacity") == "1"
         settled_transform = project_card.evaluate("element => getComputedStyle(element).transform")
         assert settled_transform in ("none", "matrix(1, 0, 0, 1, 0, 0)"), settled_transform
-        cta_gap = page.locator(".nidarr-actions + .case-study-accordion").evaluate("element => Number.parseFloat(getComputedStyle(element).marginTop)")
+        cta_gap = page.locator(".project-live-link").evaluate("live => { const trigger = document.querySelector('.nidarr-card .case-study__trigger'); return trigger.getBoundingClientRect().top - live.getBoundingClientRect().bottom; }")
         assert cta_gap <= 8, cta_gap
         page.close()
 

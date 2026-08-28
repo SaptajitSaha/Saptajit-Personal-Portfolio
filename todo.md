@@ -514,3 +514,7 @@
 ## Nidarr CTA gap correction
 
 - [x] Eliminate the unnecessary vertical gap between the live-prototype and case-study controls, then verify mobile and desktop spacing, existing interactions, tests, build, checkpoint, and GitHub synchronization.
+
+## Nidarr CTA browser-measured spacing fix
+
+- [x] Inspect the rendered Nidarr CTA positions in the connected browser, correct the actual layout owner of the gap, verify desktop/mobile spacing and regressions, checkpoint, and synchronize GitHub.

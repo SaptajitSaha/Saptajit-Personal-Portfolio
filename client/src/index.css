@@ -265,3 +265,18 @@ h1 span, h2 em, .site-footer em { color: var(--signal); font-family: "Cormorant 
 .nidarr-card .project-card__content { min-height:0; }
 .nidarr-card .case-study-accordion { margin-top:8px !important; }
 @media (max-width:660px) { .nidarr-card .case-study-accordion { margin-top:6px !important; } }
+
+/* The visible gap is created by the inner case-study flex item, not the Accordion shell. Keep it in normal flow directly after the live CTA. */
+.nidarr-card .case-study { margin-top:0 !important; padding-top:0 !important; }
+
+/* Closed Radix content can retain a measured height while hidden; collapse only the closed shell so the trigger follows the live CTA. */
+.nidarr-card .case-study-accordion { height:auto !important; min-height:0 !important; }
+.nidarr-card .case-study-accordion:has(.case-study[data-state="closed"]) { height:40px !important; }
+@media (max-width:660px) { .nidarr-card .case-study-accordion:has(.case-study[data-state="closed"]) { height:40px !important; } }
+
+/* Explicitly own the disclosure stack: trigger first, then body when open; never distribute the trigger against the card’s reserved height. */
+.nidarr-card .case-study-accordion { display:flex !important; flex-direction:column; align-items:stretch; justify-content:flex-start; }
+.nidarr-card .case-study-accordion .case-study { flex:0 0 auto; }
+
+/* The Radix Accordion.Header renders as h3; prevent the project headline rhythm from pushing the CTA trigger down. */
+.nidarr-card .case-study-accordion h3 { margin:0 !important; }
