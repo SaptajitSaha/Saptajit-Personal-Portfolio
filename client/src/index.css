@@ -398,3 +398,47 @@ h1 span { font-style: normal; }
 /* --- The display name needs clearance for descenders (p, j) --- */
 h1 { line-height: .96; }
 .signal-field--liquid .hero-statement { margin: 30px 0 30px; }
+/* ============================================================
+   Refinement pass 4: mobile performance + text breathing room.
+   Mobile GPUs choke on stacked backdrop blurs, full-page canvas
+   repaints, and blur() transitions on whole sections; the phone
+   gets pre-composited fills instead. Text gains border clearance.
+   ============================================================ */
+
+/* --- Breathing room: no text hugs a panel border --- */
+.signal-field--liquid .section { padding-inline: clamp(26px, 3.4vw, 48px); }
+@media (max-width: 900px) { .signal-field--liquid .section { padding-inline: clamp(22px, 4.6vw, 32px); } }
+@media (max-width: 660px) {
+  .signal-field--liquid .section { padding-inline: 22px; }
+  .signal-field--liquid .project-card__content { padding: 22px; }
+  .signal-field--liquid .hero-copy { margin-inline: 16px; padding: 24px 20px; }
+  .signal-field--liquid .reach-out { padding: 26px 20px 22px; }
+  .signal-field--liquid .reach-out__heading h2, .signal-field--liquid .reach-out__message p { max-width: 100%; }
+}
+
+/* --- Mobile performance: pre-composited glass, no stacked blurs --- */
+@media (max-width: 900px) {
+  .signal-field--liquid .hero-copy,
+  .signal-field--liquid .section,
+  .signal-field--liquid .project-card,
+  .signal-field--liquid .reach-out,
+  .signal-field--liquid .signal-strip,
+  .signal-field--liquid .role-planet,
+  .signal-field--liquid .contact-dialog { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  .signal-field--liquid .hero-copy { background: linear-gradient(124deg, rgba(var(--glass-rgb), .1), rgba(var(--glass-rgb), .04) 47%, rgba(var(--glass-rgb), .07)), rgba(var(--panel-rgb), .82); }
+  .signal-field--liquid .section { background: rgba(var(--panel-rgb), .62); }
+  .signal-field--liquid .project-card { background: rgba(var(--panel-rgb), .86); }
+  .signal-field--liquid .signal-strip { background: rgba(var(--panel-rgb), .8); }
+  .signal-field--liquid .reach-out { background: rgba(var(--panel-rgb), .88); }
+  .signal-field--liquid .nidarr-card .project-card__content, .signal-field--liquid .nidarr-media { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  /* The full-page canvases are the heaviest scroll-time costs on phones. */
+  .site-pixel-grid, .hero-mesh__canvas { display: none; }
+  /* Whole-section blur() transitions jank on mobile GPUs: fade + rise only. */
+  [data-reveal-ready="true"] { transition: opacity 460ms cubic-bezier(.16, 1, .3, 1), transform 460ms cubic-bezier(.16, 1, .3, 1); }
+  [data-reveal-ready="true"]:not([data-revealed="true"]) { filter: none; }
+  [data-reveal-ready="true"] .section-heading > *, [data-reveal-ready="true"] .learning-copy > *, [data-reveal-ready="true"] .about-copy > *, [data-reveal-ready="true"] .toolbox-topline, [data-reveal-ready="true"] .toolbox-section h2 { transition: opacity 520ms cubic-bezier(.16, 1, .3, 1), transform 520ms cubic-bezier(.16, 1, .3, 1); }
+  [data-reveal-ready="true"]:not([data-revealed="true"]) .section-heading > *, [data-reveal-ready="true"]:not([data-revealed="true"]) .learning-copy > *, [data-reveal-ready="true"]:not([data-revealed="true"]) .about-copy > *, [data-reveal-ready="true"]:not([data-revealed="true"]) .toolbox-topline, [data-reveal-ready="true"]:not([data-revealed="true"]) .toolbox-section h2 { filter: none; }
+}
+@media (pointer: coarse) {
+  .site-pixel-grid, .hero-mesh__canvas { display: none; }
+}
