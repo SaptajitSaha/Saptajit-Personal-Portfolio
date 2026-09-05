@@ -3,7 +3,6 @@ import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
 import { applyTheme, readStoredTheme, storeTheme, transitionTheme, type PortfolioTheme } from "@/lib/theme";
 import { Moon, Sun } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { flushSync } from "react-dom";
 import "./floating-liquid-nav.css";
 
 type FloatingLiquidNavProps = {
@@ -37,11 +36,11 @@ export function FloatingLiquidNav({ activeSection, onNavigate }: FloatingLiquidN
       ? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
       : { x: window.innerWidth - 40, y: 32 };
     transitionTheme(next, origin, () => {
-      flushSync(() => {
-        applyTheme(next);
-        storeTheme(next);
-        setTheme(next);
-      });
+      // Synchronous DOM attribute change: the view-transition snapshot must
+      // capture the new palette. React re-renders the icon right after.
+      applyTheme(next);
+      storeTheme(next);
+      setTheme(next);
     });
   }, [theme]);
 

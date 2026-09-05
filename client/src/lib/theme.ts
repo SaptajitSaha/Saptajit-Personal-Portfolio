@@ -69,6 +69,6 @@ export function transitionTheme(
       );
     })
     .catch(() => {
-      /* transition skipped before ready; theme is already applied */
+      /* transition skipped (e.g. document hidden); theme is already applied */
     });
 }
