@@ -62,8 +62,8 @@ export function transitionTheme(
           ],
         },
         {
-          duration: 640,
-          easing: "cubic-bezier(.16, 1, .3, 1)",
+          duration: 720,
+          easing: "cubic-bezier(.45, .05, .25, 1)",
           pseudoElement: "::view-transition-new(root)",
         },
       );
