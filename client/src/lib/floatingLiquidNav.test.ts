@@ -5,10 +5,10 @@ const styles = readFileSync(new URL("../components/floating-liquid-nav.css", imp
 
 describe("floating liquid navigation material", () => {
   it("uses a light translucent surface with restrained blur and readable labels", () => {
-    expect(styles).toContain("rgba(13,13,17,.42)");
+    expect(styles).toContain("rgba(var(--panel-rgb),.42)");
     expect(styles).toContain("backdrop-filter:blur(14px) saturate(1.24)");
     expect(styles).toContain("-webkit-backdrop-filter:blur(14px) saturate(1.24)");
-    expect(styles).toContain("color:rgba(241,238,233,.78)");
+    expect(styles).toContain("color:rgba(var(--paper-rgb),.78)");
     expect(styles).toContain("@media (prefers-reduced-transparency:reduce)");
   });
 

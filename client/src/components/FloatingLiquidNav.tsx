@@ -1,6 +1,9 @@
 import { animate, createScope } from "animejs";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
-import { useEffect, useRef } from "react";
+import { applyTheme, readStoredTheme, storeTheme, transitionTheme, type PortfolioTheme } from "@/lib/theme";
+import { Moon, Sun } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import "./floating-liquid-nav.css";
 
 type FloatingLiquidNavProps = {
@@ -10,6 +13,8 @@ type FloatingLiquidNavProps = {
 
 export function FloatingLiquidNav({ activeSection, onNavigate }: FloatingLiquidNavProps) {
   const navRef = useRef<HTMLElement>(null);
+  const themeButtonRef = useRef<HTMLButtonElement>(null);
+  const [theme, setTheme] = useState<PortfolioTheme>(() => readStoredTheme());
 
   useEffect(() => {
     const scope = createScope({ root: navRef, mediaQueries: { reduceMotion: "(prefers-reduced-motion: reduce)" } }).add(self => {
@@ -25,6 +30,21 @@ export function FloatingLiquidNav({ activeSection, onNavigate }: FloatingLiquidN
     return () => scope.revert();
   }, []);
 
+  const switchTheme = useCallback(() => {
+    const next: PortfolioTheme = theme === "paper" ? "ink" : "paper";
+    const rect = themeButtonRef.current?.getBoundingClientRect();
+    const origin = rect
+      ? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+      : { x: window.innerWidth - 40, y: 32 };
+    transitionTheme(next, origin, () => {
+      flushSync(() => {
+        applyTheme(next);
+        storeTheme(next);
+        setTheme(next);
+      });
+    });
+  }, [theme]);
+
   return (
     <nav ref={navRef} className="liquid-nav" aria-label="Primary navigation">
       <div className="liquid-nav__surface">
@@ -39,6 +59,18 @@ export function FloatingLiquidNav({ activeSection, onNavigate }: FloatingLiquidN
             <span>{item.label}</span>
           </a>
         ))}
+        <button
+          ref={themeButtonRef}
+          type="button"
+          className="liquid-nav__theme"
+          data-current={theme}
+          onClick={switchTheme}
+          aria-label={theme === "paper" ? "Switch to dark theme" : "Switch to light theme"}
+          title={theme === "paper" ? "Dark" : "Light"}
+        >
+          <span className="liquid-nav__theme-icon liquid-nav__theme-icon--moon" aria-hidden="true"><Moon size={15} /></span>
+          <span className="liquid-nav__theme-icon liquid-nav__theme-icon--sun" aria-hidden="true"><Sun size={15} /></span>
+        </button>
       </div>
     </nav>
   );

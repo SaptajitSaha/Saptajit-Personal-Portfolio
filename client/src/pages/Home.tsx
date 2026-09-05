@@ -107,13 +107,11 @@ export default function Home() {
     }
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          target.dataset.revealed = "true";
-          observer.unobserve(target);
-        }
+        const target = entry.target as HTMLElement;
+        if (entry.isIntersecting) target.dataset.revealed = "true";
+        else delete target.dataset.revealed;
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8%" });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     revealTargets.forEach(target => observer.observe(target));
     setScrollMotionReady(true);
     return () => observer.disconnect();
@@ -135,12 +133,29 @@ export default function Home() {
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(syncActiveSection);
     };
+    const thread = document.querySelector<HTMLElement>(".liquid-signal-thread");
+    const hero = document.querySelector<HTMLElement>(".hero");
     syncActiveSection();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const syncScrollExtras = () => {
+      if (thread) {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        thread.style.setProperty("--thread-progress", scrollable > 0 ? (window.scrollY / scrollable).toFixed(4) : "0");
+      }
+      if (hero) {
+        if (window.scrollY <= window.innerHeight * 1.25) hero.style.setProperty("--hero-scroll", String(Math.min(window.scrollY, window.innerHeight)));
+        else hero.style.removeProperty("--hero-scroll");
+      }
+    };
+    const wrappedOnScroll = () => {
+      syncScrollExtras();
+      onScroll();
+    };
+    syncScrollExtras();
+    window.addEventListener("scroll", wrappedOnScroll, { passive: true });
+    window.addEventListener("resize", wrappedOnScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", wrappedOnScroll);
+      window.removeEventListener("resize", wrappedOnScroll);
       if (frame) window.cancelAnimationFrame(frame);
       if (navigationTimerRef.current) window.clearTimeout(navigationTimerRef.current);
       if (learningMotionFrameRef.current) window.cancelAnimationFrame(learningMotionFrameRef.current);
@@ -153,6 +168,34 @@ export default function Home() {
     learningMotionFrameRef.current = window.requestAnimationFrame(() => setMotionReadyTopic(value));
   }, []);
 
+  useEffect(() => {
+    if (!introComplete) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const buttons = Array.from(document.querySelectorAll<HTMLElement>(".hero-actions .button"));
+    const detach: Array<() => void> = [];
+    buttons.forEach(button => {
+      const onMove = (event: PointerEvent) => {
+        const bounds = button.getBoundingClientRect();
+        const dx = (event.clientX - (bounds.left + bounds.width / 2)) / (bounds.width / 2);
+        const dy = (event.clientY - (bounds.top + bounds.height / 2)) / (bounds.height / 2);
+        button.style.setProperty("--magnet-x", `${(dx * 4).toFixed(1)}px`);
+        button.style.setProperty("--magnet-y", `${(dy * 3).toFixed(1)}px`);
+      };
+      const onLeave = () => {
+        button.style.setProperty("--magnet-x", "0px");
+        button.style.setProperty("--magnet-y", "0px");
+      };
+      button.addEventListener("pointermove", onMove);
+      button.addEventListener("pointerleave", onLeave);
+      detach.push(() => {
+        button.removeEventListener("pointermove", onMove);
+        button.removeEventListener("pointerleave", onLeave);
+      });
+    });
+    return () => detach.forEach(remove => remove());
+  }, [introComplete]);
+
   return (
     <div id="top" className="signal-field signal-field--liquid">
       {!introComplete && <FirstLoadExperience onComplete={completeFirstLoad} />}
@@ -163,7 +206,7 @@ export default function Home() {
       <div className="liquid-signal-thread" aria-hidden="true"><i /><i /><i /></div>
 
       <main id="main-content">
-        <section className="hero" data-trail-color="232,76,53" aria-labelledby="hero-title">
+        <section className="hero" data-trail-color="232,76,53" aria-labelledby="hero-title" onPointerMove={heroPointerParallax} onPointerLeave={heroPointerParallaxReset}>
           <div className="hero-mesh" aria-hidden="true"><div className="hero-mesh__fallback" /><MeshDriftShader className="hero-mesh__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
@@ -171,7 +214,6 @@ export default function Home() {
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
             <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
-            <p className="hero-detail">I build small, serious experiments that turn difficult questions into useful tools.</p>
             <div className="hero-actions">
               <a className="button button--signal" href="#work">Explore work <ArrowUpRight size={18} aria-hidden="true" /></a>
               <a className="button button--quiet" href="https://github.com/SaptajitSaha" target="_blank" rel="noreferrer">GitHub <Github size={17} aria-hidden="true" /></a>
@@ -186,7 +228,7 @@ export default function Home() {
           <a href="https://nidarr.vercel.app/" target="_blank" rel="noreferrer">Open Nidarr <ArrowUpRight size={17} aria-hidden="true" /></a>
         </section>
 
-        <section id="work" className="section work-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="157,119,255" aria-labelledby="work-heading">
+        <section id="work" className="section work-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53" aria-labelledby="work-heading">
           <div className="section-heading section-heading--work">
             <span>Selected work</span>
             <h2 id="work-heading">What I&apos;m<br /><em>making real.</em></h2>
@@ -196,7 +238,7 @@ export default function Home() {
             {projects.map((project, index) => {
               const isNidarr = project.title === "Nidarr";
               return (
-              <article className={`${project.className} project-card`} data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-reveal-delay={`${index * 70}ms`} key={project.title} onPointerMove={isNidarr ? undefined : tiltGlassSurface} onPointerLeave={isNidarr ? undefined : resetGlassTilt}>
+              <article className={`${project.className} project-card`} data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-reveal-delay={`${index * 70}ms`} key={project.title} onPointerMove={tiltGlassSurface} onPointerLeave={resetGlassTilt}>
                 {isNidarr ? (
                   <NidarrShowcase assets={nidarrEvidence} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
@@ -213,7 +255,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="learning" className="section learning-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="76,202,181" aria-labelledby="learning-heading">
+        <section id="learning" className="section learning-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53" aria-labelledby="learning-heading">
           <div className="learning-copy">
             <h2 id="learning-heading">I&apos;m learning<br />where the edge is.</h2>
             <p>These are active directions, not claimed expertise. Each one is a thread I&apos;m testing through projects, reading, and practice.</p>
@@ -223,7 +265,7 @@ export default function Home() {
           </Accordion>
         </section>
 
-        <section id="about" className="section about-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="226,178,84" aria-labelledby="about-heading">
+        <section id="about" className="section about-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53" aria-labelledby="about-heading">
           <div className="about-portrait"><img src={portrait} alt="Saptajit Saha at Indian Institute of Technology Madras" width="1084" height="1448" loading="lazy" /></div>
           <div className="about-copy">
             <h2 id="about-heading">Student status.<br /><em>Builder mindset.</em></h2>
@@ -233,7 +275,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section toolbox-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="85,163,255" aria-labelledby="toolbox-heading">
+        <section className="section toolbox-section" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53" aria-labelledby="toolbox-heading">
           <div className="toolbox-topline"><span>Tools I use or am learning</span></div>
           <h2 id="toolbox-heading">Tools become useful<br /><em>when the questions do.</em></h2>
           <div className="toolbox-ticker" aria-label="Technology and tool groups">
@@ -257,7 +299,7 @@ export default function Home() {
         </section>
       </main>
 
-        <footer id="contact" className="site-footer" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="236,103,157">
+        <footer id="contact" className="site-footer" data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-trail-color="232,76,53">
         <ReachOutPanel />
         <div className="footer-bottom"><span className="footer-signal-mark"><img src={logoMark} alt="" />© 2026 Saptajit Saha</span><span>Kolkata, India</span></div>
       </footer>
@@ -273,11 +315,27 @@ function tiltGlassSurface(event: ReactPointerEvent<HTMLElement>) {
   const vertical = (event.clientY - bounds.top) / bounds.height - .5;
   event.currentTarget.style.setProperty("--glass-tilt-x", `${(-vertical * 2.2).toFixed(2)}deg`);
   event.currentTarget.style.setProperty("--glass-tilt-y", `${(horizontal * 2.8).toFixed(2)}deg`);
+  event.currentTarget.style.setProperty("--mx", `${Math.round(event.clientX - bounds.left)}px`);
+  event.currentTarget.style.setProperty("--my", `${Math.round(event.clientY - bounds.top)}px`);
 }
 
 function resetGlassTilt(event: ReactPointerEvent<HTMLElement>) {
   event.currentTarget.style.setProperty("--glass-tilt-x", "0deg");
   event.currentTarget.style.setProperty("--glass-tilt-y", "0deg");
+}
+
+function heroPointerParallax(event: ReactPointerEvent<HTMLElement>) {
+  if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const horizontal = (event.clientX - bounds.left) / bounds.width - .5;
+  const vertical = (event.clientY - bounds.top) / bounds.height - .5;
+  event.currentTarget.style.setProperty("--stage-tilt-x", `${(-vertical * 2.4).toFixed(2)}deg`);
+  event.currentTarget.style.setProperty("--stage-tilt-y", `${(horizontal * 3).toFixed(2)}deg`);
+}
+
+function heroPointerParallaxReset(event: ReactPointerEvent<HTMLElement>) {
+  event.currentTarget.style.setProperty("--stage-tilt-x", "0deg");
+  event.currentTarget.style.setProperty("--stage-tilt-y", "0deg");
 }
 
 function ToolboxMark({ tool }: { tool: ToolboxTickerRow["tools"][number] }) {

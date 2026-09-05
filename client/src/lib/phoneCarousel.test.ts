@@ -24,7 +24,7 @@ describe("Nidarr phone carousel touch interaction", () => {
     expect(carouselSource).not.toContain("phone-carousel__autoplay");
     expect(carouselSource).not.toContain("phone-carousel__progress");
     expect(carouselStyles).toContain(".phone-carousel__dots { display:flex; align-items:center; justify-content:center; min-width:0; gap:2px;");
-    expect(carouselStyles).toContain(".phone-carousel__dot-ring-progress { stroke:var(--signal); stroke-width:2.45; stroke-linecap:round; filter:drop-shadow(0 0 2px rgba(232,76,53,.72)) drop-shadow(0 0 5px rgba(232,76,53,.28));");
+    expect(carouselStyles).toContain(".phone-carousel__dot-ring-progress { stroke:var(--signal); stroke-width:2.45; stroke-linecap:round; filter:drop-shadow(0 0 2px rgba(var(--signal-rgb),.72)) drop-shadow(0 0 5px rgba(var(--signal-rgb),.28));");
     expect(carouselStyles).not.toContain(".phone-carousel__progress");
   });
 
