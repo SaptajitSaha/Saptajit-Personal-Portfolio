@@ -6,8 +6,7 @@ import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { InteractivePixelGrid } from "@/components/ui/interactive-pixel-grid";
-import { MeshDriftShader } from "@/components/ui/mesh-drift-shader";
+import { SignalField } from "@/components/SignalField";
 import { FirstLoadExperience } from "@/components/FirstLoadExperience";
 import { shouldSkipFirstLoadExperience } from "@/lib/firstLoadExperience";
 import { learningTracks } from "@/lib/learningTracks";
@@ -36,6 +35,17 @@ const nidarrEvidence = {
 };
 
 type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; className: string; trace?: string[] };
+
+/** Palette tokens for the WebGL layer; re-read on every theme flip. */
+function readPalette() {
+  const styles = getComputedStyle(document.documentElement);
+  const paper = styles.getPropertyValue("--paper").trim() || "#1d1a1e";
+  return {
+    accent: styles.getPropertyValue("--signal").trim() || "#e84c35",
+    dim: styles.getPropertyValue("--mist").trim() || "#c9c4c6",
+    alpha: paper === "#1d1a1e" ? 0.85 : 0.42,
+  };
+}
 
 const projects: Project[] = [
   {
@@ -203,12 +213,11 @@ export default function Home() {
       {introComplete && <FloatingLiquidNav activeSection={activeSection} onNavigate={activateNavigation} />}
       <div aria-hidden={!introComplete} inert={!introComplete}>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="site-pixel-grid" aria-hidden="true"><div className="site-pixel-grid__fallback" /><InteractivePixelGrid className="site-pixel-grid__canvas" /></div>
+      <SignalField readColors={readPalette} heroAnchorSelector=".portrait-orb" />
       <div className="liquid-signal-thread" aria-hidden="true"><i /><i /><i /></div>
 
       <main id="main-content">
         <section className="hero" data-trail-color="232,76,53" aria-labelledby="hero-title" onPointerMove={heroPointerParallax} onPointerLeave={heroPointerParallaxReset}>
-          <div className="hero-mesh" aria-hidden="true"><div className="hero-mesh__fallback" /><MeshDriftShader className="hero-mesh__canvas" /></div>
           <div className="hero-gridlines" aria-hidden="true" />
           <div className="hero-copy">
             <div className="liquid-hero-mark" aria-hidden="true"><img src={logoMark} alt="" /><i /></div>
