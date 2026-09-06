@@ -496,7 +496,7 @@ h3 { letter-spacing: -.012em; }
 /* Project cards: sheer background shell, opaque foreground info panel. */
 .signal-field--liquid .project-card { background: linear-gradient(145deg, rgba(var(--glass-rgb), .07), rgba(var(--glass-rgb), .02) 48%, rgba(var(--glass-rgb), .04)), rgba(var(--panel-rgb), .14); }
 .signal-field--liquid .project-card__content { margin: clamp(8px, 1vw, 14px); padding: clamp(16px, 1.8vw, 24px); border-radius: 20px; background: linear-gradient(150deg, rgba(var(--glass-rgb), .08), rgba(var(--glass-rgb), .025)), rgba(var(--panel-rgb), .52); border: 1px solid rgba(var(--glass-rgb), .16); box-shadow: inset 0 1px 0 rgba(var(--glass-rgb), .12), 0 18px 40px rgba(0,0,0,.2); }
-.signal-field--liquid .nidarr-card .project-card__content { background: linear-gradient(120deg, rgba(var(--panel-rgb), .4), rgba(var(--panel-rgb), .24)); margin: 0; border: 0; border-right: 1px solid rgba(var(--glass-rgb), .14); border-radius: 0; height: 100%; justify-content: center; } width: 42%; max-width: none;
+.signal-field--liquid .nidarr-card .project-card__content { background: linear-gradient(120deg, rgba(var(--panel-rgb), .4), rgba(var(--panel-rgb), .24)); margin: 0; border: 0; border-right: 1px solid rgba(var(--glass-rgb), .14); border-radius: 0; height: 100%; justify-content: center; }
 [data-theme="paper"] .signal-field--liquid .project-card { background: rgba(var(--panel-rgb), .26); }
 [data-theme="paper"] .signal-field--liquid .project-card__content { background: rgba(var(--panel-rgb), .58); }
 [data-theme="paper"] .signal-field--liquid .nidarr-card .project-card__content { background: rgba(var(--panel-rgb), .6); }
@@ -507,3 +507,9 @@ h3 { letter-spacing: -.012em; }
 
 /* Content rail: centered, above the fixed Signal Field canvas. */
 main, .site-footer { position: relative; z-index: 1; width: min(100% - 44px, 1620px); margin-inline: auto; }
+
+/* Nidarr split: the info panel and the showcase must sum to 100% of the card
+   (45% + 55%) at desktop widths; stacked below 660px the panel is full-width. */
+@media (min-width: 1101px) { .nidarr-card .project-card__content { width: 42%; max-width: none; } }
+@media (max-width: 1100px) and (min-width: 661px) { .nidarr-card .project-card__content { width: 45%; max-width: none; } }
+@media (max-width: 660px) { .nidarr-card .project-card__content { width: 100% !important; max-width: none; } }
