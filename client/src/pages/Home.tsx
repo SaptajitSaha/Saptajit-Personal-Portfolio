@@ -27,12 +27,12 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProp
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = iitmBrandAssetUrl;
 const nidarrScreens = [
-  { src: "/nidarr/nidarr-01-safety-home.png", label: "Safety home", alt: "Nidarr safety home dashboard" },
-  { src: "/nidarr/nidarr-02-safety-map.png", label: "Safety map", alt: "Nidarr community signal map of Kolkata" },
-  { src: "/nidarr/nidarr-03-gemini-analysis.png", label: "Gemini analysis", alt: "Nidarr Gemini-powered incident analysis" },
-  { src: "/nidarr/nidarr-04-pending-signal.png", label: "Pending signal", alt: "Nidarr pending community signal report" },
-  { src: "/nidarr/nidarr-05-walk-with-me.png", label: "Walk with me", alt: "Nidarr trusted-contact walk session" },
-  { src: "/nidarr/nidarr-06-check-in.png", label: "Check-in", alt: "Nidarr safety check-in screen" },
+  { src: "/nidarr/nidarr-01-safety-home.png", label: "Safety home", description: "A unified dashboard for maps, reports and safety tools.", alt: "Nidarr safety home dashboard" },
+  { src: "/nidarr/nidarr-02-safety-map.png", label: "Safety map", description: "Explore demonstration and pending community signals.", alt: "Nidarr community signal map of Kolkata" },
+  { src: "/nidarr/nidarr-03-gemini-analysis.png", label: "Gemini analysis", description: "Gemini AI provides structured, provisional safety insights.", alt: "Nidarr Gemini-powered incident analysis" },
+  { src: "/nidarr/nidarr-04-pending-signal.png", label: "Pending signal", description: "Unverified reports appear as pending safety signals.", alt: "Nidarr pending community signal report" },
+  { src: "/nidarr/nidarr-05-walk-with-me.png", label: "Walk with me", description: "Start a Walk With Me session with a trusted contact.", alt: "Nidarr trusted-contact walk session" },
+  { src: "/nidarr/nidarr-06-check-in.png", label: "Check-in", description: "Prototype check-ins ensure your safety, every step.", alt: "Nidarr safety check-in screen" },
 ];
 
 type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; className: string; trace?: string[] };

@@ -2,11 +2,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from "react";
 import "./phone-mockups-1.css";
 
-export type ImageItem = { src: string; alt: string; label: string };
+export type ImageItem = { src: string; alt: string; label: string; description?: string };
 
 type PhoneCarouselProps = { images: ImageItem[]; className?: string };
 
-const AUTOPLAY_DELAY = 4800;
+const AUTOPLAY_DELAY = 6800;
 const SWIPE_MIN_DISTANCE = 48;
 const DOT_PROGRESS_RADIUS = 12;
 const DOT_PROGRESS_CIRCUMFERENCE = 2 * Math.PI * DOT_PROGRESS_RADIUS;
@@ -94,15 +94,20 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
-    if (images.length < 2) return;
+    // Taps on the arrows, dots, and links must keep their own click events.
+    if (images.length < 2 || (event.target as HTMLElement).closest("button, a")) return;
     swipeStartRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
     setTouchPaused(true);
-    event.currentTarget.setPointerCapture(event.pointerId);
   };
   const onPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
     const swipeStart = swipeStartRef.current;
     if (!swipeStart || swipeStart.pointerId !== event.pointerId) return;
     const raw = event.clientX - swipeStart.x;
+    // Capture only once the drag is real, so plain taps stay untouched.
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
+      if (Math.abs(raw) < 10 || Math.abs(event.clientY - swipeStart.y) > Math.abs(raw)) return;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
     // Rubber-band at the edges so over-swipes feel weighted, not clipped.
     const atEdge = (raw < 0 && activeIndex === images.length - 1) || (raw > 0 && activeIndex === 0);
     const delta = atEdge ? raw * 0.28 : raw * 0.62;
@@ -114,6 +119,7 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     const deltaX = event.clientX - swipeStart.x;
     const atEdge = (deltaX < 0 && activeIndex === images.length - 1) || (deltaX > 0 && activeIndex === 0);
     clearSwipe(event);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
     const stage = stageRef.current;
     if (stage) {
       const dragged = stage.style.transform || "translateX(0)";
@@ -135,7 +141,9 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     <section ref={carouselRef} className={`phone-carousel ${className}`} data-autoplay={autoplayPaused ? "paused" : "playing"} aria-roledescription="carousel" aria-label="Nidarr mobile product screens" aria-describedby="phone-carousel-swipe-instructions" onKeyDown={onKeyDown} onFocusCapture={() => setFocusPaused(true)} onBlurCapture={onBlurCapture} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={clearSwipe} tabIndex={0}>
       <p id="phone-carousel-swipe-instructions" className="phone-carousel__swipe-instructions">Swipe left or right to browse the Nidarr product screens. Previous and next buttons are also available.</p>
       <p className="phone-carousel__status" aria-live={autoplayPaused ? "polite" : "off"}>{activeIndex + 1} of {images.length}: {activeImage.label}</p>
-      <div ref={stageRef} className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}</div>
+      <div ref={stageRef} className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}
+        {activeImage.description && <figure className="phone-carousel__caption" key={activeImage.src}><strong>{activeImage.label}</strong><span>{activeImage.description}</span></figure>}
+      </div>
       <div className="phone-carousel__controls">
         <button className="phone-carousel__arrow" type="button" onClick={() => select(activeIndex - 1)} aria-label={`Show previous screen: ${images[(activeIndex - 1 + images.length) % images.length].label}`}><ChevronLeft size={17} aria-hidden="true" /></button>
         <div className="phone-carousel__dots" aria-label="Choose a Nidarr product screen">{images.map((image, index) => <button className="phone-carousel__dot" type="button" key={image.src} data-active={index === activeIndex || undefined} onClick={() => select(index)} aria-label={`Show ${image.label}`} aria-current={index === activeIndex ? "true" : undefined}>{index === activeIndex && <svg className="phone-carousel__dot-ring" viewBox="0 0 32 32" aria-hidden="true"><circle className="phone-carousel__dot-ring-track" cx="16" cy="16" r={DOT_PROGRESS_RADIUS} /><circle ref={progressRef} className="phone-carousel__dot-ring-progress" cx="16" cy="16" r={DOT_PROGRESS_RADIUS} strokeDasharray={DOT_PROGRESS_CIRCUMFERENCE} strokeDashoffset={DOT_PROGRESS_CIRCUMFERENCE} /></svg>}</button>)}</div>

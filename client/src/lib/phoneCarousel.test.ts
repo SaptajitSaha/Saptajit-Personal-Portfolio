@@ -7,7 +7,9 @@ const carouselStyles = readFileSync(new URL("../components/ui/phone-mockups-1.cs
 describe("Nidarr phone carousel touch interaction", () => {
   it("provides a guarded live drag with existing accessible controls retained", () => {
     expect(carouselSource).toContain("const SWIPE_MIN_DISTANCE = 48;");
-    expect(carouselSource).toContain("if (images.length < 2) return;");
+    expect(carouselSource).toContain('if (images.length < 2 || (event.target as HTMLElement).closest("button, a")) return;');
+    expect(carouselSource).toContain("if (!event.currentTarget.hasPointerCapture(event.pointerId)) {");
+    expect(carouselSource).toContain("if (Math.abs(raw) < 10 || Math.abs(event.clientY - swipeStart.y) > Math.abs(raw)) return;");
     // Live drag-follow with edge rubber-banding, then a spring settle.
     expect(carouselSource).toContain("const delta = atEdge ? raw * 0.28 : raw * 0.62;");
     expect(carouselSource).toContain("stageRef.current?.style.setProperty(\"transform\", `translateX(${delta.toFixed(1)}px)`);");
