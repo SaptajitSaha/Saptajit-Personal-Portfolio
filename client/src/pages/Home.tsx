@@ -8,6 +8,7 @@ import { OrbitalScene } from "@/components/OrbitalScene";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SignalField } from "@/components/SignalField";
 import { FirstLoadExperience } from "@/components/FirstLoadExperience";
+import { Link } from "wouter";
 import { shouldSkipFirstLoadExperience } from "@/lib/firstLoadExperience";
 import { learningTracks } from "@/lib/learningTracks";
 import { primaryNavigation, type PrimaryNavigationId } from "@/lib/navigation";
@@ -35,7 +36,7 @@ const nidarrScreens = [
   { src: "/nidarr/nidarr-06-check-in.png", label: "Check-in", description: "Prototype check-ins ensure your safety, every step.", alt: "Nidarr safety check-in screen" },
 ];
 
-type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; className: string; trace?: string[] };
+type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; repo?: string; stack?: string; workflow?: string[]; className: string; trace?: string[] };
 
 /** Palette tokens for the WebGL layer; re-read on every theme flip. */
 function readPalette() {
@@ -54,8 +55,17 @@ const projects: Project[] = [
     category: "Personal safety prototype",
     year: "2026",
     role: "Product & frontend prototype builder",
-    tagline: "A mobile safety prototype that brings critical actions into one guided, more usable flow.",
+    tagline: "A mobile-first personal-safety prototype for clearer reporting, transparent safety signals, and foreground journey check-ins.",
     href: "https://nidarr.vercel.app/",
+    repo: "https://github.com/SaptajitSaha/Nidarr",
+    stack: "React 19 · TypeScript · Express · Leaflet · Gemini API · Playwright",
+    workflow: ["Report", "Analyse", "Confirm", "Map"],
+    trace: [
+      "Structured reporting — Gemini turns incident text into provisional analysis",
+      "Transparent signal map — demo and community signals stay clearly separated",
+      "Walk With Me — foreground journeys with trusted-contact check-ins",
+      "Honest by design — every screen labels what is real, provisional or simulated",
+    ],
     className: "work-feature nidarr-card",
   },
 ];
@@ -258,8 +268,11 @@ export default function Home() {
                   <h3>{project.title}</h3>
                   <p className="work-tools">{project.role}</p>
                   <p className="work-description">{project.tagline}</p>
+                  <p className="work-story">Safety tools are fragmented, and often presented with more certainty than the evidence supports. Nidarr connects structured reporting, a live signal map, and journey check-ins in one experience that keeps demonstration data, AI analysis, and community reports clearly separated.</p>
                   {project.trace && <div className="project-card__trace" aria-label="Project system trace">{project.trace.map((trace, index) => <span key={trace}><b>{String(index + 1).padStart(2, "0")}</b>{trace}</span>)}</div>}
-                  {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a></div>}
+                  {project.workflow && <div className="project-card__workflow" aria-label="Product workflow">{project.workflow.map((step, index) => <span key={step}><b>{String(index + 1).padStart(2, "0")}</b>{step}</span>)}</div>}
+                  {isNidarr && <div className="nidarr-actions"><a className="project-live-link" href={project.href} target="_blank" rel="noreferrer">Open live prototype <ArrowUpRight size={16} aria-hidden="true" /></a><a className="project-live-link project-repo-link" href={project.repo} target="_blank" rel="noreferrer">GitHub <Github size={15} aria-hidden="true" /></a><Link className="project-live-link" href="/nidarr">Read the case study <ArrowUpRight size={16} aria-hidden="true" /></Link></div>}
+                  {project.stack && <p className="project-card__stack">{project.stack}</p>}
                 </div>
               </article>
             )})}

@@ -142,7 +142,7 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
       <p id="phone-carousel-swipe-instructions" className="phone-carousel__swipe-instructions">Swipe left or right to browse the Nidarr product screens. Previous and next buttons are also available.</p>
       <p className="phone-carousel__status" aria-live={autoplayPaused ? "polite" : "off"}>{activeIndex + 1} of {images.length}: {activeImage.label}</p>
       <div ref={stageRef} className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}
-        {activeImage.description && <figure className="phone-carousel__caption" key={activeImage.src}><strong>{activeImage.label}</strong><span>{activeImage.description}</span></figure>}
+        {activeImage.description && <figure className="phone-carousel__caption" data-pos={(["ul", "ur", "ll", "lr"] as const)[activeIndex % 4]} key={activeImage.src}><strong>{activeImage.label}</strong><span>{activeImage.description}</span></figure>}
       </div>
       <div className="phone-carousel__controls">
         <button className="phone-carousel__arrow" type="button" onClick={() => select(activeIndex - 1)} aria-label={`Show previous screen: ${images[(activeIndex - 1 + images.length) % images.length].label}`}><ChevronLeft size={17} aria-hidden="true" /></button>

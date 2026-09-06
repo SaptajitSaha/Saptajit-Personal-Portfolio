@@ -513,3 +513,34 @@ main, .site-footer { position: relative; z-index: 1; width: min(100% - 44px, 162
 @media (min-width: 1101px) { .nidarr-card .project-card__content { width: 42%; max-width: none; } }
 @media (max-width: 1100px) and (min-width: 661px) { .nidarr-card .project-card__content { width: 45%; max-width: none; } }
 @media (max-width: 660px) { .nidarr-card .project-card__content { width: 100% !important; max-width: none; } }
+
+/* ============================================================
+   Nidarr case panel: story paragraph, evidence rows, workflow
+   strip, dual links, and the stack line — all inside the
+   foreground info panel.
+   ============================================================ */
+.work-story { max-width: 52ch; margin: 14px 0 0; color: var(--mist); font-size: 13.5px; line-height: 1.62; }
+.project-card__trace span { font:500 11.5px/1.5 var(--font-sans); letter-spacing:0; text-transform:none; color:var(--mist); }
+.project-card__trace span b { margin-right:9px; font:500 10px/1 var(--font-mono); }
+.project-card__workflow { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+.project-card__workflow span { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border:1px solid rgba(var(--glass-rgb),.2); border-radius:999px; background:rgba(var(--panel-rgb),.3); color:var(--mist); font:500 9.5px/1 var(--font-mono); letter-spacing:.06em; text-transform:uppercase; }
+.project-card__workflow span b { color:var(--signal); font-weight:500; }
+.project-card__stack { margin:16px 0 0; padding-top:12px; border-top:1px solid rgba(var(--glass-rgb),.16); color:var(--faint); font:500 10px/1.5 var(--font-mono); letter-spacing:.05em; }
+.nidarr-actions { gap:22px; }
+.project-repo-link { border-bottom-color:rgba(var(--glass-rgb),.3); color:var(--mist); }
+.project-repo-link:hover { color:var(--paper); }
+@media (max-width:660px) { .work-story { font-size:13px; } .nidarr-actions { gap:16px; flex-wrap:wrap; } }
+
+/* Nidarr case panel: balanced vertical rhythm. The legacy clamp top-margin on
+   h3 reserved space for a background image this panel no longer has. */
+.signal-field--liquid .nidarr-card .project-card__content { justify-content: center; gap: 2px; }
+.nidarr-card .project-card__content h3 { margin: 12px 0 10px; }
+.nidarr-card .work-description { margin-top: 18px; }
+.nidarr-card .work-story { margin-top: 12px; max-width: none; }
+.nidarr-card .project-card__trace { margin-top: 18px; }
+.nidarr-card .project-card__workflow { margin-top: 14px; }
+.nidarr-card .nidarr-actions { margin-top: 16px; }
+.nidarr-card .project-card__stack { margin-top: 14px; }
+
+/* Card story text: comfortable reading; full detail lives on /nidarr. */
+.work-story { font-size: 14.5px; }
