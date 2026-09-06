@@ -1,7 +1,14 @@
-/* --- Theme switch: circular reveal from the toggle button + sun/moon morph --- */
+/* --- Theme switch: circular reveal from the toggle button + sun/moon morph ---
+   The circle origin/size are baked into --reveal-x/--reveal-y/--reveal-r on
+   <html> by lib/theme.ts, so the expansion is a pure CSS animation on the
+   new snapshot: no JS pseudo-element animation to break across engines. */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 ::view-transition-old(root) { z-index: 1; }
-::view-transition-new(root) { z-index: 2; }
+::view-transition-new(root) { z-index: 2; animation: theme-reveal 720ms cubic-bezier(.45, .05, .25, 1) both; }
+@keyframes theme-reveal {
+  from { clip-path: circle(0px at var(--reveal-x, 50%) var(--reveal-y, 4px)); }
+  to { clip-path: circle(var(--reveal-r, 150%) at var(--reveal-x, 50%) var(--reveal-y, 4px)); }
+}
 
 .liquid-nav__theme { position: relative; }
 .liquid-nav__theme-icon { position: absolute; display: grid; place-items: center; transition: opacity 300ms var(--ease-out), transform 440ms cubic-bezier(.16, 1, .3, 1); }

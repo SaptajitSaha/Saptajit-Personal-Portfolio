@@ -1,5 +1,6 @@
 export type PortfolioTheme = "ink" | "paper";
 
+
 const STORAGE_KEY = "portfolio-theme";
 
 export function readStoredTheme(): PortfolioTheme {
@@ -29,9 +30,12 @@ type ViewTransitionDocument = Document & {
 };
 
 /**
- * Applies the next theme. When the browser supports the View Transitions API
- * (and motion is allowed), the new theme is revealed as a circle expanding
- * from the toggle button's position; otherwise the swap is instant.
+ * Applies the next theme. Where the View Transitions API is available (and
+ * motion is allowed), the new theme is revealed as a circle expanding from
+ * the toggle button: the button's coordinates are baked into --reveal-x/y
+ * custom properties and the expansion itself runs as a pure CSS animation on
+ * ::view-transition-new(root), which survives minification and engine
+ * differences far better than a JS-driven pseudo-element animation.
  */
 export function transitionTheme(
   next: PortfolioTheme,
@@ -47,28 +51,20 @@ export function transitionTheme(
     apply();
     return;
   }
-  const maxRadius = 1.15 * Math.hypot(
-    Math.max(origin.x, window.innerWidth - origin.x),
-    Math.max(origin.y, window.innerHeight - origin.y),
+
+  const root = document.documentElement;
+  const maxRadius = Math.round(
+    1.15 * Math.hypot(
+      Math.max(origin.x, window.innerWidth - origin.x),
+      Math.max(origin.y, window.innerHeight - origin.y),
+    ),
   );
+  root.style.setProperty("--reveal-x", `${Math.round(origin.x)}px`);
+  root.style.setProperty("--reveal-y", `${Math.round(origin.y)}px`);
+  root.style.setProperty("--reveal-r", `${maxRadius}px`);
+
   const transition = scoped.startViewTransition(apply);
-  transition.ready
-    .then(() => {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${origin.x}px ${origin.y}px)`,
-            `circle(${maxRadius}px at ${origin.x}px ${origin.y}px)`,
-          ],
-        },
-        {
-          duration: 720,
-          easing: "cubic-bezier(.45, .05, .25, 1)",
-          pseudoElement: "::view-transition-new(root)",
-        },
-      );
-    })
-    .catch(() => {
-      /* transition skipped (e.g. document hidden); theme is already applied */
-    });
+  transition.ready.catch(() => {
+    /* transition skipped (e.g. document hidden); theme is already applied */
+  });
 }
