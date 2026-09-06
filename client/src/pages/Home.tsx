@@ -26,13 +26,14 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProp
 
 const portrait = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/WekHJzpZOJUKIlnp.jpeg";
 const logoMark = iitmBrandAssetUrl;
-const nidarrEvidence = {
-  home: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/xHpPFFzQCHOIAQUb.png",
-  report: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/uEhrNwQQJlfwiDhG.png",
-  walk: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/IQFeiEyaHqJyAIMr.png",
-  map: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/itwEKDpYWSWiAWaR.png",
-  profile: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663907191755/VueDxQFucIUBOyFH.png",
-};
+const nidarrScreens = [
+  { src: "/nidarr/nidarr-01-safety-home.png", label: "Safety home", alt: "Nidarr safety home dashboard" },
+  { src: "/nidarr/nidarr-02-safety-map.png", label: "Safety map", alt: "Nidarr community signal map of Kolkata" },
+  { src: "/nidarr/nidarr-03-gemini-analysis.png", label: "Gemini analysis", alt: "Nidarr Gemini-powered incident analysis" },
+  { src: "/nidarr/nidarr-04-pending-signal.png", label: "Pending signal", alt: "Nidarr pending community signal report" },
+  { src: "/nidarr/nidarr-05-walk-with-me.png", label: "Walk with me", alt: "Nidarr trusted-contact walk session" },
+  { src: "/nidarr/nidarr-06-check-in.png", label: "Check-in", alt: "Nidarr safety check-in screen" },
+];
 
 type Project = { title: string; category: string; year: string; role: string; tagline: string; href: string; className: string; trace?: string[] };
 
@@ -250,7 +251,7 @@ export default function Home() {
               return (
               <article className={`${project.className} project-card`} data-scroll-reveal data-reveal-ready={scrollMotionReady || undefined} data-reveal-delay={`${index * 70}ms`} key={project.title} onPointerMove={tiltGlassSurface} onPointerLeave={resetGlassTilt}>
                 {isNidarr ? (
-                  <NidarrShowcase assets={nidarrEvidence} />
+                  <NidarrShowcase screens={nidarrScreens} />
                 ) : <div className="work-visual work-visual--field"><div className="work-visual__artifact" aria-hidden="true"><span>{project.category}</span><span>{project.year}</span><i /></div></div>}
                 <div className="project-card__content">
                   <div className="work-meta"><span>{project.category}</span><span>{project.year}</span></div>

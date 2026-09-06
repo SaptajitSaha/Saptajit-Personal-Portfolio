@@ -94,19 +94,37 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
-    if (event.pointerType !== "touch" || images.length < 2) return;
+    if (images.length < 2) return;
     swipeStartRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
     setTouchPaused(true);
     event.currentTarget.setPointerCapture(event.pointerId);
+  };
+  const onPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const swipeStart = swipeStartRef.current;
+    if (!swipeStart || swipeStart.pointerId !== event.pointerId) return;
+    const raw = event.clientX - swipeStart.x;
+    // Rubber-band at the edges so over-swipes feel weighted, not clipped.
+    const atEdge = (raw < 0 && activeIndex === images.length - 1) || (raw > 0 && activeIndex === 0);
+    const delta = atEdge ? raw * 0.28 : raw * 0.62;
+    stageRef.current?.style.setProperty("transform", `translateX(${delta.toFixed(1)}px)`);
   };
   const onPointerUp = (event: ReactPointerEvent<HTMLElement>) => {
     const swipeStart = swipeStartRef.current;
     if (!swipeStart || swipeStart.pointerId !== event.pointerId) return;
     const deltaX = event.clientX - swipeStart.x;
-    const deltaY = event.clientY - swipeStart.y;
+    const atEdge = (deltaX < 0 && activeIndex === images.length - 1) || (deltaX > 0 && activeIndex === 0);
     clearSwipe(event);
-    if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-    if (deltaX < 0 && activeIndex === images.length - 1) {
+    const stage = stageRef.current;
+    if (stage) {
+      const dragged = stage.style.transform || "translateX(0)";
+      stage.style.transform = "";
+      if (dragged !== "translateX(0)") stage.animate([
+        { transform: dragged },
+        { transform: "translateX(0)" },
+      ], { duration: 460, easing: "cubic-bezier(.22,1.28,.36,1)" });
+    }
+    if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaX) <= Math.abs(event.clientY - swipeStart.y)) return;
+    if (atEdge) {
       triggerEndBounce();
       return;
     }
@@ -114,7 +132,7 @@ export function PhoneCarousel({ images, className = "" }: PhoneCarouselProps) {
   };
 
   return (
-    <section ref={carouselRef} className={`phone-carousel ${className}`} data-autoplay={autoplayPaused ? "paused" : "playing"} aria-roledescription="carousel" aria-label="Nidarr mobile product screens" aria-describedby="phone-carousel-swipe-instructions" onKeyDown={onKeyDown} onFocusCapture={() => setFocusPaused(true)} onBlurCapture={onBlurCapture} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={clearSwipe} tabIndex={0}>
+    <section ref={carouselRef} className={`phone-carousel ${className}`} data-autoplay={autoplayPaused ? "paused" : "playing"} aria-roledescription="carousel" aria-label="Nidarr mobile product screens" aria-describedby="phone-carousel-swipe-instructions" onKeyDown={onKeyDown} onFocusCapture={() => setFocusPaused(true)} onBlurCapture={onBlurCapture} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={clearSwipe} tabIndex={0}>
       <p id="phone-carousel-swipe-instructions" className="phone-carousel__swipe-instructions">Swipe left or right to browse the Nidarr product screens. Previous and next buttons are also available.</p>
       <p className="phone-carousel__status" aria-live={autoplayPaused ? "polite" : "off"}>{activeIndex + 1} of {images.length}: {activeImage.label}</p>
       <div ref={stageRef} className="phone-carousel__stage" aria-hidden="true">{images.map((image, index) => { const position = relativeIndex(index, activeIndex, images.length); const slot = position === 0 ? "active" : position === -1 ? "previous" : position === 1 ? "next" : "hidden"; return <figure className="phone-carousel__phone" data-slot={slot} key={image.src}><div className="phone-carousel__speaker" /><img src={image.src} alt="" width="440" height="871" loading="eager" /></figure>; })}</div>

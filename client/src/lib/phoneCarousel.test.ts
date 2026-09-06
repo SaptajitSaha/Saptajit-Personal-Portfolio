@@ -5,11 +5,15 @@ const carouselSource = readFileSync(new URL("../components/ui/phone-mockups-1.ts
 const carouselStyles = readFileSync(new URL("../components/ui/phone-mockups-1.css", import.meta.url), "utf8");
 
 describe("Nidarr phone carousel touch interaction", () => {
-  it("provides a guarded horizontal swipe with existing accessible controls retained", () => {
+  it("provides a guarded live drag with existing accessible controls retained", () => {
     expect(carouselSource).toContain("const SWIPE_MIN_DISTANCE = 48;");
-    expect(carouselSource).toContain("if (event.pointerType !== \"touch\" || images.length < 2) return;");
-    expect(carouselSource).toContain("if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaX) <= Math.abs(deltaY)) return;");
+    expect(carouselSource).toContain("if (images.length < 2) return;");
+    // Live drag-follow with edge rubber-banding, then a spring settle.
+    expect(carouselSource).toContain("const delta = atEdge ? raw * 0.28 : raw * 0.62;");
+    expect(carouselSource).toContain("stageRef.current?.style.setProperty(\"transform\", `translateX(${delta.toFixed(1)}px)`);");
+    expect(carouselSource).toContain("if (Math.abs(deltaX) < SWIPE_MIN_DISTANCE || Math.abs(deltaX) <= Math.abs(event.clientY - swipeStart.y)) return;");
     expect(carouselSource).toContain("select(activeIndex + (deltaX < 0 ? 1 : -1));");
+    expect(carouselSource).toContain("onPointerMove={onPointerMove}");
     expect(carouselSource).toContain("onPointerCancel={clearSwipe}");
     expect(carouselSource).toContain("aria-describedby=\"phone-carousel-swipe-instructions\"");
     expect(carouselSource).toContain("onKeyDown={onKeyDown}");
@@ -28,9 +32,9 @@ describe("Nidarr phone carousel touch interaction", () => {
     expect(carouselStyles).not.toContain(".phone-carousel__progress");
   });
 
-  it("keeps dot feedback self-contained and bounces only a touch swipe past the final screen", () => {
+  it("keeps dot feedback self-contained and bounces only a drag past the final screen", () => {
     expect(carouselSource).toContain("const triggerEndBounce = useCallback(() => {");
-    expect(carouselSource).toContain("if (deltaX < 0 && activeIndex === images.length - 1) {");
+    expect(carouselSource).toContain("if (atEdge) {");
     expect(carouselSource).toContain("triggerEndBounce();");
     expect(carouselSource).toContain("{ transform: \"translateX(-12px)\", offset: .34 }");
     expect(carouselSource).toContain("boundaryAnimationRef.current?.cancel();");
