@@ -442,3 +442,16 @@ h1 { line-height: .96; }
 @media (pointer: coarse) {
   .site-pixel-grid, .hero-mesh__canvas { display: none; }
 }
+
+/* ============================================================
+   3D hero constellation (three.js) + anime.js hero name.
+   The canvas sits behind the orbit ring; letters stay selectable
+   text for assistive tech via the h1 aria-label.
+   ============================================================ */
+.stage-scene__constellation { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1100ms var(--ease-out); }
+.stage-scene__constellation[data-ready="true"] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .stage-scene__constellation { transition: none; } }
+
+.hero-name__line { display: block; }
+.hero-name__line--surname { color: var(--signal); }
+.hero-name__letter { display: inline-block; }

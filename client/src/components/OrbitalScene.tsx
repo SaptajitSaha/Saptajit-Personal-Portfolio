@@ -1,5 +1,6 @@
 import { Code2, Database, Sparkles } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { HeroConstellation } from "./HeroConstellation";
 
 const TAU = Math.PI * 2;
 const ORBIT_PERIOD_SECONDS = 56;
@@ -12,6 +13,18 @@ const cards = [
 ] as const;
 
 type OrbitGeometry = { cx: number; cy: number; rx: number; ry: number };
+
+/** Palette tokens for the 3D layer; re-read whenever the theme attribute flips. */
+function readPalette() {
+  const styles = getComputedStyle(document.documentElement);
+  const paper = styles.getPropertyValue("--paper").trim() || "#1d1a1e";
+  return {
+    accent: styles.getPropertyValue("--signal").trim() || "#e84c35",
+    dim: styles.getPropertyValue("--mist").trim() || "#c9c4c6",
+    // Sheerer on paper so the field reads as dust, not spatter.
+    alpha: paper === "#1d1a1e" ? 0.42 : 0.85,
+  };
+}
 
 function pointOnEllipse(geometry: OrbitGeometry, theta: number) {
   return {
@@ -29,7 +42,6 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
   const portraitRef = useRef<HTMLElement>(null);
   const ellipseRef = useRef<SVGEllipseElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   useEffect(() => {
     const scene = sceneRef.current;
     const portrait = portraitRef.current;
@@ -86,8 +98,6 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
       cards.forEach((_, index) => {
         const card = cardRefs.current[index];
         if (card) moveToOrbitPoint(card, pointOnEllipse(geometry!, theta + CARD_PHASES[index]));
-        const particle = particleRefs.current[index];
-        if (particle) moveToOrbitPoint(particle, pointOnEllipse(geometry!, theta + CARD_PHASES[index] + Math.PI / 8));
       });
     };
 
@@ -138,6 +148,7 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
   return (
     <div className="stage-wrap" aria-label="Portrait with orbiting capabilities">
       <div className="stage-scene" ref={sceneRef}>
+        <HeroConstellation readColors={readPalette} />
         <svg className="orbit-svg" aria-hidden="true"><ellipse className="orbit-svg__ring" ref={ellipseRef} /></svg>
         <span className="orbit-label orbit-label--one">Nidarr / 2026</span>
         <figure className="portrait-orb" ref={portraitRef}>
@@ -146,7 +157,6 @@ export function OrbitalScene({ portraitSrc, portraitAlt }: { portraitSrc: string
         </figure>
         <div className="orbit-foreground" aria-hidden="true">
           {cards.map((card, index) => <div className="role-planet" data-orbit-card={card.id} key={card.id} ref={element => { cardRefs.current[index] = element; }}><card.Icon size={15} /> {card.label}</div>)}
-          {cards.map((card, index) => <span className="orbit-particle" data-orbit-particle={card.id} key={`particle-${card.id}`} ref={element => { particleRefs.current[index] = element; }} />)}
         </div>
       </div>
     </div>

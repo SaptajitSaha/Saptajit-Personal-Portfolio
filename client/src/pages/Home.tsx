@@ -1,6 +1,7 @@
 /** Signal Field refinement: legible editorial hierarchy, personal storytelling, and evidence-led project narratives. */
 import { BlurText } from "@/components/BlurText";
 import { FloatingLiquidNav } from "@/components/FloatingLiquidNav";
+import { HeroName } from "@/components/HeroName";
 import { ReachOutPanel } from "@/components/ReachOutPanel";
 import { NidarrShowcase } from "@/components/NidarrShowcase";
 import { OrbitalScene } from "@/components/OrbitalScene";
@@ -212,7 +213,7 @@ export default function Home() {
           <div className="hero-copy">
             <div className="liquid-hero-mark" aria-hidden="true"><img src={logoMark} alt="" /><i /></div>
             <p className="kicker"><CircleDotDashed size={15} aria-hidden="true" /> Kolkata, India · IIT Madras ’29</p>
-            <h1 id="hero-title">Saptajit<br /><span>Saha</span></h1>
+            <HeroName active={introComplete} />
             <BlurText className="hero-statement" text="Building at the intersection of AI, data, and software." />
             <div className="hero-actions">
               <a className="button button--signal" href="#work">Explore work <ArrowUpRight size={18} aria-hidden="true" /></a>
